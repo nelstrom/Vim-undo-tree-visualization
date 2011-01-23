@@ -109,6 +109,7 @@ window.onload = function() {
   coordList = outline.coords;
 
   var pathString = "";
+  var circles = [];
   for (var i = 0; i < coordList.length; i++) {
     var coords = coordList[i];
 
@@ -118,9 +119,7 @@ window.onload = function() {
       pathString = pathString + "L" + coords.x + " " + coords.y + " ";
     }
     if (outline.values[i] === 'circle') {
-      var circle = paper.circle(coords.x, coords.y, radius);
-      circle.attr("fill", "#fff");
-      circle.attr("stroke", "#000");
+      circles.push({x: coords.x, y: coords.y})
     }
   };
 
@@ -131,4 +130,12 @@ window.onload = function() {
     "stroke-linecap": "butt",
     "stroke-linejoin": "miter"
   });
+  for (var i = 0; i < circles.length; i++) {
+    c = circles[i];
+    circle = paper.circle(c.x, c.y, radius);
+    circle.attr({
+      "fill": "#fff",
+      "stroke": "#000"
+    });
+  };
 }
