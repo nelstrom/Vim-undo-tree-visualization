@@ -108,22 +108,27 @@ window.onload = function() {
   outline = topMix;
   coordList = outline.coords;
 
+  var pathString = "";
   for (var i = 0; i < coordList.length; i++) {
     var coords = coordList[i];
 
-    if (i !== coordList.length-1) {
-      var next = coordList[i+1];
-      var pathString = "M" + coords.x + " " + coords.y + "L" + next.x + " " + next.y
-
-      var c = paper.path(pathString);
-      c.attr("stroke", "#008");
-      c.attr("stroke-width", "5");
+    if (i === 0) {
+      pathString = "M" + coords.x + " " + coords.y;
+    } else {
+      pathString = pathString + "L" + coords.x + " " + coords.y + " ";
     }
     if (outline.values[i] === 'circle') {
       var circle = paper.circle(coords.x, coords.y, radius);
       circle.attr("fill", "#fff");
       circle.attr("stroke", "#000");
     }
-
   };
+
+  var c = paper.path(pathString);
+  c.attr({
+    "stroke": "#008",
+    "stroke-width": "5",
+    "stroke-linecap": "butt",
+    "stroke-linejoin": "miter"
+  });
 }
