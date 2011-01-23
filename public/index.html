@@ -4,10 +4,54 @@
 <title>Vim Undo Tree visualization</title>
 <script src="raphael.js" type="text/javascript" charset="utf-8"></script>
 <script src="vim-tree-viz.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css" media="screen">
+  .state { display: none; }
+  #notepad { border: 1px solid black; width: 640px; height: 480px; }
+</style>
 </head>
 <body>
-<div id="notepad">
-  
-</div>
+<code class="state" id="state01"><pre>
+1955, November 5th
+
+1955, November 12th
+    Lightning strikes the clocktower at 10.04pm
+</pre></code>
+<code class="state" id="state02"><pre>
+1955, November 5th
+    George McFly falls out of a tree and is hit by a car.
+    Lorraine Baines nurses George, and thinks he's cute.
+
+1955, November 12th
+    Lightning strikes the clocktower at 10.04pm
+</pre></code>
+<code class="state" id="state03"><pre>
+1955, November 5th
+    George McFly falls out of a tree and is hit by a car.
+    Lorraine Baines nurses George, and thinks he's cute.
+
+1955, November 12th
+    George McFly takes Lorraine Baines to the dance, and they kiss.
+    Lightning strikes the clocktower at 10.04pm
+</pre></code>
+<code class="state" id="state03"><pre>
+1955, November 5th
+    Marty McFly is hit by a car.
+    Lorraine Baines nurses Marty, and thinks he's cute.
+
+1955, November 12th
+    Lightning strikes the clocktower at 10.04pm
+</pre></code>
+<code class="state" id="state04"><pre>
+1955, November 5th
+    Marty McFly is hit by a car.
+    Lorraine Baines nurses Marty, and thinks he's cute.
+
+1955, November 12th
+    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
+    Marty McFly invents Rock and Roll
+    George McFly and Loraine Baines kiss.
+    Lightning strikes the clocktower at 10.04pm
+</pre></code>
+<div id="notepad"></div>
 </body>
 </html>
