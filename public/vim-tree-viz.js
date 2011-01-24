@@ -117,7 +117,7 @@ window.onload = function() {
 
     if (i === 0) {
       pathString = "M" + coords.x + " " + coords.y;
-    } else {
+    } else if (i < outline.values.length) {
       pathString = pathString + "L" + coords.x + " " + coords.y + " ";
     }
     if (outline.values[i] === 'circle') {
