@@ -2,6 +2,10 @@
 
 Take care! The `->` and `=>` operators look similar, but they have different meanings.
 
+The `->` symbol creates a function.
+
+The `=>` symbol binds a function.
+
 # Splat arguments 
 
 Here's a function that takes splat arguments:
