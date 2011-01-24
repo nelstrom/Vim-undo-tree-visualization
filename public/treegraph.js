@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawState, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, states, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, states, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -163,28 +163,47 @@
     }
     return points.join("");
   };
-  drawState = function(raphael) {
-    var activeNode, activeTrack, disc, node, num, state;
-    state = states[1];
-    state = states[2];
+  drawTimelines = function(raphael) {
+    var state;
+    state = states[states.active];
     graphics.timelineOriginalThick = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thickLineAttributes);
     graphics.timelineOriginalThin = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thinLineAttributes);
     graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
-    graphics.timelineRevisedThin = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thinLineAttributes);
+    return graphics.timelineRevisedThin = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thinLineAttributes);
+  };
+  drawActiveTimeline = function(raphael) {
+    var activeTrack, state;
+    state = states[states.active];
     activeTrack = state.activeTrack;
-    graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
+    return graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
+  };
+  drawAllNodes = function(raphael) {
+    var disc, node, num, state, _results;
+    state = states[states.active];
+    _results = [];
     for (num = 1; num <= 5; num++) {
       node = state.nodes[num];
       if (node.state === 'unborn') {
         break;
       }
       if (node.state === 'on') {
-        activeNode = node;
+        graphics.activeNode = node;
       }
       disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
-      graphics.nodes.push(disc);
+      _results.push(graphics.nodes.push(disc));
     }
-    return disc = raphael.circle(coords[activeNode.position].x, coords[activeNode.position].y, radius).attr(graphics.onNodeAttributes);
+    return _results;
+  };
+  drawActiveNode = function(raphael) {
+    var disc, state;
+    state = states[states.active];
+    return disc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
+  };
+  drawState = function(raphael) {
+    drawTimelines(raphael);
+    drawActiveTimeline(raphael);
+    drawAllNodes(raphael);
+    return drawActiveNode(raphael);
   };
   jQuery($(__bind(function() {
     var paper;

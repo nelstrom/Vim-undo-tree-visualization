@@ -140,9 +140,8 @@ generatePath = (origin, coordinates...) ->
     points.push("L #{coords[point].x} #{coords[point].y}")
   points.join("")
 
-drawState = (raphael) ->
-  state = states[1]
-  state = states[2]
+drawTimelines = (raphael) ->
+  state = states[states.active]
 
   graphics.timelineOriginalThick = raphael.path(
     generatePath(state.timelineOriginal...)
@@ -158,15 +157,23 @@ drawState = (raphael) ->
     generatePath(state.timelineRevised...)
   ).attr(graphics.thinLineAttributes)
 
+
+drawActiveTimeline = (raphael) ->
+  state = states[states.active]
+
   activeTrack = state.activeTrack
   graphics.activeTimeline = raphael.path(
     generatePath(state[activeTrack]...)
   ).attr(graphics.thickLineAttributes)
 
+
+drawAllNodes = (raphael) ->
+  state = states[states.active]
+
   for num in [1..5]
     node = state.nodes[num]
     break if node.state is 'unborn'
-    activeNode = node if node.state is 'on'
+    graphics.activeNode = node if node.state is 'on'
     disc = raphael.circle(
       coords[node.position].x,
       coords[node.position].y,
@@ -174,33 +181,25 @@ drawState = (raphael) ->
     ).attr(graphics.offNodeAttributes)
     graphics.nodes.push(disc)
 
+
+drawActiveNode = (raphael) ->
+  state = states[states.active]
+
   disc = raphael.circle(
-    coords[activeNode.position].x,
-    coords[activeNode.position].y,
+    coords[graphics.activeNode.position].x,
+    coords[graphics.activeNode.position].y,
     radius
   ).attr(graphics.onNodeAttributes)
+
+
+drawState = (raphael) ->
+  drawTimelines(raphael)
+  drawActiveTimeline(raphael)
+  drawAllNodes(raphael)
+  drawActiveNode(raphael)
 
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
   drawState(paper)
-
-  #longStraightLine = ['s1','s2','s3','s4']
-  #shortStraightLine = ['s1','s2']
-  #topBranchedLine = ['s1','s2','t3']
-  #bottomBranchedLine = ['s1','s2','b3','b4']
-  #lineAttributes =
-    #"stroke": color.blue
-    #"stroke-width": lineThickness
-    #"stroke-linecap": "butt"
-    #"stroke-linejoin": "miter"
-
-  #topline = paper.path(generatePath(shortStraightLine...)).attr(lineAttributes)
-  #bottomline = paper.path(generatePath(longStraightLine...)).attr(lineAttributes)
-  #topline.animate({path: generatePath(topBranchedLine...)}, animationPeriod)
-  #bottomline.animate({path: generatePath(bottomBranchedLine...)}, animationPeriod)
-
-  #for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
-    #circle = paper.circle(coords[point].x, coords[point].y, radius)
-
 )
 
