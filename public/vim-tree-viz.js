@@ -6,7 +6,10 @@ window.onload = function() {
       availableHeight = canvasHeight - (canvasMargin * 2),
       availableWidth  = canvasWidth  - (canvasMargin * 2),
       lineLength = (availableWidth / (noOfStates-1)),
-      sixtyDegrees = (Math.PI / 3);
+      sixtyDegrees = (Math.PI / 3),
+      radius = 10,
+      lineThickness = 5,
+	  innerLineThickness = 2;
 
   var coords = {
     s1: {x: 0, y: 0},
@@ -102,13 +105,11 @@ window.onload = function() {
   };
 
   var paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
-  var radius = 10,
-      lineHeight = 4;
 
   //outline = chronological;
   outline = topMix;
   //outline = bottomMix;
-  //outline = topFork;
+  outline = topFork;
   coordList = outline.coords;
 
   var pathString = "";
@@ -129,16 +130,16 @@ window.onload = function() {
   var c = paper.path(pathString);
   c.attr({
     "stroke": "#008",
-    "stroke-width": "5",
+    "stroke-width": lineThickness,
     "stroke-linecap": "butt",
     "stroke-linejoin": "miter"
   });
   var c = paper.path(pathString);
   c.attr({
-    "stroke": "#fff",
-    "stroke-width": "2",
-    "stroke-linecap": "butt",
-    "stroke-linejoin": "miter"
+	"stroke": "#fff",
+	"stroke-width": innerLineThickness,
+	"stroke-linecap": "butt",
+	"stroke-linejoin": "miter"
   });
   for (var i = 0; i < circles.length; i++) {
     c = circles[i];
