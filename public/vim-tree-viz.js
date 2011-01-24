@@ -41,8 +41,8 @@ window.onload = function() {
   coords.s5.y = coords.s1.y;
   coords.s6.y = coords.s1.y;
 
-  coords.t3.x = coords.s2.x - (lineLength * Math.sin(60));
-  coords.t3.y = coords.s2.y + (lineLength * Math.cos(60));
+  coords.t3.x = coords.s2.x + (lineLength * Math.cos(1));
+  coords.t3.y = coords.s2.y - (lineLength * Math.sin(1));
   coords.t4.x = coords.t3.x + (lineLength*1);
   coords.t4.y = coords.t3.y;
   coords.t5.x = coords.t4.x + (lineLength*1);
@@ -50,8 +50,8 @@ window.onload = function() {
   coords.t6.x = coords.t5.x + (lineLength*1);
   coords.t6.y = coords.t5.y;
 
-  coords.b3.x = coords.s2.x - (lineLength * Math.sin(60));
-  coords.b3.y = coords.s2.y - (lineLength * Math.cos(60));
+  coords.b3.x = coords.s2.x + (lineLength * Math.cos(1));
+  coords.b3.y = coords.s2.y + (lineLength * Math.sin(1));
   coords.b4.x = coords.b3.x + (lineLength*1);
   coords.b4.y = coords.b3.y;
 
@@ -106,6 +106,7 @@ window.onload = function() {
       lineHeight = 4;
 
   outline = topMix;
+  //outline = bottomMix;
   coordList = outline.coords;
 
   var pathString = "";
