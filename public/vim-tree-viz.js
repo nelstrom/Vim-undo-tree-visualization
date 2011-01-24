@@ -9,9 +9,9 @@ $(document).ready(function() {
       sixtyDegrees = (Math.PI / 3),
       radius = 15,
       lineThickness = 10,
-	  innerLineThickness = 6,
-	  outline, paper, coords, chronologicalCoords, topBranchCoords,
-	  bottomBranchCoords, topFork, bottomFork, topMix, bottomMix, chronological;
+      innerLineThickness = 6,
+      outline, paper, coords, chronologicalCoords, topBranchCoords,
+      bottomBranchCoords, topFork, bottomFork, topMix, bottomMix, chronological;
 
   coords = {
     s1: {x: 0, y: 0},
@@ -106,6 +106,11 @@ $(document).ready(function() {
     coords: chronologicalCoords
   };
 
+  $("#notepad").after("<button id='nextButton'>next</button>");
+  $("#notepad").after("<button id='prevButton'>previous</button>");
+  $("#nextButton").click(advance);
+  $("#prevButton").click(reverse);
+
   paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
 
   //outline = chronological;
@@ -139,10 +144,10 @@ $(document).ready(function() {
   });
   c = paper.path(pathString);
   c.attr({
-	"stroke": "#fff",
-	"stroke-width": innerLineThickness,
-	"stroke-linecap": "butt",
-	"stroke-linejoin": "miter"
+    "stroke": "#fff",
+    "stroke-width": innerLineThickness,
+    "stroke-linecap": "butt",
+    "stroke-linejoin": "miter"
   });
   for (i = 0; i < circles.length; i++) {
     c = circles[i];
@@ -153,3 +158,10 @@ $(document).ready(function() {
     });
   }
 });
+
+function advance () {
+  console.log('advance');
+}
+function reverse () {
+  console.log('reverse');
+}
