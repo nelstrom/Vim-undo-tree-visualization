@@ -1,3 +1,9 @@
+# Fat arrows and skinny arrows
+
+Take care! The `->` and `=>` operators look similar, but they have different meanings.
+
+# Splat arguments 
+
 Here's a function that takes splat arguments:
 
     generatePath = (origin, coordinates...) ->
