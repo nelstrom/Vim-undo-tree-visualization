@@ -14,6 +14,11 @@ animationPeriod = 500
 lineThinness = 5
 lineThickness = 8
 
+color =
+  black: "#000"
+  white: "#fff"
+  blue: "#008"
+
 # Workhorse parameters
 coords = {}
 
@@ -63,18 +68,21 @@ graphics =
   activeNode: null
   nodes: []
   thickLineAttributes:
-    "stroke": "#008"
+    "stroke": color.blue
     "stroke-width": lineThickness
     "stroke-linecap": "butt"
     "stroke-linejoin": "miter"
   thinLineAttributes:
-    "stroke": "#fff"
+    "stroke": color.white
     "stroke-width": lineThinness
     "stroke-linecap": "butt"
     "stroke-linejoin": "miter"
   offNodeAttributes:
-    "fill": "#fff"
-    "stroke": "#000"
+    "fill": color.white
+    "stroke": color.black
+  onNodeAttributes:
+    "fill": color.blue
+    "stroke": color.blue
 
 states =
   active: 1
@@ -157,6 +165,7 @@ drawState = (raphael) ->
 
   for num in [1..5]
     node = state.nodes[num]
+    break if node.state is 'unborn'
     activeNode = node if node.state is 'on'
     disc = raphael.circle(
       coords[node.position].x,
@@ -164,6 +173,12 @@ drawState = (raphael) ->
       radius
     ).attr(graphics.offNodeAttributes)
     graphics.nodes.push(disc)
+
+  disc = raphael.circle(
+    coords[activeNode.position].x,
+    coords[activeNode.position].y,
+    radius
+  ).attr(graphics.onNodeAttributes)
 
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
@@ -174,7 +189,7 @@ jQuery($ =>
   #topBranchedLine = ['s1','s2','t3']
   #bottomBranchedLine = ['s1','s2','b3','b4']
   #lineAttributes =
-    #"stroke": "#008"
+    #"stroke": color.blue
     #"stroke-width": lineThickness
     #"stroke-linecap": "butt"
     #"stroke-linejoin": "miter"
