@@ -1,4 +1,3 @@
-var coords = {}
 window.onload = function() {
   var canvasWidth = 640,
       canvasHeight = 480,
@@ -9,7 +8,7 @@ window.onload = function() {
       lineLength = (availableWidth / (noOfStates-1)),
       sixtyDegrees = (Math.PI / 3);
 
-  coords = {
+  var coords = {
     s1: {x: 0, y: 0},
     s2: {x: 0, y: 0},
     s3: {x: 0, y: 0},
