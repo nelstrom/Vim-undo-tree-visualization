@@ -50,8 +50,9 @@ coords.t6 =
   x: coords.t3.x + lineLength*3
   y: coords.t3.y
 
-window.onload = () ->
+jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
+)
 
 for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
   console.log point
