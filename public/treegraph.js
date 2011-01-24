@@ -1,5 +1,5 @@
 (function() {
-  var availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -10,6 +10,7 @@
   lineLength = availableWidth / (nodeCount - 1);
   forkAngle = Math.PI / 3;
   radius = 15;
+  animationPeriod = 800;
   coords = {};
   coords.s1 = {
     x: margin,
@@ -70,10 +71,20 @@
     return points.join("");
   };
   jQuery($(__bind(function() {
-    var c, circle, hexagon, paper, point, _i, _len, _ref, _results;
+    var branchedLine, branchedLine2, circle, hexagon, line, line2, paper, point, straightLine, _i, _len, _ref, _results;
     paper = Raphael("notepad", totalWidth, totalHeight);
+    straightLine = ['s1', 's2', 's3', 's4', 's5', 's6'];
+    branchedLine = ['s1', 's2', 't3', 't4', 't5', 't6'];
+    branchedLine2 = ['s1', 's2', 'b3', 'b4'];
     hexagon = ['s2', 't3', 't4', 's4', 'b4', 'b3', 's2'];
-    c = paper.path(generatePath.apply(null, hexagon));
+    line = paper.path(generatePath.apply(null, straightLine));
+    line2 = paper.path(generatePath.apply(null, straightLine));
+    line.animate({
+      path: generatePath.apply(null, branchedLine)
+    }, animationPeriod);
+    line2.animate({
+      path: generatePath.apply(null, branchedLine2)
+    }, animationPeriod);
     _ref = ['s1', 's2', 's3', 's4', 's5', 's6', 't3', 't4', 't5', 't6', 'b3', 'b4'];
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
