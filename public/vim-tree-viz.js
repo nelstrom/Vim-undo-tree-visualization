@@ -107,7 +107,8 @@ window.onload = function() {
       lineHeight = 4;
 
   outline = topMix;
-  outline = bottomMix;
+  //outline = bottomMix;
+  outline = topFork;
   coordList = outline.coords;
 
   var pathString = "";
