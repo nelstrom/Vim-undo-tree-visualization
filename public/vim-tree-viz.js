@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var canvasWidth = 640,
       canvasHeight = 480,
-      canvasMargin = 90
+      canvasMargin = 90,
       noOfStates = 6,
       availableHeight = canvasHeight - (canvasMargin * 2),
       availableWidth  = canvasWidth  - (canvasMargin * 2),
@@ -9,7 +9,8 @@ $(document).ready(function() {
       sixtyDegrees = (Math.PI / 3),
       radius = 15,
       lineThickness = 10,
-	  innerLineThickness = 6;
+	  innerLineThickness = 6,
+	  outline;
 
   var coords = {
     s1: {x: 0, y: 0},
@@ -114,18 +115,19 @@ $(document).ready(function() {
 
   var pathString = "";
   var circles = [];
-  for (var i = 0; i < coordList.length; i++) {
-    var coords = coordList[i];
+  var i;
+  for (i = 0; i < coordList.length; i++) {
+    var cod = coordList[i];
 
     if (i === 0) {
-      pathString = "M" + coords.x + " " + coords.y;
+      pathString = "M" + cod.x + " " + cod.y;
     } else if (i < outline.values.length) {
-      pathString = pathString + "L" + coords.x + " " + coords.y + " ";
+      pathString = pathString + "L" + cod.x + " " + cod.y + " ";
     }
     if (outline.values[i] === 'circle') {
-      circles.push({x: coords.x, y: coords.y})
+      circles.push({x: cod.x, y: cod.y});
     }
-  };
+  }
 
   var c = paper.path(pathString);
   c.attr({
@@ -134,19 +136,19 @@ $(document).ready(function() {
     "stroke-linecap": "butt",
     "stroke-linejoin": "miter"
   });
-  var c = paper.path(pathString);
+  c = paper.path(pathString);
   c.attr({
 	"stroke": "#fff",
 	"stroke-width": innerLineThickness,
 	"stroke-linecap": "butt",
 	"stroke-linejoin": "miter"
   });
-  for (var i = 0; i < circles.length; i++) {
+  for (i = 0; i < circles.length; i++) {
     c = circles[i];
     circle = paper.circle(c.x, c.y, radius);
     circle.attr({
       "fill": "#fff",
       "stroke": "#000"
     });
-  };
+  }
 });
