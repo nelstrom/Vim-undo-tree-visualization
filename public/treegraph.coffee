@@ -201,7 +201,7 @@ drawState = () ->
   drawAllNodes()
   drawActiveNode()
 
-transitionStates = () ->
+transitionTimelines = () ->
   state = states[states.active]
 
   graphics.timelineOriginalThick.animate({
@@ -218,11 +218,17 @@ transitionStates = () ->
     path: generatePath(state.timelineRevised...)
   }, animationPeriod)
 
+transitionActiveTimeline = () ->
+  state = states[states.active]
+
   activeTrack = state.activeTrack
   graphics.activeTimeline.animate({
     path: generatePath(state[activeTrack]...)
   }, animationPeriod)
 
+transitionStates = () ->
+  transitionTimelines()
+  #transitionActiveTimeline()
 
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
