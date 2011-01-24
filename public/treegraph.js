@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, lineThickness, margin, nodeCount, radius, states, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, coords, drawState, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, states, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -11,6 +11,7 @@
   forkAngle = Math.PI / 3;
   radius = 15;
   animationPeriod = 500;
+  lineThinness = 5;
   lineThickness = 8;
   coords = {};
   coords.s1 = {
@@ -61,7 +62,33 @@
     x: coords.t3.x + lineLength * 3,
     y: coords.t3.y
   };
+  graphics = {
+    timelineOriginalThick: null,
+    timelineOriginalThin: null,
+    timelineRevisedThick: null,
+    timelineRevisedThin: null,
+    activeTimeline: null,
+    activeNode: null,
+    nodes: [],
+    thickLineAttributes: {
+      "stroke": "#008",
+      "stroke-width": lineThickness,
+      "stroke-linecap": "butt",
+      "stroke-linejoin": "miter"
+    },
+    thinLineAttributes: {
+      "stroke": "#fff",
+      "stroke-width": lineThinness,
+      "stroke-linecap": "butt",
+      "stroke-linejoin": "miter"
+    },
+    offNodeAttributes: {
+      "fill": "#fff",
+      "stroke": "#000"
+    }
+  };
   states = {
+    active: 1,
     1: {
       timelineOriginal: ['s1', 's2', 's3', 's4'],
       timelineRevised: ['s1', 's2'],
@@ -127,26 +154,30 @@
     }
     return points.join("");
   };
+  drawState = function(raphael) {
+    var activeNode, activeTrack, disc, node, num, state, _results;
+    state = states[1];
+    state = states[2];
+    graphics.timelineOriginalThick = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thickLineAttributes);
+    graphics.timelineOriginalThin = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thinLineAttributes);
+    graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
+    graphics.timelineRevisedThin = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thinLineAttributes);
+    activeTrack = state.activeTrack;
+    graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
+    _results = [];
+    for (num = 1; num <= 5; num++) {
+      node = state.nodes[num];
+      if (node.state === 'on') {
+        activeNode = node;
+      }
+      disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
+      _results.push(graphics.nodes.push(disc));
+    }
+    return _results;
+  };
   jQuery($(__bind(function() {
-    var bottomBranchedLine, bottomline, lineAttributes, longStraightLine, paper, shortStraightLine, topBranchedLine, topline;
+    var paper;
     paper = Raphael("notepad", totalWidth, totalHeight);
-    longStraightLine = ['s1', 's2', 's3', 's4'];
-    shortStraightLine = ['s1', 's2'];
-    topBranchedLine = ['s1', 's2', 't3'];
-    bottomBranchedLine = ['s1', 's2', 'b3', 'b4'];
-    lineAttributes = {
-      "stroke": "#008",
-      "stroke-width": lineThickness,
-      "stroke-linecap": "butt",
-      "stroke-linejoin": "miter"
-    };
-    topline = paper.path(generatePath.apply(null, shortStraightLine)).attr(lineAttributes);
-    bottomline = paper.path(generatePath.apply(null, longStraightLine)).attr(lineAttributes);
-    topline.animate({
-      path: generatePath.apply(null, topBranchedLine)
-    }, animationPeriod);
-    return bottomline.animate({
-      path: generatePath.apply(null, bottomBranchedLine)
-    }, animationPeriod);
+    return drawState(paper);
   }, this)));
 }).call(this);

@@ -11,6 +11,7 @@ lineLength = (availableWidth / (nodeCount-1))
 forkAngle = (Math.PI / 3)
 radius = 15
 animationPeriod = 500
+lineThinness = 5
 lineThickness = 8
 
 # Workhorse parameters
@@ -53,7 +54,30 @@ coords.t6 =
   x: coords.t3.x + lineLength*3
   y: coords.t3.y
 
+graphics =
+  timelineOriginalThick: null
+  timelineOriginalThin: null
+  timelineRevisedThick: null
+  timelineRevisedThin: null
+  activeTimeline: null
+  activeNode: null
+  nodes: []
+  thickLineAttributes:
+    "stroke": "#008"
+    "stroke-width": lineThickness
+    "stroke-linecap": "butt"
+    "stroke-linejoin": "miter"
+  thinLineAttributes:
+    "stroke": "#fff"
+    "stroke-width": lineThinness
+    "stroke-linecap": "butt"
+    "stroke-linejoin": "miter"
+  offNodeAttributes:
+    "fill": "#fff"
+    "stroke": "#000"
+
 states =
+  active: 1
   1:
     timelineOriginal:
       ['s1','s2','s3','s4']
@@ -108,25 +132,60 @@ generatePath = (origin, coordinates...) ->
     points.push("L #{coords[point].x} #{coords[point].y}")
   points.join("")
 
+drawState = (raphael) ->
+  state = states[1]
+  state = states[2]
+
+  graphics.timelineOriginalThick = raphael.path(
+    generatePath(state.timelineOriginal...)
+  ).attr(graphics.thickLineAttributes)
+  graphics.timelineOriginalThin = raphael.path(
+    generatePath(state.timelineOriginal...)
+  ).attr(graphics.thinLineAttributes)
+
+  graphics.timelineRevisedThick = raphael.path(
+    generatePath(state.timelineRevised...)
+  ).attr(graphics.thickLineAttributes)
+  graphics.timelineRevisedThin = raphael.path(
+    generatePath(state.timelineRevised...)
+  ).attr(graphics.thinLineAttributes)
+
+  activeTrack = state.activeTrack
+  graphics.activeTimeline = raphael.path(
+    generatePath(state[activeTrack]...)
+  ).attr(graphics.thickLineAttributes)
+
+  for num in [1..5]
+    node = state.nodes[num]
+    activeNode = node if node.state is 'on'
+    disc = raphael.circle(
+      coords[node.position].x,
+      coords[node.position].y,
+      radius
+    ).attr(graphics.offNodeAttributes)
+    graphics.nodes.push(disc)
+
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
+  drawState(paper)
 
-  longStraightLine = ['s1','s2','s3','s4']
-  shortStraightLine = ['s1','s2']
-  topBranchedLine = ['s1','s2','t3']
-  bottomBranchedLine = ['s1','s2','b3','b4']
-  lineAttributes =
-    "stroke": "#008"
-    "stroke-width": lineThickness
-    "stroke-linecap": "butt"
-    "stroke-linejoin": "miter"
+  #longStraightLine = ['s1','s2','s3','s4']
+  #shortStraightLine = ['s1','s2']
+  #topBranchedLine = ['s1','s2','t3']
+  #bottomBranchedLine = ['s1','s2','b3','b4']
+  #lineAttributes =
+    #"stroke": "#008"
+    #"stroke-width": lineThickness
+    #"stroke-linecap": "butt"
+    #"stroke-linejoin": "miter"
 
-  topline = paper.path(generatePath(shortStraightLine...)).attr(lineAttributes)
-  bottomline = paper.path(generatePath(longStraightLine...)).attr(lineAttributes)
-  topline.animate({path: generatePath(topBranchedLine...)}, animationPeriod)
-  bottomline.animate({path: generatePath(bottomBranchedLine...)}, animationPeriod)
+  #topline = paper.path(generatePath(shortStraightLine...)).attr(lineAttributes)
+  #bottomline = paper.path(generatePath(longStraightLine...)).attr(lineAttributes)
+  #topline.animate({path: generatePath(topBranchedLine...)}, animationPeriod)
+  #bottomline.animate({path: generatePath(bottomBranchedLine...)}, animationPeriod)
 
   #for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
     #circle = paper.circle(coords[point].x, coords[point].y, radius)
+
 )
 
