@@ -51,8 +51,16 @@ coords.t6 =
   x: coords.t3.x + lineLength*3
   y: coords.t3.y
 
+generatePath = (origin, coordinates...) ->
+  points = ["M #{coords[origin].x} #{coords[origin].y}"]
+  for point in coordinates
+    points.push("L #{coords[point].x} #{coords[point].y}")
+  points.join("")
+
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
+  hexagon = ['s2','t3','t4','s4','b4','b3','s2']
+  c = paper.path(generatePath(hexagon...))
   for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
     circle = paper.circle(coords[point].x, coords[point].y, radius)
 )

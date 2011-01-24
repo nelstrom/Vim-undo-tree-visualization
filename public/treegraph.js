@@ -1,6 +1,6 @@
 (function() {
-  var availableHeight, availableWidth, coords, forkAngle, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
-  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
+  var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
   margin = 90;
@@ -59,9 +59,21 @@
     x: coords.t3.x + lineLength * 3,
     y: coords.t3.y
   };
+  generatePath = function() {
+    var coordinates, origin, point, points, _i, _len;
+    origin = arguments[0], coordinates = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    points = ["M " + coords[origin].x + " " + coords[origin].y];
+    for (_i = 0, _len = coordinates.length; _i < _len; _i++) {
+      point = coordinates[_i];
+      points.push("L " + coords[point].x + " " + coords[point].y);
+    }
+    return points.join("");
+  };
   jQuery($(__bind(function() {
-    var circle, paper, point, _i, _len, _ref, _results;
+    var c, circle, hexagon, paper, point, _i, _len, _ref, _results;
     paper = Raphael("notepad", totalWidth, totalHeight);
+    hexagon = ['s2', 't3', 't4', 's4', 'b4', 'b3', 's2'];
+    c = paper.path(generatePath.apply(null, hexagon));
     _ref = ['s1', 's2', 's3', 's4', 's5', 's6', 't3', 't4', 't5', 't6', 'b3', 'b4'];
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
