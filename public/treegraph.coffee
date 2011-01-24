@@ -86,6 +86,8 @@ graphics =
     "stroke": color.blue
 
 states =
+  advance: () ->
+    states.active += 1
   active: 1
   1:
     timelineOriginal:
@@ -199,8 +201,27 @@ drawState = () ->
   drawAllNodes()
   drawActiveNode()
 
+transitionStates = () ->
+  state = states[states.active]
+
+  graphics.timelineOriginalThick.animate({
+    path: generatePath(state.timelineOriginal...)
+  }, animationPeriod)
+  graphics.timelineOriginalThin.animate({
+    path: generatePath(state.timelineOriginal...)
+  }, animationPeriod)
+
+  graphics.timelineRevisedThick.animate({
+    path: generatePath(state.timelineRevised...)
+  }, animationPeriod)
+  graphics.timelineRevisedThin.animate({
+    path: generatePath(state.timelineRevised...)
+  }, animationPeriod)
+
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
   drawState()
+  states.advance()
+  transitionStates()
 )
 

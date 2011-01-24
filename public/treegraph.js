@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth, transitionStates;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -98,6 +98,9 @@
     }
   };
   states = {
+    advance: function() {
+      return states.active += 1;
+    },
     active: 1,
     1: {
       timelineOriginal: ['s1', 's2', 's3', 's4'],
@@ -206,8 +209,26 @@
     drawAllNodes();
     return drawActiveNode();
   };
+  transitionStates = function() {
+    var state;
+    state = states[states.active];
+    graphics.timelineOriginalThick.animate({
+      path: generatePath.apply(null, state.timelineOriginal)
+    }, animationPeriod);
+    graphics.timelineOriginalThin.animate({
+      path: generatePath.apply(null, state.timelineOriginal)
+    }, animationPeriod);
+    graphics.timelineRevisedThick.animate({
+      path: generatePath.apply(null, state.timelineRevised)
+    }, animationPeriod);
+    return graphics.timelineRevisedThin.animate({
+      path: generatePath.apply(null, state.timelineRevised)
+    }, animationPeriod);
+  };
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
-    return drawState();
+    drawState();
+    states.advance();
+    return transitionStates();
   }, this)));
 }).call(this);
