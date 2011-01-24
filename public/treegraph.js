@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, lineThickness, margin, nodeCount, radius, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -11,6 +11,7 @@
   forkAngle = Math.PI / 3;
   radius = 15;
   animationPeriod = 500;
+  lineThickness = 8;
   coords = {};
   coords.s1 = {
     x: margin,
@@ -71,14 +72,20 @@
     return points.join("");
   };
   jQuery($(__bind(function() {
-    var bottomBranchedLine, bottomline, longStraightLine, paper, shortStraightLine, topBranchedLine, topline;
+    var bottomBranchedLine, bottomline, lineAttributes, longStraightLine, paper, shortStraightLine, topBranchedLine, topline;
     paper = Raphael("notepad", totalWidth, totalHeight);
     longStraightLine = ['s1', 's2', 's3', 's4'];
     shortStraightLine = ['s1', 's2'];
     topBranchedLine = ['s1', 's2', 't3'];
     bottomBranchedLine = ['s1', 's2', 'b3', 'b4'];
-    topline = paper.path(generatePath.apply(null, shortStraightLine));
-    bottomline = paper.path(generatePath.apply(null, longStraightLine));
+    lineAttributes = {
+      "stroke": "#008",
+      "stroke-width": lineThickness,
+      "stroke-linecap": "butt",
+      "stroke-linejoin": "miter"
+    };
+    topline = paper.path(generatePath.apply(null, shortStraightLine)).attr(lineAttributes);
+    bottomline = paper.path(generatePath.apply(null, longStraightLine)).attr(lineAttributes);
     topline.animate({
       path: generatePath.apply(null, topBranchedLine)
     }, animationPeriod);

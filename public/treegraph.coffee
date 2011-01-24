@@ -11,6 +11,7 @@ lineLength = (availableWidth / (nodeCount-1))
 forkAngle = (Math.PI / 3)
 radius = 15
 animationPeriod = 500
+lineThickness = 8
 
 # Workhorse parameters
 coords = {}
@@ -65,8 +66,13 @@ jQuery($ =>
   shortStraightLine = ['s1','s2']
   topBranchedLine = ['s1','s2','t3']
   bottomBranchedLine = ['s1','s2','b3','b4']
-  topline = paper.path(generatePath(shortStraightLine...))
-  bottomline = paper.path(generatePath(longStraightLine...))
+  lineAttributes =
+    "stroke": "#008"
+    "stroke-width": lineThickness
+    "stroke-linecap": "butt"
+    "stroke-linejoin": "miter"
+  topline = paper.path(generatePath(shortStraightLine...)).attr(lineAttributes)
+  bottomline = paper.path(generatePath(longStraightLine...)).attr(lineAttributes)
   topline.animate({path: generatePath(topBranchedLine...)}, animationPeriod)
   bottomline.animate({path: generatePath(bottomBranchedLine...)}, animationPeriod)
 
