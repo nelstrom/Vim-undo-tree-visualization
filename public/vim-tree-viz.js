@@ -131,7 +131,15 @@ var states = [
   {
     path: chronologicalCoords,
     values: ['past', 'current', 'future', 'future']
-  }
+  },
+  {
+    path: topBranchCoords,
+    values: ['past', 'past', 'current']
+  },
+  {
+    path: topBranchCoords,
+    values: ['past', 'past', 'past', 'current']
+  },
 ];
 
 
