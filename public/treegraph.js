@@ -1,5 +1,5 @@
 (function() {
-  var availableHeight, availableWidth, coords, forkAngle, lineLength, margin, nodeCount, point, totalHeight, totalWidth, _i, _len, _ref;
+  var availableHeight, availableWidth, coords, forkAngle, lineLength, margin, nodeCount, radius, totalHeight, totalWidth;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -9,6 +9,7 @@
   nodeCount = 6;
   lineLength = availableWidth / (nodeCount - 1);
   forkAngle = Math.PI / 3;
+  radius = 15;
   coords = {};
   coords.s1 = {
     x: margin,
@@ -59,14 +60,14 @@
     y: coords.t3.y
   };
   jQuery($(__bind(function() {
-    var paper;
-    return paper = Raphael("notepad", totalWidth, totalHeight);
+    var circle, paper, point, _i, _len, _ref, _results;
+    paper = Raphael("notepad", totalWidth, totalHeight);
+    _ref = ['s1', 's2', 's3', 's4', 's5', 's6', 't3', 't4', 't5', 't6', 'b3', 'b4'];
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      point = _ref[_i];
+      _results.push(circle = paper.circle(coords[point].x, coords[point].y, radius));
+    }
+    return _results;
   }, this)));
-  _ref = ['s1', 's2', 's3', 's4', 's5', 's6', 't3', 't4', 't5', 't6', 'b3', 'b4'];
-  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-    point = _ref[_i];
-    console.log(point);
-    console.log("   x: " + coords[point].x);
-    console.log("   y: " + coords[point].y);
-  }
 }).call(this);

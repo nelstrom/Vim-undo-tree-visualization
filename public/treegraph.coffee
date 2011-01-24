@@ -9,6 +9,7 @@ availableWidth  = totalWidth  - (margin * 2)
 nodeCount = 6
 lineLength = (availableWidth / (nodeCount-1))
 forkAngle = (Math.PI / 3)
+radius = 15
 
 # Workhorse parameters
 coords = {}
@@ -52,9 +53,7 @@ coords.t6 =
 
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
+  for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
+    circle = paper.circle(coords[point].x, coords[point].y, radius)
 )
 
-for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
-  console.log point
-  console.log "   x: #{coords[point].x}"
-  console.log "   y: #{coords[point].y}"
