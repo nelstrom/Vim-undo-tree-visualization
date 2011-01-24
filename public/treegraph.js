@@ -210,7 +210,7 @@
     return drawActiveNode();
   };
   transitionStates = function() {
-    var state;
+    var activeTrack, state;
     state = states[states.active];
     graphics.timelineOriginalThick.animate({
       path: generatePath.apply(null, state.timelineOriginal)
@@ -221,8 +221,12 @@
     graphics.timelineRevisedThick.animate({
       path: generatePath.apply(null, state.timelineRevised)
     }, animationPeriod);
-    return graphics.timelineRevisedThin.animate({
+    graphics.timelineRevisedThin.animate({
       path: generatePath.apply(null, state.timelineRevised)
+    }, animationPeriod);
+    activeTrack = state.activeTrack;
+    return graphics.activeTimeline.animate({
+      path: generatePath.apply(null, state[activeTrack])
     }, animationPeriod);
   };
   jQuery($(__bind(function() {

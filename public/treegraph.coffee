@@ -218,6 +218,12 @@ transitionStates = () ->
     path: generatePath(state.timelineRevised...)
   }, animationPeriod)
 
+  activeTrack = state.activeTrack
+  graphics.activeTimeline.animate({
+    path: generatePath(state[activeTrack]...)
+  }, animationPeriod)
+
+
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
   drawState()
