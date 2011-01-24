@@ -67,6 +67,7 @@ graphics =
   timelineRevisedThin: null
   activeTimeline: null
   activeNode: null
+  activeDisc: null
   nodes: []
   thickLineAttributes:
     "stroke": color.blue
@@ -188,7 +189,7 @@ drawAllNodes = () ->
 drawActiveNode = () ->
   state = states[states.active]
 
-  disc = raphael.circle(
+  graphics.activeDisc = raphael.circle(
     coords[graphics.activeNode.position].x,
     coords[graphics.activeNode.position].y,
     radius
@@ -197,7 +198,7 @@ drawActiveNode = () ->
 
 drawState = () ->
   drawTimelines()
-  drawActiveTimeline()
+  #drawActiveTimeline()
   drawAllNodes()
   drawActiveNode()
 
@@ -226,9 +227,33 @@ transitionActiveTimeline = () ->
     path: generatePath(state[activeTrack]...)
   }, animationPeriod)
 
+transitionAllNodes = () ->
+  state = states[states.active]
+
+  for num in [1..5]
+    node = state.nodes[num]
+    graphics.activeNode = node if node.state is 'on'
+    disc = graphics.nodes[num-1]
+    break if not disc?
+    disc.animate({
+      cx: coords[node.position].x
+      cy: coords[node.position].y
+    }, animationPeriod)
+
+transitionActiveNode = () ->
+  state = states[states.active]
+
+  graphics.activeDisc.animate({
+    cx: coords[graphics.activeNode.position].x
+    cy: coords[graphics.activeNode.position].y
+  }, animationPeriod)
+
+
 transitionStates = () ->
   transitionTimelines()
   #transitionActiveTimeline()
+  transitionAllNodes()
+  transitionActiveNode()
 
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)

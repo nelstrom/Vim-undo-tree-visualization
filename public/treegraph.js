@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth, transitionActiveTimeline, transitionStates, transitionTimelines;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -75,6 +75,7 @@
     timelineRevisedThin: null,
     activeTimeline: null,
     activeNode: null,
+    activeDisc: null,
     nodes: [],
     thickLineAttributes: {
       "stroke": color.blue,
@@ -199,13 +200,12 @@
     return _results;
   };
   drawActiveNode = function() {
-    var disc, state;
+    var state;
     state = states[states.active];
-    return disc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
+    return graphics.activeDisc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
     drawTimelines();
-    drawActiveTimeline();
     drawAllNodes();
     return drawActiveNode();
   };
@@ -233,8 +233,38 @@
       path: generatePath.apply(null, state[activeTrack])
     }, animationPeriod);
   };
+  transitionAllNodes = function() {
+    var disc, node, num, state, _results;
+    state = states[states.active];
+    _results = [];
+    for (num = 1; num <= 5; num++) {
+      node = state.nodes[num];
+      if (node.state === 'on') {
+        graphics.activeNode = node;
+      }
+      disc = graphics.nodes[num - 1];
+      if (!(disc != null)) {
+        break;
+      }
+      _results.push(disc.animate({
+        cx: coords[node.position].x,
+        cy: coords[node.position].y
+      }, animationPeriod));
+    }
+    return _results;
+  };
+  transitionActiveNode = function() {
+    var state;
+    state = states[states.active];
+    return graphics.activeDisc.animate({
+      cx: coords[graphics.activeNode.position].x,
+      cy: coords[graphics.activeNode.position].y
+    }, animationPeriod);
+  };
   transitionStates = function() {
-    return transitionTimelines();
+    transitionTimelines();
+    transitionAllNodes();
+    return transitionActiveNode();
   };
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
