@@ -7,9 +7,9 @@ window.onload = function() {
       availableWidth  = canvasWidth  - (canvasMargin * 2),
       lineLength = (availableWidth / (noOfStates-1)),
       sixtyDegrees = (Math.PI / 3),
-      radius = 10,
-      lineThickness = 5,
-	  innerLineThickness = 2;
+      radius = 15,
+      lineThickness = 10,
+	  innerLineThickness = 6;
 
   var coords = {
     s1: {x: 0, y: 0},
@@ -109,7 +109,7 @@ window.onload = function() {
   //outline = chronological;
   outline = topMix;
   //outline = bottomMix;
-  outline = topFork;
+  //outline = topFork;
   coordList = outline.coords;
 
   var pathString = "";
