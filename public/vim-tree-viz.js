@@ -10,9 +10,10 @@ $(document).ready(function() {
       radius = 15,
       lineThickness = 10,
 	  innerLineThickness = 6,
-	  outline;
+	  outline, paper, coords, chronologicalCoords, topBranchCoords,
+	  bottomBranchCoords, topFork, bottomFork, topMix, bottomMix, chronological;
 
-  var coords = {
+  coords = {
     s1: {x: 0, y: 0},
     s2: {x: 0, y: 0},
     s3: {x: 0, y: 0},
@@ -59,7 +60,7 @@ $(document).ready(function() {
   coords.b4.x = coords.b3.x + (lineLength*1);
   coords.b4.y = coords.b3.y;
 
-  var chronologicalCoords = [
+  chronologicalCoords = [
     {x: coords.s1.x, y: coords.s1.y},
     {x: coords.s2.x, y: coords.s2.y},
     {x: coords.s3.x, y: coords.s3.y},
@@ -68,7 +69,7 @@ $(document).ready(function() {
     {x: coords.s6.x, y: coords.s6.y}
   ];
 
-  var topBranchCoords = [
+  topBranchCoords = [
     {x: coords.s1.x, y: coords.s1.y},
     {x: coords.s2.x, y: coords.s2.y},
     {x: coords.t3.x, y: coords.t3.y},
@@ -77,35 +78,35 @@ $(document).ready(function() {
     {x: coords.t6.x, y: coords.t6.y}
   ];
 
-  var bottomBranchCoords = [
+  bottomBranchCoords = [
     {x: coords.s1.x, y: coords.s1.y},
     {x: coords.s2.x, y: coords.s2.y},
     {x: coords.b3.x, y: coords.b3.y},
     {x: coords.b4.x, y: coords.b4.y}
   ];
 
-  var topFork = {
+  topFork = {
     values: ['circle', 'circle', 'circle', 'circle'],
     coords: topBranchCoords
   };
-  var bottomFork = {
+  bottomFork = {
     values: ['circle', 'circle', 'circle', 'circle'],
     coords: bottomBranchCoords
   };
-  var topMix = {
+  topMix = {
     values: ['circle','circle','point','point','circle','circle'],
     coords: topBranchCoords
   };
-  var bottomMix = {
+  bottomMix = {
     values: ['circle', 'circle', 'circle', 'circle'],
     coords: bottomBranchCoords
   };
-  var chronological = {
+  chronological = {
     values: ['circle', 'circle', 'circle', 'circle', 'circle', 'circle'],
     coords: chronologicalCoords
   };
 
-  var paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
+  paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
 
   //outline = chronological;
   outline = topMix;
@@ -113,7 +114,7 @@ $(document).ready(function() {
   //outline = topFork;
   coordList = outline.coords;
 
-  var pathString = "";
+  pathString = "";
   var circles = [];
   var i;
   for (i = 0; i < coordList.length; i++) {
