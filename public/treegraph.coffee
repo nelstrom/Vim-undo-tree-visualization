@@ -10,7 +10,7 @@ nodeCount = 6
 lineLength = (availableWidth / (nodeCount-1))
 forkAngle = (Math.PI / 3)
 radius = 15
-animationPeriod = 800
+animationPeriod = 500
 
 # Workhorse parameters
 coords = {}
@@ -61,16 +61,16 @@ generatePath = (origin, coordinates...) ->
 jQuery($ =>
   paper = Raphael("notepad", totalWidth, totalHeight)
 
-  straightLine = ['s1','s2','s3','s4','s5','s6']
-  branchedLine = ['s1','s2','t3','t4','t5','t6']
-  branchedLine2 = ['s1','s2','b3','b4']
-  hexagon = ['s2','t3','t4','s4','b4','b3','s2']
-  line = paper.path(generatePath(straightLine...))
-  line2 = paper.path(generatePath(straightLine...))
-  line.animate({path: generatePath(branchedLine...)}, animationPeriod)
-  line2.animate({path: generatePath(branchedLine2...)}, animationPeriod)
+  longStraightLine = ['s1','s2','s3','s4']
+  shortStraightLine = ['s1','s2']
+  topBranchedLine = ['s1','s2','t3']
+  bottomBranchedLine = ['s1','s2','b3','b4']
+  topline = paper.path(generatePath(shortStraightLine...))
+  bottomline = paper.path(generatePath(longStraightLine...))
+  topline.animate({path: generatePath(topBranchedLine...)}, animationPeriod)
+  bottomline.animate({path: generatePath(bottomBranchedLine...)}, animationPeriod)
 
-  for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
-    circle = paper.circle(coords[point].x, coords[point].y, radius)
+  #for point in ['s1','s2','s3','s4','s5','s6','t3','t4','t5','t6','b3','b4']
+    #circle = paper.circle(coords[point].x, coords[point].y, radius)
 )
 
