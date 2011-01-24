@@ -6,7 +6,8 @@ window.onload = function() {
       noOfStates = 6,
       availableHeight = canvasHeight - (canvasMargin * 2),
       availableWidth  = canvasWidth  - (canvasMargin * 2),
-      lineLength = (availableWidth / (noOfStates-1));
+      lineLength = (availableWidth / (noOfStates-1)),
+      sixtyDegrees = (Math.PI / 3);
 
   coords = {
     s1: {x: 0, y: 0},
@@ -41,8 +42,8 @@ window.onload = function() {
   coords.s5.y = coords.s1.y;
   coords.s6.y = coords.s1.y;
 
-  coords.t3.x = coords.s2.x + (lineLength * Math.cos(1));
-  coords.t3.y = coords.s2.y - (lineLength * Math.sin(1));
+  coords.t3.x = coords.s2.x + (lineLength * Math.cos(sixtyDegrees));
+  coords.t3.y = coords.s2.y - (lineLength * Math.sin(sixtyDegrees));
   coords.t4.x = coords.t3.x + (lineLength*1);
   coords.t4.y = coords.t3.y;
   coords.t5.x = coords.t4.x + (lineLength*1);
@@ -50,8 +51,8 @@ window.onload = function() {
   coords.t6.x = coords.t5.x + (lineLength*1);
   coords.t6.y = coords.t5.y;
 
-  coords.b3.x = coords.s2.x + (lineLength * Math.cos(1));
-  coords.b3.y = coords.s2.y + (lineLength * Math.sin(1));
+  coords.b3.x = coords.s2.x + (lineLength * Math.cos(sixtyDegrees));
+  coords.b3.y = coords.s2.y + (lineLength * Math.sin(sixtyDegrees));
   coords.b4.x = coords.b3.x + (lineLength*1);
   coords.b4.y = coords.b3.y;
 
@@ -106,7 +107,7 @@ window.onload = function() {
       lineHeight = 4;
 
   outline = topMix;
-  //outline = bottomMix;
+  outline = bottomMix;
   coordList = outline.coords;
 
   var pathString = "";
