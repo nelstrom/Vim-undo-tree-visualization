@@ -8,9 +8,9 @@
   availableWidth = totalWidth - (margin * 2);
   nodeCount = 6;
   lineLength = availableWidth / (nodeCount - 1);
-  forkAngle = Math.PI / 3;
+  forkAngle = Math.PI / 6;
   radius = 15;
-  animationPeriod = 500;
+  animationPeriod = 750;
   lineThinness = 5;
   lineThickness = 8;
   color = {
@@ -214,16 +214,16 @@
     state = states[states.active];
     graphics.timelineOriginalThick.animate({
       path: generatePath.apply(null, state.timelineOriginal)
-    }, animationPeriod);
+    }, animationPeriod, "<>");
     graphics.timelineOriginalThin.animate({
       path: generatePath.apply(null, state.timelineOriginal)
-    }, animationPeriod);
+    }, animationPeriod, "<>");
     graphics.timelineRevisedThick.animate({
       path: generatePath.apply(null, state.timelineRevised)
-    }, animationPeriod);
+    }, animationPeriod, "<>");
     return graphics.timelineRevisedThin.animate({
       path: generatePath.apply(null, state.timelineRevised)
-    }, animationPeriod);
+    }, animationPeriod, "<>");
   };
   transitionActiveTimeline = function() {
     var activeTrack, state;
@@ -231,7 +231,7 @@
     activeTrack = state.activeTrack;
     return graphics.activeTimeline.animate({
       path: generatePath.apply(null, state[activeTrack])
-    }, animationPeriod);
+    }, animationPeriod, "<>");
   };
   transitionAllNodes = function() {
     var disc, node, num, state, _results;
@@ -249,7 +249,7 @@
       _results.push(disc.animate({
         cx: coords[node.position].x,
         cy: coords[node.position].y
-      }, animationPeriod));
+      }, animationPeriod, "<>"));
     }
     return _results;
   };
@@ -259,7 +259,7 @@
     return graphics.activeDisc.animate({
       cx: coords[graphics.activeNode.position].x,
       cy: coords[graphics.activeNode.position].y
-    }, animationPeriod);
+    }, animationPeriod, "<>");
   };
   transitionStates = function() {
     transitionTimelines();

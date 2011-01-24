@@ -8,9 +8,9 @@ availableWidth  = totalWidth  - (margin * 2)
 # Graph attributes
 nodeCount = 6
 lineLength = (availableWidth / (nodeCount-1))
-forkAngle = (Math.PI / 3)
+forkAngle = (Math.PI / 6)
 radius = 15
-animationPeriod = 500
+animationPeriod = 750
 lineThinness = 5
 lineThickness = 8
 
@@ -207,17 +207,17 @@ transitionTimelines = () ->
 
   graphics.timelineOriginalThick.animate({
     path: generatePath(state.timelineOriginal...)
-  }, animationPeriod)
+  }, animationPeriod, "<>")
   graphics.timelineOriginalThin.animate({
     path: generatePath(state.timelineOriginal...)
-  }, animationPeriod)
+  }, animationPeriod, "<>")
 
   graphics.timelineRevisedThick.animate({
     path: generatePath(state.timelineRevised...)
-  }, animationPeriod)
+  }, animationPeriod, "<>")
   graphics.timelineRevisedThin.animate({
     path: generatePath(state.timelineRevised...)
-  }, animationPeriod)
+  }, animationPeriod, "<>")
 
 transitionActiveTimeline = () ->
   state = states[states.active]
@@ -225,7 +225,7 @@ transitionActiveTimeline = () ->
   activeTrack = state.activeTrack
   graphics.activeTimeline.animate({
     path: generatePath(state[activeTrack]...)
-  }, animationPeriod)
+  }, animationPeriod, "<>")
 
 transitionAllNodes = () ->
   state = states[states.active]
@@ -238,7 +238,7 @@ transitionAllNodes = () ->
     disc.animate({
       cx: coords[node.position].x
       cy: coords[node.position].y
-    }, animationPeriod)
+    }, animationPeriod, "<>")
 
 transitionActiveNode = () ->
   state = states[states.active]
@@ -246,7 +246,7 @@ transitionActiveNode = () ->
   graphics.activeDisc.animate({
     cx: coords[graphics.activeNode.position].x
     cy: coords[graphics.activeNode.position].y
-  }, animationPeriod)
+  }, animationPeriod, "<>")
 
 
 transitionStates = () ->
