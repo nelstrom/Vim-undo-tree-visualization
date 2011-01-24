@@ -106,22 +106,56 @@ chronological = {
   coords: chronologicalCoords
 };
 
+var currentStateIndex = 0;
+var states = [
+  {
+    path: chronologicalCoords,
+    values: ['current']
+  },
+  {
+    path: chronologicalCoords,
+    values: ['past', 'current']
+  },
+  {
+    path: chronologicalCoords,
+    values: ['past', 'past', 'current']
+  },
+  {
+    path: chronologicalCoords,
+    values: ['past', 'past', 'past', 'current']
+  },
+  {
+    path: chronologicalCoords,
+    values: ['past', 'past', 'current', 'future']
+  },
+  {
+    path: chronologicalCoords,
+    values: ['past', 'current', 'future', 'future']
+  }
+];
 
 
 $(document).ready(function() {
-
   $("#notepad").after("<button id='nextButton'>next</button>");
   $("#notepad").after("<button id='prevButton'>previous</button>");
   $("#nextButton").click(advance);
   $("#prevButton").click(reverse);
-
   paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
+  draw();
+});
 
-  //outline = chronological;
-  outline = topMix;
-  //outline = bottomMix;
-  //outline = topFork;
-  coordList = outline.coords;
+function advance () {
+  currentStateIndex += 1;
+  draw();
+}
+function reverse () {
+  currentStateIndex -= 1;
+  draw();
+}
+function draw() {
+  paper.clear();
+  outline = states[currentStateIndex];
+  coordList = outline.path;
 
   pathString = "";
   var circles = [];
@@ -134,8 +168,30 @@ $(document).ready(function() {
     } else if (i < outline.values.length) {
       pathString = pathString + "L" + cod.x + " " + cod.y + " ";
     }
-    if (outline.values[i] === 'circle') {
-      circles.push({x: cod.x, y: cod.y});
+    if (outline.values[i] === 'current') {
+      circles.push({
+        x: cod.x, y: cod.y,
+        attributes: {
+          "fill": "#333",
+          "stroke": "#000"
+        }
+      });
+    } else if (outline.values[i] === 'past') {
+      circles.push({
+        x: cod.x, y: cod.y,
+        attributes: {
+          "fill": "#fff",
+          "stroke": "#000"
+        }
+      });
+    } else if (outline.values[i] === 'future') {
+      circles.push({
+        x: cod.x, y: cod.y,
+        attributes: {
+          "fill": "#fff",
+          "stroke": "#000"
+        }
+      });
     }
   }
 
@@ -156,16 +212,6 @@ $(document).ready(function() {
   for (i = 0; i < circles.length; i++) {
     c = circles[i];
     circle = paper.circle(c.x, c.y, radius);
-    circle.attr({
-      "fill": "#fff",
-      "stroke": "#000"
-    });
+    circle.attr(c.attributes);
   }
-});
-
-function advance () {
-  console.log('advance');
-}
-function reverse () {
-  console.log('reverse');
 }
