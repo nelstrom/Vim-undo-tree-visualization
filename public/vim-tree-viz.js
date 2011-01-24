@@ -105,9 +105,10 @@ window.onload = function() {
   var radius = 10,
       lineHeight = 4;
 
+  //outline = chronological;
   outline = topMix;
   //outline = bottomMix;
-  outline = topFork;
+  //outline = topFork;
   coordList = outline.coords;
 
   var pathString = "";
@@ -129,6 +130,13 @@ window.onload = function() {
   c.attr({
     "stroke": "#008",
     "stroke-width": "5",
+    "stroke-linecap": "butt",
+    "stroke-linejoin": "miter"
+  });
+  var c = paper.path(pathString);
+  c.attr({
+    "stroke": "#fff",
+    "stroke-width": "2",
     "stroke-linecap": "butt",
     "stroke-linejoin": "miter"
   });
