@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, states, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -18,6 +18,7 @@
     white: "#fff",
     blue: "#008"
   };
+  raphael = null;
   coords = {};
   coords.s1 = {
     x: margin,
@@ -163,7 +164,7 @@
     }
     return points.join("");
   };
-  drawTimelines = function(raphael) {
+  drawTimelines = function() {
     var state;
     state = states[states.active];
     graphics.timelineOriginalThick = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thickLineAttributes);
@@ -171,13 +172,13 @@
     graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
     return graphics.timelineRevisedThin = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thinLineAttributes);
   };
-  drawActiveTimeline = function(raphael) {
+  drawActiveTimeline = function() {
     var activeTrack, state;
     state = states[states.active];
     activeTrack = state.activeTrack;
     return graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
   };
-  drawAllNodes = function(raphael) {
+  drawAllNodes = function() {
     var disc, node, num, state, _results;
     state = states[states.active];
     _results = [];
@@ -194,20 +195,19 @@
     }
     return _results;
   };
-  drawActiveNode = function(raphael) {
+  drawActiveNode = function() {
     var disc, state;
     state = states[states.active];
     return disc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
   };
-  drawState = function(raphael) {
-    drawTimelines(raphael);
-    drawActiveTimeline(raphael);
-    drawAllNodes(raphael);
-    return drawActiveNode(raphael);
+  drawState = function() {
+    drawTimelines();
+    drawActiveTimeline();
+    drawAllNodes();
+    return drawActiveNode();
   };
   jQuery($(__bind(function() {
-    var paper;
-    paper = Raphael("notepad", totalWidth, totalHeight);
-    return drawState(paper);
+    raphael = Raphael("notepad", totalWidth, totalHeight);
+    return drawState();
   }, this)));
 }).call(this);

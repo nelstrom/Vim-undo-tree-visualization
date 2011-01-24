@@ -20,6 +20,7 @@ color =
   blue: "#008"
 
 # Workhorse parameters
+raphael = null
 coords = {}
 
 coords.s1 =
@@ -140,7 +141,7 @@ generatePath = (origin, coordinates...) ->
     points.push("L #{coords[point].x} #{coords[point].y}")
   points.join("")
 
-drawTimelines = (raphael) ->
+drawTimelines = () ->
   state = states[states.active]
 
   graphics.timelineOriginalThick = raphael.path(
@@ -158,7 +159,7 @@ drawTimelines = (raphael) ->
   ).attr(graphics.thinLineAttributes)
 
 
-drawActiveTimeline = (raphael) ->
+drawActiveTimeline = () ->
   state = states[states.active]
 
   activeTrack = state.activeTrack
@@ -167,7 +168,7 @@ drawActiveTimeline = (raphael) ->
   ).attr(graphics.thickLineAttributes)
 
 
-drawAllNodes = (raphael) ->
+drawAllNodes = () ->
   state = states[states.active]
 
   for num in [1..5]
@@ -182,7 +183,7 @@ drawAllNodes = (raphael) ->
     graphics.nodes.push(disc)
 
 
-drawActiveNode = (raphael) ->
+drawActiveNode = () ->
   state = states[states.active]
 
   disc = raphael.circle(
@@ -192,14 +193,14 @@ drawActiveNode = (raphael) ->
   ).attr(graphics.onNodeAttributes)
 
 
-drawState = (raphael) ->
-  drawTimelines(raphael)
-  drawActiveTimeline(raphael)
-  drawAllNodes(raphael)
-  drawActiveNode(raphael)
+drawState = () ->
+  drawTimelines()
+  drawActiveTimeline()
+  drawAllNodes()
+  drawActiveNode()
 
 jQuery($ =>
-  paper = Raphael("notepad", totalWidth, totalHeight)
-  drawState(paper)
+  raphael = Raphael("notepad", totalWidth, totalHeight)
+  drawState()
 )
 
