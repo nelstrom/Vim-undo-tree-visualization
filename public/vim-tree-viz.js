@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).ready(function() {
   var canvasWidth = 640,
       canvasHeight = 480,
       canvasMargin = 90
@@ -149,4 +149,4 @@ window.onload = function() {
       "stroke": "#000"
     });
   };
-}
+});
