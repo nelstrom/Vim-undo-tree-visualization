@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vim Undo Tree visualization</title>
+<script src="raphael.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.1.4.4.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css" media="screen">
+  #notepad { border: 1px solid black; width: 640px; height: 480px; }
+</style>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+  var r = Raphael(document.getElementById("notepad"), 640, 480);
+  var p = r.path("M100,100c0,50 100-50 100,0c0,50 -100-50 -100,0z").attr({stroke: "#ddd"}),
+      e = r.ellipse(104, 100, 4, 4).attr({stroke: "none", fill: "#f00"}),
+      b = r.rect(0, 0, 620, 400).attr({stroke: "none", fill: "#000", opacity: 0}).click(function () {
+          e.attr({rx: 5, ry: 3}).animateAlong(p, 4000, true, function () {
+              e.attr({rx: 4, ry: 4});
+          });
+      });
+
+});
+
+</script>
+</head>
+<body>
+  <div id="notepad"></div>
+</body>
+</html>
