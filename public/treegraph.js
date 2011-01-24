@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, lineThickness, margin, nodeCount, radius, totalHeight, totalWidth;
+  var animationPeriod, availableHeight, availableWidth, coords, forkAngle, generatePath, lineLength, lineThickness, margin, nodeCount, radius, states, totalHeight, totalWidth;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -60,6 +60,62 @@
   coords.t6 = {
     x: coords.t3.x + lineLength * 3,
     y: coords.t3.y
+  };
+  states = {
+    1: {
+      timelineOriginal: ['s1', 's2', 's3', 's4'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        1: {
+          state: 'off',
+          position: 's1'
+        },
+        2: {
+          state: 'on',
+          position: 's2'
+        },
+        3: {
+          state: 'off',
+          position: 's3'
+        },
+        4: {
+          state: 'off',
+          position: 's4'
+        },
+        5: {
+          state: 'unborn',
+          position: 's5'
+        }
+      }
+    },
+    2: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        1: {
+          state: 'off',
+          position: 's1'
+        },
+        2: {
+          state: 'off',
+          position: 's2'
+        },
+        3: {
+          state: 'off',
+          position: 'b3'
+        },
+        4: {
+          state: 'off',
+          position: 'b4'
+        },
+        5: {
+          state: 'on',
+          position: 't3'
+        }
+      }
+    }
   };
   generatePath = function() {
     var coordinates, origin, point, points, _i, _len;
