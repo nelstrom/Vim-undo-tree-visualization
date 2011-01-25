@@ -124,7 +124,7 @@
       return states.previous().nodes.active();
     },
     0: {
-      timelineOriginal: ['s1', 's2', 's3', 's4'],
+      timelineOriginal: ['s1', 's2'],
       timelineRevised: ['s1', 's2'],
       activeTrack: 'timelineOriginal',
       nodes: {
@@ -140,12 +140,12 @@
           position: 's2'
         },
         2: {
-          state: 'off',
-          position: 's3'
+          state: 'unborn',
+          position: 's2'
         },
         3: {
-          state: 'off',
-          position: 's4'
+          state: 'unborn',
+          position: 's2'
         },
         4: {
           state: 'unborn',
@@ -158,12 +158,46 @@
       }
     },
     1: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3'],
-      activeTrack: 'timelineRevised',
+      timelineOriginal: ['s1', 's2', 's3'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
       nodes: {
         active: function() {
-          return states[1].nodes[4];
+          return states[1].nodes[2];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'on',
+          position: 's3'
+        },
+        3: {
+          state: 'unborn',
+          position: 's3'
+        },
+        4: {
+          state: 'unborn',
+          position: 's3'
+        },
+        5: {
+          state: 'unborn',
+          position: 's3'
+        }
+      }
+    },
+    2: {
+      timelineOriginal: ['s1', 's2', 's3', 's4'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[2].nodes[3];
         },
         0: {
           state: 'off',
@@ -175,19 +209,53 @@
         },
         2: {
           state: 'off',
-          position: 'b3'
+          position: 's3'
         },
         3: {
-          state: 'off',
-          position: 'b4'
+          state: 'on',
+          position: 's4'
         },
         4: {
-          state: 'on',
-          position: 't3'
+          state: 'unborn',
+          position: 's4'
         },
         5: {
           state: 'unborn',
-          position: 't3'
+          position: 's4'
+        }
+      }
+    },
+    3: {
+      timelineOriginal: ['s1', 's2', 's3', 's4'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[3].nodes[2];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'on',
+          position: 's3'
+        },
+        3: {
+          state: 'off',
+          position: 's4'
+        },
+        4: {
+          state: 'unborn',
+          position: 's3'
+        },
+        5: {
+          state: 'unborn',
+          position: 's3'
         }
       }
     }

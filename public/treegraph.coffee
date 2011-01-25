@@ -101,7 +101,7 @@ states =
   previousActiveNode: () -> states.previous().nodes.active()
   0:
     timelineOriginal:
-      ['s1','s2','s3','s4']
+      ['s1','s2']
     timelineRevised:
       ['s1','s2']
     activeTrack:
@@ -115,11 +115,11 @@ states =
         state: 'on'
         position: 's2'
       2:
-        state: 'off'
-        position: 's3'
+        state: 'unborn'
+        position: 's2'
       3:
-        state: 'off'
-        position: 's4'
+        state: 'unborn'
+        position: 's2'
       4:
         state: 'unborn'
         position: 's2'
@@ -128,13 +128,40 @@ states =
         position: 's2'
   1:
     timelineOriginal:
-      ['s1','s2','b3','b4']
+      ['s1','s2','s3']
     timelineRevised:
-      ['s1','s2','t3']
+      ['s1','s2']
     activeTrack:
-      'timelineRevised'
+      'timelineOriginal'
     nodes:
-      active: () -> states[1].nodes[4]
+      active: () -> states[1].nodes[2]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'on'
+        position: 's3'
+      3:
+        state: 'unborn'
+        position: 's3'
+      4:
+        state: 'unborn'
+        position: 's3'
+      5:
+        state: 'unborn'
+        position: 's3'
+  2:
+    timelineOriginal:
+      ['s1','s2','s3','s4']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[2].nodes[3]
       0:
         state: 'off'
         position: 's1'
@@ -143,16 +170,97 @@ states =
         position: 's2'
       2:
         state: 'off'
-        position: 'b3'
+        position: 's3'
       3:
-        state: 'off'
-        position: 'b4'
-      4:
         state: 'on'
-        position: 't3'
+        position: 's4'
+      4:
+        state: 'unborn'
+        position: 's4'
       5:
         state: 'unborn'
-        position: 't3'
+        position: 's4'
+  3:
+    timelineOriginal:
+      ['s1','s2','s3','s4']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[3].nodes[2]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'on'
+        position: 's3'
+      3:
+        state: 'off'
+        position: 's4'
+      4:
+        state: 'unborn'
+        position: 's3'
+      5:
+        state: 'unborn'
+        position: 's3'
+  #0:
+    #timelineOriginal:
+      #['s1','s2','s3','s4']
+    #timelineRevised:
+      #['s1','s2']
+    #activeTrack:
+      #'timelineOriginal'
+    #nodes:
+      #active: () -> states[0].nodes[1]
+      #0:
+        #state: 'off'
+        #position: 's1'
+      #1:
+        #state: 'on'
+        #position: 's2'
+      #2:
+        #state: 'off'
+        #position: 's3'
+      #3:
+        #state: 'off'
+        #position: 's4'
+      #4:
+        #state: 'unborn'
+        #position: 's2'
+      #5:
+        #state: 'unborn'
+        #position: 's2'
+  #1:
+    #timelineOriginal:
+      #['s1','s2','b3','b4']
+    #timelineRevised:
+      #['s1','s2','t3']
+    #activeTrack:
+      #'timelineRevised'
+    #nodes:
+      #active: () -> states[1].nodes[4]
+      #0:
+        #state: 'off'
+        #position: 's1'
+      #1:
+        #state: 'off'
+        #position: 's2'
+      #2:
+        #state: 'off'
+        #position: 'b3'
+      #3:
+        #state: 'off'
+        #position: 'b4'
+      #4:
+        #state: 'on'
+        #position: 't3'
+      #5:
+        #state: 'unborn'
+        #position: 't3'
 
 # Utility methods
 generatePath = (origin, coordinates...) ->
