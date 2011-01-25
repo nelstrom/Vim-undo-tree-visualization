@@ -102,56 +102,56 @@
     advance: function() {
       return states.active += 1;
     },
-    active: 1,
-    1: {
+    active: 0,
+    0: {
       timelineOriginal: ['s1', 's2', 's3', 's4'],
       timelineRevised: ['s1', 's2'],
       activeTrack: 'timelineOriginal',
       nodes: {
-        1: {
+        0: {
           state: 'off',
           position: 's1'
         },
-        2: {
+        1: {
           state: 'on',
           position: 's2'
         },
-        3: {
+        2: {
           state: 'off',
           position: 's3'
         },
-        4: {
+        3: {
           state: 'off',
           position: 's4'
         },
-        5: {
+        4: {
           state: 'unborn',
           position: 's5'
         }
       }
     },
-    2: {
+    1: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
       timelineRevised: ['s1', 's2', 't3'],
       activeTrack: 'timelineRevised',
       nodes: {
-        1: {
+        0: {
           state: 'off',
           position: 's1'
         },
-        2: {
+        1: {
           state: 'off',
           position: 's2'
         },
-        3: {
+        2: {
           state: 'off',
           position: 'b3'
         },
-        4: {
+        3: {
           state: 'off',
           position: 'b4'
         },
-        5: {
+        4: {
           state: 'on',
           position: 't3'
         }
@@ -186,7 +186,7 @@
     var disc, node, num, state, _results;
     state = states[states.active];
     _results = [];
-    for (num = 1; num <= 5; num++) {
+    for (num = 0; num <= 4; num++) {
       node = state.nodes[num];
       if (node.state === 'unborn') {
         break;
@@ -237,12 +237,12 @@
     var disc, node, num, state, _results;
     state = states[states.active];
     _results = [];
-    for (num = 1; num <= 5; num++) {
+    for (num = 0; num <= 4; num++) {
       node = state.nodes[num];
       if (node.state === 'on') {
         graphics.activeNode = node;
       }
-      disc = graphics.nodes[num - 1];
+      disc = graphics.nodes[num];
       if (!(disc != null)) {
         break;
       }

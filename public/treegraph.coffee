@@ -89,8 +89,8 @@ graphics =
 states =
   advance: () ->
     states.active += 1
-  active: 1
-  1:
+  active: 0
+  0:
     timelineOriginal:
       ['s1','s2','s3','s4']
     timelineRevised:
@@ -98,22 +98,22 @@ states =
     activeTrack:
       'timelineOriginal'
     nodes:
-      1:
+      0:
         state: 'off'
         position: 's1'
-      2:
+      1:
         state: 'on'
         position: 's2'
-      3:
+      2:
         state: 'off'
         position: 's3'
-      4:
+      3:
         state: 'off'
         position: 's4'
-      5:
+      4:
         state: 'unborn'
         position: 's5'
-  2:
+  1:
     timelineOriginal:
       ['s1','s2','b3','b4']
     timelineRevised:
@@ -121,19 +121,19 @@ states =
     activeTrack:
       'timelineRevised'
     nodes:
-      1:
+      0:
         state: 'off'
         position: 's1'
-      2:
+      1:
         state: 'off'
         position: 's2'
-      3:
+      2:
         state: 'off'
         position: 'b3'
-      4:
+      3:
         state: 'off'
         position: 'b4'
-      5:
+      4:
         state: 'on'
         position: 't3'
 
@@ -174,7 +174,7 @@ drawActiveTimeline = () ->
 drawAllNodes = () ->
   state = states[states.active]
 
-  for num in [1..5]
+  for num in [0..4]
     node = state.nodes[num]
     break if node.state is 'unborn'
     graphics.activeNode = node if node.state is 'on'
@@ -230,10 +230,10 @@ transitionActiveTimeline = () ->
 transitionAllNodes = () ->
   state = states[states.active]
 
-  for num in [1..5]
+  for num in [0..4]
     node = state.nodes[num]
     graphics.activeNode = node if node.state is 'on'
-    disc = graphics.nodes[num-1]
+    disc = graphics.nodes[num]
     break if not disc?
     disc.animate({
       cx: coords[node.position].x
