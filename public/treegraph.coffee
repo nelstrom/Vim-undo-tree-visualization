@@ -122,7 +122,10 @@ states =
         position: 's4'
       4:
         state: 'unborn'
-        position: 's5'
+        position: 's2'
+      5:
+        state: 'unborn'
+        position: 's2'
   1:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -146,6 +149,9 @@ states =
         position: 'b4'
       4:
         state: 'on'
+        position: 't3'
+      5:
+        state: 'unborn'
         position: 't3'
 
 # Utility methods
@@ -177,12 +183,10 @@ drawActiveTimeline = (state, activeTrack=state.activeTrack) ->
   ).attr(graphics.thickLineAttributes)
 
 
-drawAllNodes = () ->
-  state = states.active()
-
-  for num in [0..4]
+drawAllNodes = (state) ->
+  graphics.nodes = []
+  for num in [0..(nodeCount-1)]
     node = state.nodes[num]
-    break if node.state is 'unborn'
     disc = raphael.circle(
       coords[node.position].x,
       coords[node.position].y,
@@ -205,7 +209,7 @@ drawState = () ->
   state = states.active()
   drawTimelines(state)
   drawActiveTimeline(state)
-  drawAllNodes()
+  drawAllNodes(state)
   drawActiveNode()
 
 transitionTimelines = () ->
@@ -244,8 +248,10 @@ transitionActiveTimeline = () ->
 
 transitionAllNodes = () ->
   state = states.active()
+  previous = states.previous()
+  drawAllNodes(previous)
 
-  for num in [0..4]
+  for num in [0..nodeCount-1]
     node = state.nodes[num]
     disc = graphics.nodes[num]
     break if not disc?
@@ -271,6 +277,7 @@ transitionStates = () ->
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
   drawState()
+  console.log graphics.nodes
   states.advance()
   transitionStates()
 )

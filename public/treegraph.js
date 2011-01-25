@@ -149,7 +149,11 @@
         },
         4: {
           state: 'unborn',
-          position: 's5'
+          position: 's2'
+        },
+        5: {
+          state: 'unborn',
+          position: 's2'
         }
       }
     },
@@ -180,6 +184,10 @@
         4: {
           state: 'on',
           position: 't3'
+        },
+        5: {
+          state: 'unborn',
+          position: 't3'
         }
       }
     }
@@ -206,15 +214,12 @@
     }
     return graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
   };
-  drawAllNodes = function() {
-    var disc, node, num, state, _results;
-    state = states.active();
+  drawAllNodes = function(state) {
+    var disc, node, num, _ref, _results;
+    graphics.nodes = [];
     _results = [];
-    for (num = 0; num <= 4; num++) {
+    for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
       node = state.nodes[num];
-      if (node.state === 'unborn') {
-        break;
-      }
       disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
       _results.push(graphics.nodes.push(disc));
     }
@@ -230,7 +235,7 @@
     state = states.active();
     drawTimelines(state);
     drawActiveTimeline(state);
-    drawAllNodes();
+    drawAllNodes(state);
     return drawActiveNode();
   };
   transitionTimelines = function() {
@@ -262,10 +267,12 @@
     }, animationPeriod, "<>");
   };
   transitionAllNodes = function() {
-    var disc, node, num, state, _results;
+    var disc, node, num, previous, state, _ref, _results;
     state = states.active();
+    previous = states.previous();
+    drawAllNodes(previous);
     _results = [];
-    for (num = 0; num <= 4; num++) {
+    for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
       node = state.nodes[num];
       disc = graphics.nodes[num];
       if (!(disc != null)) {
@@ -294,6 +301,7 @@
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
     drawState();
+    console.log(graphics.nodes);
     states.advance();
     return transitionStates();
   }, this)));
