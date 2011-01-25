@@ -1,5 +1,5 @@
 (function() {
-  var advance, animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, reverse, states, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
+  var advance, animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, reverse, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -97,7 +97,102 @@
       "stroke": color.blue
     }
   };
-  states = {
+  playback = {
+    index: 0,
+    previousIndex: 0,
+    reverse: function() {
+      if (!(states.index > 0)) {
+        return;
+      }
+      states.previousIndex = states.index;
+      return states.index -= 1;
+    },
+    advance: function() {
+      states.previousIndex = states.index;
+      return states.index += 1;
+    },
+    active: function() {
+      return states[states.index];
+    },
+    previous: function() {
+      return states[states.previousIndex];
+    },
+    activeNode: function() {
+      return states.active().nodes.active();
+    },
+    previousActiveNode: function() {
+      return states.previous().nodes.active();
+    },
+    0: {
+      timelineOriginal: ['s1', 's2'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[0].nodes[1];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'on',
+          position: 's2'
+        },
+        2: {
+          state: 'unborn',
+          position: 's2'
+        },
+        3: {
+          state: 'unborn',
+          position: 's2'
+        },
+        4: {
+          state: 'unborn',
+          position: 's2'
+        },
+        5: {
+          state: 'unborn',
+          position: 's2'
+        }
+      }
+    },
+    1: {
+      timelineOriginal: ['s1', 's2', 's3'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[1].nodes[2];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'on',
+          position: 's3'
+        },
+        3: {
+          state: 'unborn',
+          position: 's3'
+        },
+        4: {
+          state: 'unborn',
+          position: 's3'
+        },
+        5: {
+          state: 'unborn',
+          position: 's3'
+        }
+      }
+    }
+  };
+  story = {
     index: 0,
     previousIndex: 0,
     reverse: function() {
@@ -394,8 +489,77 @@
           position: 't4'
         }
       }
+    },
+    8: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[8].nodes[1];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'on',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'off',
+          position: 't3'
+        },
+        5: {
+          state: 'off',
+          position: 't4'
+        }
+      }
+    },
+    9: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[8].nodes[4];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'on',
+          position: 't3'
+        },
+        5: {
+          state: 'off',
+          position: 't4'
+        }
+      }
     }
   };
+  states = story;
   generatePath = function() {
     var coordinates, origin, point, points, _i, _len;
     origin = arguments[0], coordinates = 2 <= arguments.length ? __slice.call(arguments, 1) : [];

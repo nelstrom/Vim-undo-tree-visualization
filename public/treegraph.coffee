@@ -85,7 +85,76 @@ graphics =
     "fill": color.blue
     "stroke": color.blue
 
-states =
+playback =
+  index: 0
+  previousIndex: 0
+  reverse: () ->
+    return unless states.index > 0
+    states.previousIndex = states.index
+    states.index -= 1
+  advance: () ->
+    states.previousIndex = states.index
+    states.index += 1
+  active: () -> states[states.index]
+  previous: () -> states[states.previousIndex]
+  activeNode: () -> states.active().nodes.active()
+  previousActiveNode: () -> states.previous().nodes.active()
+  0:
+    timelineOriginal:
+      ['s1','s2']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[0].nodes[1]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'on'
+        position: 's2'
+      2:
+        state: 'unborn'
+        position: 's2'
+      3:
+        state: 'unborn'
+        position: 's2'
+      4:
+        state: 'unborn'
+        position: 's2'
+      5:
+        state: 'unborn'
+        position: 's2'
+  1:
+    timelineOriginal:
+      ['s1','s2','s3']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[1].nodes[2]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'on'
+        position: 's3'
+      3:
+        state: 'unborn'
+        position: 's3'
+      4:
+        state: 'unborn'
+        position: 's3'
+      5:
+        state: 'unborn'
+        position: 's3'
+
+story =
   index: 0
   previousIndex: 0
   reverse: () ->
@@ -315,6 +384,63 @@ states =
       5:
         state: 'off'
         position: 't4'
+  8:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t4']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[8].nodes[1]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'on'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't3'
+      5:
+        state: 'off'
+        position: 't4'
+  9:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t4']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[8].nodes[4]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'on'
+        position: 't3'
+      5:
+        state: 'off'
+        position: 't4'
+
+states = story
+#states = playback
 
 # Utility methods
 generatePath = (origin, coordinates...) ->
