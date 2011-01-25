@@ -264,10 +264,20 @@ transitionStates = () ->
   transitionAllNodes(current, previous)
   transitionActiveNode(current, previous)
 
-jQuery($ =>
-  raphael = Raphael("notepad", totalWidth, totalHeight)
-  drawState()
+reverse = () ->
+  states.reverse()
+  transitionStates()
+
+advance = () ->
   states.advance()
   transitionStates()
+
+jQuery($ =>
+  raphael = Raphael("notepad", totalWidth, totalHeight)
+  $("#notepad").after("<button id='nextButton'>next</button>")
+  $("#nextButton").click(advance)
+  $("#notepad").after("<button id='prevButton'>prev</button>")
+  $("#prevButton").click(reverse)
+  drawState()
 )
 

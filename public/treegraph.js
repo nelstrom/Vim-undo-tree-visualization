@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, states, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
+  var advance, animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, reverse, states, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 480;
@@ -293,10 +293,20 @@
     transitionAllNodes(current, previous);
     return transitionActiveNode(current, previous);
   };
-  jQuery($(__bind(function() {
-    raphael = Raphael("notepad", totalWidth, totalHeight);
-    drawState();
+  reverse = function() {
+    states.reverse();
+    return transitionStates();
+  };
+  advance = function() {
     states.advance();
     return transitionStates();
+  };
+  jQuery($(__bind(function() {
+    raphael = Raphael("notepad", totalWidth, totalHeight);
+    $("#notepad").after("<button id='nextButton'>next</button>");
+    $("#nextButton").click(advance);
+    $("#notepad").after("<button id='prevButton'>prev</button>");
+    $("#prevButton").click(reverse);
+    return drawState();
   }, this)));
 }).call(this);
