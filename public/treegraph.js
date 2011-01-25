@@ -274,8 +274,6 @@
     return _results;
   };
   transitionActiveNode = function() {
-    var state;
-    state = states.active();
     return graphics.activeNode.animate({
       cx: coords[states.activeNode().position].x,
       cy: coords[states.activeNode().position].y

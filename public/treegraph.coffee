@@ -250,8 +250,6 @@ transitionAllNodes = () ->
     }, animationPeriod, "<>")
 
 transitionActiveNode = () ->
-  state = states.active()
-
   graphics.activeNode.animate({
     cx: coords[states.activeNode().position].x
     cy: coords[states.activeNode().position].y
