@@ -195,12 +195,10 @@ drawAllNodes = (state) ->
     graphics.nodes.push(disc)
 
 
-drawActiveNode = () ->
-  state = states.active()
-
+drawActiveNode = (state) ->
   graphics.activeNode = raphael.circle(
-    coords[states.activeNode().position].x,
-    coords[states.activeNode().position].y,
+    coords[state.nodes.active().position].x,
+    coords[state.nodes.active().position].y,
     radius
   ).attr(graphics.onNodeAttributes)
 
@@ -210,7 +208,7 @@ drawState = () ->
   drawTimelines(state)
   drawActiveTimeline(state)
   drawAllNodes(state)
-  drawActiveNode()
+  drawActiveNode(state)
 
 transitionTimelines = () ->
   state = states.active()
@@ -261,9 +259,12 @@ transitionAllNodes = () ->
     }, animationPeriod, "<>")
 
 transitionActiveNode = () ->
+  state = states.active()
+  previous = states.previous()
+  drawActiveNode(previous)
   graphics.activeNode.animate({
-    cx: coords[states.activeNode().position].x
-    cy: coords[states.activeNode().position].y
+    cx: coords[state.nodes.active().position].x
+    cy: coords[state.nodes.active().position].y
   }, animationPeriod, "<>")
 
 
@@ -277,7 +278,6 @@ transitionStates = () ->
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
   drawState()
-  console.log graphics.nodes
   states.advance()
   transitionStates()
 )

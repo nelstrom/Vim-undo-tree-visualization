@@ -225,10 +225,8 @@
     }
     return _results;
   };
-  drawActiveNode = function() {
-    var state;
-    state = states.active();
-    return graphics.activeNode = raphael.circle(coords[states.activeNode().position].x, coords[states.activeNode().position].y, radius).attr(graphics.onNodeAttributes);
+  drawActiveNode = function(state) {
+    return graphics.activeNode = raphael.circle(coords[state.nodes.active().position].x, coords[state.nodes.active().position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
     var state;
@@ -236,7 +234,7 @@
     drawTimelines(state);
     drawActiveTimeline(state);
     drawAllNodes(state);
-    return drawActiveNode();
+    return drawActiveNode(state);
   };
   transitionTimelines = function() {
     var previous, state;
@@ -286,9 +284,13 @@
     return _results;
   };
   transitionActiveNode = function() {
+    var previous, state;
+    state = states.active();
+    previous = states.previous();
+    drawActiveNode(previous);
     return graphics.activeNode.animate({
-      cx: coords[states.activeNode().position].x,
-      cy: coords[states.activeNode().position].y
+      cx: coords[state.nodes.active().position].x,
+      cy: coords[state.nodes.active().position].y
     }, animationPeriod, "<>");
   };
   transitionStates = function() {
@@ -301,7 +303,6 @@
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
     drawState();
-    console.log(graphics.nodes);
     states.advance();
     return transitionStates();
   }, this)));
