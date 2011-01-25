@@ -10,3 +10,11 @@ If you want to look at treegraph.coffee and treegraph.js side by side in Vim, op
     :setlocal ar
 
 This means you won't be pestered with a prompt each time the treegraph.js file is recompiled.
+
+Useful links:
+
+* [CoffeeScript][]
+* [Raphael][]
+
+[CoffeeScript]: http://jashkenas.github.com/coffee-script/
+[Raphael]: http://raphaeljs.com/reference.html
