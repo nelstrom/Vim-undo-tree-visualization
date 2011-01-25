@@ -101,40 +101,67 @@ playback =
   previousActiveNode: () -> states.previous().nodes.active()
   0:
     timelineOriginal:
-      ['s1','s2']
+      ['s1','s2','b3','b4']
     timelineRevised:
-      ['s1','s2']
+      ['s1','s2','t3','t5','t6']
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[0].nodes[1]
+      active: () -> states[0].nodes[0]
       0:
-        state: 'off'
+        state: 'on'
         position: 's1'
       1:
-        state: 'on'
+        state: 'off'
         position: 's2'
       2:
-        state: 'unborn'
-        position: 's2'
+        state: 'off'
+        position: 'b3'
       3:
-        state: 'unborn'
-        position: 's2'
+        state: 'off'
+        position: 'b4'
       4:
-        state: 'unborn'
-        position: 's2'
+        state: 'off'
+        position: 't5'
       5:
-        state: 'unborn'
-        position: 's2'
+        state: 'off'
+        position: 't6'
   1:
     timelineOriginal:
-      ['s1','s2','s3']
+      ['s1','s2','b3','b4']
     timelineRevised:
-      ['s1','s2']
+      ['s1','s2','t3','t5','t6']
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[1].nodes[2]
+      active: () -> states[1].nodes[1]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'on'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't5'
+      5:
+        state: 'off'
+        position: 't6'
+  2:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t5','t6']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[2].nodes[2]
       0:
         state: 'off'
         position: 's1'
@@ -143,16 +170,97 @@ playback =
         position: 's2'
       2:
         state: 'on'
-        position: 's3'
+        position: 'b3'
       3:
-        state: 'unborn'
-        position: 's3'
+        state: 'off'
+        position: 'b4'
       4:
-        state: 'unborn'
-        position: 's3'
+        state: 'off'
+        position: 't5'
       5:
-        state: 'unborn'
-        position: 's3'
+        state: 'off'
+        position: 't6'
+  3:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t5','t6']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[3].nodes[3]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'on'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't5'
+      5:
+        state: 'off'
+        position: 't6'
+  4:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t5','t6']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[4].nodes[4]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'on'
+        position: 't5'
+      5:
+        state: 'off'
+        position: 't6'
+  5:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t5','t6']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[5].nodes[5]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't5'
+      5:
+        state: 'on'
+        position: 't6'
 
 story =
   index: 0
@@ -440,7 +548,7 @@ story =
         position: 't4'
 
 states = story
-#states = playback
+states = playback
 
 # Utility methods
 generatePath = (origin, coordinates...) ->
