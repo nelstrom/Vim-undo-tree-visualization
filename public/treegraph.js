@@ -236,10 +236,7 @@
     drawAllNodes(state);
     return drawActiveNode(state);
   };
-  transitionTimelines = function() {
-    var previous, state;
-    state = states.active();
-    previous = states.previous();
+  transitionTimelines = function(state, previous) {
     drawTimelines(previous);
     graphics.timelineOriginalThick.animate({
       path: generatePath.apply(null, state.timelineOriginal)
@@ -254,20 +251,16 @@
       path: generatePath.apply(null, state.timelineRevised)
     }, animationPeriod, "<>");
   };
-  transitionActiveTimeline = function() {
-    var activeTrack, previous, state;
-    state = states.active();
-    previous = states.previous();
+  transitionActiveTimeline = function(state, previous) {
+    var activeTrack;
     activeTrack = state.activeTrack;
     drawActiveTimeline(previous, activeTrack);
     return graphics.activeTimeline.animate({
       path: generatePath.apply(null, state[activeTrack])
     }, animationPeriod, "<>");
   };
-  transitionAllNodes = function() {
-    var disc, node, num, previous, state, _ref, _results;
-    state = states.active();
-    previous = states.previous();
+  transitionAllNodes = function(state, previous) {
+    var disc, node, num, _ref, _results;
     drawAllNodes(previous);
     _results = [];
     for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
@@ -283,10 +276,7 @@
     }
     return _results;
   };
-  transitionActiveNode = function() {
-    var previous, state;
-    state = states.active();
-    previous = states.previous();
+  transitionActiveNode = function(state, previous) {
     drawActiveNode(previous);
     return graphics.activeNode.animate({
       cx: coords[state.nodes.active().position].x,
@@ -294,11 +284,14 @@
     }, animationPeriod, "<>");
   };
   transitionStates = function() {
+    var current, previous;
     raphael.clear();
-    transitionTimelines();
-    transitionActiveTimeline();
-    transitionAllNodes();
-    return transitionActiveNode();
+    current = states.active();
+    previous = states.previous();
+    transitionTimelines(current, previous);
+    transitionActiveTimeline(current, previous);
+    transitionAllNodes(current, previous);
+    return transitionActiveNode(current, previous);
   };
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
