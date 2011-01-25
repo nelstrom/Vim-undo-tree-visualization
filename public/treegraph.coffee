@@ -207,60 +207,60 @@ states =
       5:
         state: 'unborn'
         position: 's3'
-  #0:
-    #timelineOriginal:
-      #['s1','s2','s3','s4']
-    #timelineRevised:
-      #['s1','s2']
-    #activeTrack:
-      #'timelineOriginal'
-    #nodes:
-      #active: () -> states[0].nodes[1]
-      #0:
-        #state: 'off'
-        #position: 's1'
-      #1:
-        #state: 'on'
-        #position: 's2'
-      #2:
-        #state: 'off'
-        #position: 's3'
-      #3:
-        #state: 'off'
-        #position: 's4'
-      #4:
-        #state: 'unborn'
-        #position: 's2'
-      #5:
-        #state: 'unborn'
-        #position: 's2'
-  #1:
-    #timelineOriginal:
-      #['s1','s2','b3','b4']
-    #timelineRevised:
-      #['s1','s2','t3']
-    #activeTrack:
-      #'timelineRevised'
-    #nodes:
-      #active: () -> states[1].nodes[4]
-      #0:
-        #state: 'off'
-        #position: 's1'
-      #1:
-        #state: 'off'
-        #position: 's2'
-      #2:
-        #state: 'off'
-        #position: 'b3'
-      #3:
-        #state: 'off'
-        #position: 'b4'
-      #4:
-        #state: 'on'
-        #position: 't3'
-      #5:
-        #state: 'unborn'
-        #position: 't3'
+  4:
+    timelineOriginal:
+      ['s1','s2','s3','s4']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[4].nodes[1]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'on'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 's3'
+      3:
+        state: 'off'
+        position: 's4'
+      4:
+        state: 'unborn'
+        position: 's2'
+      5:
+        state: 'unborn'
+        position: 's2'
+  5:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[5].nodes[4]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'on'
+        position: 't3'
+      5:
+        state: 'unborn'
+        position: 't3'
 
 # Utility methods
 generatePath = (origin, coordinates...) ->
