@@ -208,7 +208,7 @@ drawActiveNode = () ->
 
 drawState = () ->
   drawTimelines()
-  #drawActiveTimeline()
+  drawActiveTimeline()
   drawAllNodes()
   drawActiveNode()
 
@@ -230,9 +230,19 @@ transitionTimelines = () ->
   }, animationPeriod, "<>")
 
 transitionActiveTimeline = () ->
+  # Find the active timeline for the current state
+  # clear old path
+  # Draw a thick line following that timeline in previous state
+  # Transition from that path to active timelint in current state
   state = states.active()
+  previous = states.previous()
 
   activeTrack = state.activeTrack
+  # redraw!
+  graphics.activeTimeline = raphael.path(
+    generatePath(previous[activeTrack]...)
+  ).attr(graphics.thickLineAttributes)
+
   graphics.activeTimeline.animate({
     path: generatePath(state[activeTrack]...)
   }, animationPeriod, "<>")
@@ -258,7 +268,7 @@ transitionActiveNode = () ->
 
 transitionStates = () ->
   transitionTimelines()
-  #transitionActiveTimeline()
+  transitionActiveTimeline()
   transitionAllNodes()
   transitionActiveNode()
 

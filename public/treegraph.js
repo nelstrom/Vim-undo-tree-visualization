@@ -229,6 +229,7 @@
   };
   drawState = function() {
     drawTimelines();
+    drawActiveTimeline();
     drawAllNodes();
     return drawActiveNode();
   };
@@ -249,9 +250,11 @@
     }, animationPeriod, "<>");
   };
   transitionActiveTimeline = function() {
-    var activeTrack, state;
+    var activeTrack, previous, state;
     state = states.active();
+    previous = states.previous();
     activeTrack = state.activeTrack;
+    graphics.activeTimeline = raphael.path(generatePath.apply(null, previous[activeTrack])).attr(graphics.thickLineAttributes);
     return graphics.activeTimeline.animate({
       path: generatePath.apply(null, state[activeTrack])
     }, animationPeriod, "<>");
@@ -281,6 +284,7 @@
   };
   transitionStates = function() {
     transitionTimelines();
+    transitionActiveTimeline();
     transitionAllNodes();
     return transitionActiveNode();
   };
