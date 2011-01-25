@@ -202,10 +202,10 @@
     graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
     return graphics.timelineRevisedThin = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thinLineAttributes);
   };
-  drawActiveTimeline = function() {
-    var activeTrack, state;
-    state = states.active();
-    activeTrack = state.activeTrack;
+  drawActiveTimeline = function(state, activeTrack) {
+    if (activeTrack == null) {
+      activeTrack = state.activeTrack;
+    }
     return graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
   };
   drawAllNodes = function() {
@@ -228,8 +228,10 @@
     return graphics.activeNode = raphael.circle(coords[states.activeNode().position].x, coords[states.activeNode().position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
+    var state;
+    state = states.active();
     drawTimelines();
-    drawActiveTimeline();
+    drawActiveTimeline(state);
     drawAllNodes();
     return drawActiveNode();
   };
@@ -254,7 +256,7 @@
     state = states.active();
     previous = states.previous();
     activeTrack = state.activeTrack;
-    graphics.activeTimeline = raphael.path(generatePath.apply(null, previous[activeTrack])).attr(graphics.thickLineAttributes);
+    drawActiveTimeline(previous, activeTrack);
     return graphics.activeTimeline.animate({
       path: generatePath.apply(null, state[activeTrack])
     }, animationPeriod, "<>");

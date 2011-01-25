@@ -173,10 +173,7 @@ drawTimelines = () ->
   ).attr(graphics.thinLineAttributes)
 
 
-drawActiveTimeline = () ->
-  state = states.active()
-
-  activeTrack = state.activeTrack
+drawActiveTimeline = (state, activeTrack=state.activeTrack) ->
   graphics.activeTimeline = raphael.path(
     generatePath(state[activeTrack]...)
   ).attr(graphics.thickLineAttributes)
@@ -207,8 +204,9 @@ drawActiveNode = () ->
 
 
 drawState = () ->
+  state = states.active()
   drawTimelines()
-  drawActiveTimeline()
+  drawActiveTimeline(state)
   drawAllNodes()
   drawActiveNode()
 
@@ -238,10 +236,7 @@ transitionActiveTimeline = () ->
   previous = states.previous()
 
   activeTrack = state.activeTrack
-  # redraw!
-  graphics.activeTimeline = raphael.path(
-    generatePath(previous[activeTrack]...)
-  ).attr(graphics.thickLineAttributes)
+  drawActiveTimeline(previous, activeTrack)
 
   graphics.activeTimeline.animate({
     path: generatePath(state[activeTrack]...)
@@ -267,6 +262,7 @@ transitionActiveNode = () ->
 
 
 transitionStates = () ->
+  #raphael.clear()
   transitionTimelines()
   transitionActiveTimeline()
   transitionAllNodes()
