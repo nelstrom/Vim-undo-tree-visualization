@@ -194,9 +194,7 @@
     }
     return points.join("");
   };
-  drawTimelines = function() {
-    var state;
-    state = states.active();
+  drawTimelines = function(state) {
     graphics.timelineOriginalThick = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thickLineAttributes);
     graphics.timelineOriginalThin = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thinLineAttributes);
     graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
@@ -230,14 +228,16 @@
   drawState = function() {
     var state;
     state = states.active();
-    drawTimelines();
+    drawTimelines(state);
     drawActiveTimeline(state);
     drawAllNodes();
     return drawActiveNode();
   };
   transitionTimelines = function() {
-    var state;
+    var previous, state;
     state = states.active();
+    previous = states.previous();
+    drawTimelines(previous);
     graphics.timelineOriginalThick.animate({
       path: generatePath.apply(null, state.timelineOriginal)
     }, animationPeriod, "<>");
@@ -285,6 +285,7 @@
     }, animationPeriod, "<>");
   };
   transitionStates = function() {
+    raphael.clear();
     transitionTimelines();
     transitionActiveTimeline();
     transitionAllNodes();

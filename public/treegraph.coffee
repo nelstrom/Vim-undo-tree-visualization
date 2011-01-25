@@ -155,9 +155,7 @@ generatePath = (origin, coordinates...) ->
     points.push("L #{coords[point].x} #{coords[point].y}")
   points.join("")
 
-drawTimelines = () ->
-  state = states.active()
-
+drawTimelines = (state) ->
   graphics.timelineOriginalThick = raphael.path(
     generatePath(state.timelineOriginal...)
   ).attr(graphics.thickLineAttributes)
@@ -205,13 +203,15 @@ drawActiveNode = () ->
 
 drawState = () ->
   state = states.active()
-  drawTimelines()
+  drawTimelines(state)
   drawActiveTimeline(state)
   drawAllNodes()
   drawActiveNode()
 
 transitionTimelines = () ->
   state = states.active()
+  previous = states.previous()
+  drawTimelines(previous)
 
   graphics.timelineOriginalThick.animate({
     path: generatePath(state.timelineOriginal...)
@@ -262,7 +262,7 @@ transitionActiveNode = () ->
 
 
 transitionStates = () ->
-  #raphael.clear()
+  raphael.clear()
   transitionTimelines()
   transitionActiveTimeline()
   transitionAllNodes()
