@@ -87,9 +87,17 @@ graphics =
     "stroke": color.blue
 
 states =
+  index: 0
+  previousIndex: 0
+  reverse: () ->
+    return unless states.index > 0
+    states.previousIndex = states.index
+    states.index -= 1
   advance: () ->
-    states.active += 1
-  active: 0
+    states.previousIndex = states.index
+    states.index += 1
+  active: () -> states[states.index]
+  previous: () -> states[states.previousIndex]
   0:
     timelineOriginal:
       ['s1','s2','s3','s4']
@@ -98,6 +106,7 @@ states =
     activeTrack:
       'timelineOriginal'
     nodes:
+      active: () -> states[0].nodes[1]
       0:
         state: 'off'
         position: 's1'
@@ -121,6 +130,7 @@ states =
     activeTrack:
       'timelineRevised'
     nodes:
+      active: () -> states[1].nodes[4]
       0:
         state: 'off'
         position: 's1'
@@ -145,7 +155,7 @@ generatePath = (origin, coordinates...) ->
   points.join("")
 
 drawTimelines = () ->
-  state = states[states.active]
+  state = states.active()
 
   graphics.timelineOriginalThick = raphael.path(
     generatePath(state.timelineOriginal...)
@@ -163,7 +173,7 @@ drawTimelines = () ->
 
 
 drawActiveTimeline = () ->
-  state = states[states.active]
+  state = states.active()
 
   activeTrack = state.activeTrack
   graphics.activeTimeline = raphael.path(
@@ -172,7 +182,7 @@ drawActiveTimeline = () ->
 
 
 drawAllNodes = () ->
-  state = states[states.active]
+  state = states.active()
 
   for num in [0..4]
     node = state.nodes[num]
@@ -187,7 +197,7 @@ drawAllNodes = () ->
 
 
 drawActiveNode = () ->
-  state = states[states.active]
+  state = states.active()
 
   graphics.activeDisc = raphael.circle(
     coords[graphics.activeNode.position].x,
@@ -203,7 +213,7 @@ drawState = () ->
   drawActiveNode()
 
 transitionTimelines = () ->
-  state = states[states.active]
+  state = states.active()
 
   graphics.timelineOriginalThick.animate({
     path: generatePath(state.timelineOriginal...)
@@ -220,7 +230,7 @@ transitionTimelines = () ->
   }, animationPeriod, "<>")
 
 transitionActiveTimeline = () ->
-  state = states[states.active]
+  state = states.active()
 
   activeTrack = state.activeTrack
   graphics.activeTimeline.animate({
@@ -228,7 +238,7 @@ transitionActiveTimeline = () ->
   }, animationPeriod, "<>")
 
 transitionAllNodes = () ->
-  state = states[states.active]
+  state = states.active()
 
   for num in [0..4]
     node = state.nodes[num]
@@ -241,7 +251,7 @@ transitionAllNodes = () ->
     }, animationPeriod, "<>")
 
 transitionActiveNode = () ->
-  state = states[states.active]
+  state = states.active()
 
   graphics.activeDisc.animate({
     cx: coords[graphics.activeNode.position].x

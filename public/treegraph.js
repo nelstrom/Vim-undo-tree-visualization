@@ -99,15 +99,33 @@
     }
   };
   states = {
-    advance: function() {
-      return states.active += 1;
+    index: 0,
+    previousIndex: 0,
+    reverse: function() {
+      if (!(states.index > 0)) {
+        return;
+      }
+      states.previousIndex = states.index;
+      return states.index -= 1;
     },
-    active: 0,
+    advance: function() {
+      states.previousIndex = states.index;
+      return states.index += 1;
+    },
+    active: function() {
+      return states[states.index];
+    },
+    previous: function() {
+      return states[states.previousIndex];
+    },
     0: {
       timelineOriginal: ['s1', 's2', 's3', 's4'],
       timelineRevised: ['s1', 's2'],
       activeTrack: 'timelineOriginal',
       nodes: {
+        active: function() {
+          return states[0].nodes[1];
+        },
         0: {
           state: 'off',
           position: 's1'
@@ -135,6 +153,9 @@
       timelineRevised: ['s1', 's2', 't3'],
       activeTrack: 'timelineRevised',
       nodes: {
+        active: function() {
+          return states[1].nodes[4];
+        },
         0: {
           state: 'off',
           position: 's1'
@@ -170,7 +191,7 @@
   };
   drawTimelines = function() {
     var state;
-    state = states[states.active];
+    state = states.active();
     graphics.timelineOriginalThick = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thickLineAttributes);
     graphics.timelineOriginalThin = raphael.path(generatePath.apply(null, state.timelineOriginal)).attr(graphics.thinLineAttributes);
     graphics.timelineRevisedThick = raphael.path(generatePath.apply(null, state.timelineRevised)).attr(graphics.thickLineAttributes);
@@ -178,13 +199,13 @@
   };
   drawActiveTimeline = function() {
     var activeTrack, state;
-    state = states[states.active];
+    state = states.active();
     activeTrack = state.activeTrack;
     return graphics.activeTimeline = raphael.path(generatePath.apply(null, state[activeTrack])).attr(graphics.thickLineAttributes);
   };
   drawAllNodes = function() {
     var disc, node, num, state, _results;
-    state = states[states.active];
+    state = states.active();
     _results = [];
     for (num = 0; num <= 4; num++) {
       node = state.nodes[num];
@@ -201,7 +222,7 @@
   };
   drawActiveNode = function() {
     var state;
-    state = states[states.active];
+    state = states.active();
     return graphics.activeDisc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
@@ -211,7 +232,7 @@
   };
   transitionTimelines = function() {
     var state;
-    state = states[states.active];
+    state = states.active();
     graphics.timelineOriginalThick.animate({
       path: generatePath.apply(null, state.timelineOriginal)
     }, animationPeriod, "<>");
@@ -227,7 +248,7 @@
   };
   transitionActiveTimeline = function() {
     var activeTrack, state;
-    state = states[states.active];
+    state = states.active();
     activeTrack = state.activeTrack;
     return graphics.activeTimeline.animate({
       path: generatePath.apply(null, state[activeTrack])
@@ -235,7 +256,7 @@
   };
   transitionAllNodes = function() {
     var disc, node, num, state, _results;
-    state = states[states.active];
+    state = states.active();
     _results = [];
     for (num = 0; num <= 4; num++) {
       node = state.nodes[num];
@@ -255,7 +276,7 @@
   };
   transitionActiveNode = function() {
     var state;
-    state = states[states.active];
+    state = states.active();
     return graphics.activeDisc.animate({
       cx: coords[graphics.activeNode.position].x,
       cy: coords[graphics.activeNode.position].y
