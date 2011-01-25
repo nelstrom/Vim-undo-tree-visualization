@@ -10,7 +10,7 @@
   lineLength = availableWidth / (nodeCount - 1);
   forkAngle = Math.PI / 6;
   radius = 15;
-  animationPeriod = 750;
+  animationPeriod = 250;
   lineThinness = 5;
   lineThickness = 8;
   color = {
@@ -324,6 +324,74 @@
         5: {
           state: 'unborn',
           position: 't3'
+        }
+      }
+    },
+    6: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[6].nodes[5];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'off',
+          position: 't3'
+        },
+        5: {
+          state: 'on',
+          position: 't4'
+        }
+      }
+    },
+    7: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[7].nodes[4];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'on',
+          position: 't3'
+        },
+        5: {
+          state: 'off',
+          position: 't4'
         }
       }
     }
