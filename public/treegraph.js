@@ -75,7 +75,6 @@
     timelineRevisedThin: null,
     activeTimeline: null,
     activeNode: null,
-    activeDisc: null,
     nodes: [],
     thickLineAttributes: {
       "stroke": color.blue,
@@ -218,9 +217,6 @@
       if (node.state === 'unborn') {
         break;
       }
-      if (node.state === 'on') {
-        graphics.activeNode = node;
-      }
       disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
       _results.push(graphics.nodes.push(disc));
     }
@@ -229,7 +225,7 @@
   drawActiveNode = function() {
     var state;
     state = states.active();
-    return graphics.activeDisc = raphael.circle(coords[graphics.activeNode.position].x, coords[graphics.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
+    return graphics.activeNode = raphael.circle(coords[states.activeNode().position].x, coords[states.activeNode().position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
     drawTimelines();
@@ -266,9 +262,6 @@
     _results = [];
     for (num = 0; num <= 4; num++) {
       node = state.nodes[num];
-      if (node.state === 'on') {
-        graphics.activeNode = node;
-      }
       disc = graphics.nodes[num];
       if (!(disc != null)) {
         break;
@@ -283,9 +276,9 @@
   transitionActiveNode = function() {
     var state;
     state = states.active();
-    return graphics.activeDisc.animate({
-      cx: coords[graphics.activeNode.position].x,
-      cy: coords[graphics.activeNode.position].y
+    return graphics.activeNode.animate({
+      cx: coords[states.activeNode().position].x,
+      cy: coords[states.activeNode().position].y
     }, animationPeriod, "<>");
   };
   transitionStates = function() {
@@ -295,9 +288,6 @@
   };
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
-    console.log(states.active());
-    console.log(states.active().nodes.active());
-    console.log(states.activeNode());
     drawState();
     states.advance();
     return transitionStates();

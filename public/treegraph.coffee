@@ -67,7 +67,6 @@ graphics =
   timelineRevisedThin: null
   activeTimeline: null
   activeNode: null
-  activeDisc: null
   nodes: []
   thickLineAttributes:
     "stroke": color.blue
@@ -189,7 +188,6 @@ drawAllNodes = () ->
   for num in [0..4]
     node = state.nodes[num]
     break if node.state is 'unborn'
-    graphics.activeNode = node if node.state is 'on'
     disc = raphael.circle(
       coords[node.position].x,
       coords[node.position].y,
@@ -201,9 +199,9 @@ drawAllNodes = () ->
 drawActiveNode = () ->
   state = states.active()
 
-  graphics.activeDisc = raphael.circle(
-    coords[graphics.activeNode.position].x,
-    coords[graphics.activeNode.position].y,
+  graphics.activeNode = raphael.circle(
+    coords[states.activeNode().position].x,
+    coords[states.activeNode().position].y,
     radius
   ).attr(graphics.onNodeAttributes)
 
@@ -244,7 +242,6 @@ transitionAllNodes = () ->
 
   for num in [0..4]
     node = state.nodes[num]
-    graphics.activeNode = node if node.state is 'on'
     disc = graphics.nodes[num]
     break if not disc?
     disc.animate({
@@ -255,9 +252,9 @@ transitionAllNodes = () ->
 transitionActiveNode = () ->
   state = states.active()
 
-  graphics.activeDisc.animate({
-    cx: coords[graphics.activeNode.position].x
-    cy: coords[graphics.activeNode.position].y
+  graphics.activeNode.animate({
+    cx: coords[states.activeNode().position].x
+    cy: coords[states.activeNode().position].y
   }, animationPeriod, "<>")
 
 
@@ -269,9 +266,6 @@ transitionStates = () ->
 
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
-  console.log states.active()
-  console.log states.active().nodes.active()
-  console.log states.activeNode()
   drawState()
   states.advance()
   transitionStates()
