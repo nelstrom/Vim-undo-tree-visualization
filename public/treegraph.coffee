@@ -228,11 +228,6 @@ transitionTimelines = (state, previous) ->
   }, animationPeriod, "<>")
 
 transitionActiveTimeline = (state, previous) ->
-  # Find the active timeline for the current state
-  # clear old path
-  # Draw a thick line following that timeline in previous state
-  # Transition from that path to active timelint in current state
-
   activeTrack = state.activeTrack
   drawActiveTimeline(previous, activeTrack)
 
@@ -264,10 +259,10 @@ transitionStates = () ->
   raphael.clear()
   current = states.active()
   previous = states.previous()
-  transitionTimelines(current,previous)
-  transitionActiveTimeline(current,previous)
-  transitionAllNodes(current,previous)
-  transitionActiveNode(current,previous)
+  transitionTimelines(current, previous)
+  transitionActiveTimeline(current, previous)
+  transitionAllNodes(current, previous)
+  transitionActiveNode(current, previous)
 
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
