@@ -98,6 +98,8 @@ states =
     states.index += 1
   active: () -> states[states.index]
   previous: () -> states[states.previousIndex]
+  activeNode: () -> states.active().nodes.active()
+  previousActiveNode: () -> states.previous().nodes.active()
   0:
     timelineOriginal:
       ['s1','s2','s3','s4']
@@ -267,6 +269,9 @@ transitionStates = () ->
 
 jQuery($ =>
   raphael = Raphael("notepad", totalWidth, totalHeight)
+  console.log states.active()
+  console.log states.active().nodes.active()
+  console.log states.activeNode()
   drawState()
   states.advance()
   transitionStates()

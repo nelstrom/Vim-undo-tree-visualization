@@ -118,6 +118,12 @@
     previous: function() {
       return states[states.previousIndex];
     },
+    activeNode: function() {
+      return states.active().nodes.active();
+    },
+    previousActiveNode: function() {
+      return states.previous().nodes.active();
+    },
     0: {
       timelineOriginal: ['s1', 's2', 's3', 's4'],
       timelineRevised: ['s1', 's2'],
@@ -289,6 +295,9 @@
   };
   jQuery($(__bind(function() {
     raphael = Raphael("notepad", totalWidth, totalHeight);
+    console.log(states.active());
+    console.log(states.active().nodes.active());
+    console.log(states.activeNode());
     drawState();
     states.advance();
     return transitionStates();
