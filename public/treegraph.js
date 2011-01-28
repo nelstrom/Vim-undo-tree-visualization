@@ -11,12 +11,12 @@
   forkAngle = Math.PI / 6;
   radius = 15;
   animationPeriod = 250;
-  lineThinness = 5;
+  lineThinness = 7;
   lineThickness = 8;
   color = {
-    black: "#000",
-    white: "#fff",
-    blue: "#008"
+    black: "#444",
+    darkgrey: "#888",
+    white: "#fff"
   };
   raphael = null;
   coords = {};
@@ -77,7 +77,7 @@
     activeNode: null,
     nodes: [],
     thickLineAttributes: {
-      "stroke": color.blue,
+      "stroke": color.darkgrey,
       "stroke-width": lineThickness,
       "stroke-linecap": "butt",
       "stroke-linejoin": "miter"
@@ -93,8 +93,8 @@
       "stroke": color.black
     },
     onNodeAttributes: {
-      "fill": color.blue,
-      "stroke": color.blue
+      "fill": color.darkgrey,
+      "stroke": color.black
     }
   };
   playback = {
