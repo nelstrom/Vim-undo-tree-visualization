@@ -730,14 +730,16 @@ graphMarkup = """
 <div id="vim-history-buttons">
   <a class="undo" href="#">undo</a>
   <a class="redo" href="#">redo</a>
-  <a class="earlier" href="#">earlier</a>
   <a class="later" href="#">later</a>
+  <a class="earlier" href="#">earlier</a>
 </div>
 <div id="vim-history-graph"/>
 """
 
 jQuery($ =>
   $("#vim-history-visualization").append(graphMarkup)
+  $("#vim-history-buttons a.undo").click(earlier)
+  $("#vim-history-buttons a.redo").click(later)
   $("#vim-history-buttons a.later").click(later)
   $("#vim-history-buttons a.earlier").click(earlier)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
