@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, redo, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -811,6 +811,12 @@
     current = states.active();
     return $("#vim-history-buffer code pre").html(current.buffer);
   };
+  undo = function() {
+    return earlier();
+  };
+  redo = function() {
+    return later();
+  };
   earlier = function() {
     states.reverse();
     transitionStates();
@@ -824,8 +830,8 @@
   graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
     $("#vim-history-visualization").append(graphMarkup);
-    $("#vim-history-buttons a.undo").click(earlier);
-    $("#vim-history-buttons a.redo").click(later);
+    $("#vim-history-buttons a.undo").click(undo);
+    $("#vim-history-buttons a.redo").click(redo);
     $("#vim-history-buttons a.later").click(later);
     $("#vim-history-buttons a.earlier").click(earlier);
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);

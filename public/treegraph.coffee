@@ -713,6 +713,12 @@ updateBufferContents = () ->
   current = states.active()
   $("#vim-history-buffer code pre").html(current.buffer)
 
+undo = () ->
+  earlier() # TODO: implement this!
+
+redo = () ->
+  later()   # TODO: implement this!
+
 earlier = () ->
   states.reverse()
   transitionStates()
@@ -738,8 +744,8 @@ graphMarkup = """
 
 jQuery($ =>
   $("#vim-history-visualization").append(graphMarkup)
-  $("#vim-history-buttons a.undo").click(earlier)
-  $("#vim-history-buttons a.redo").click(later)
+  $("#vim-history-buttons a.undo").click(undo)
+  $("#vim-history-buttons a.redo").click(redo)
   $("#vim-history-buttons a.later").click(later)
   $("#vim-history-buttons a.earlier").click(earlier)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
