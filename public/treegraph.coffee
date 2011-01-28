@@ -126,6 +126,10 @@ playback =
       5:
         state: 'off'
         position: 't6'
+    buffer: """
+    1955, November 12th
+        Lightning strikes the clocktower at 10.04pm
+    """
   1:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -153,6 +157,13 @@ playback =
       5:
         state: 'off'
         position: 't6'
+    buffer: """
+    1955, November 5th
+        George McFly falls out of a tree and is hit by a car.
+
+    1955, November 12th
+        Lightning strikes the clocktower at 10.04pm
+    """
   2:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -180,6 +191,14 @@ playback =
       5:
         state: 'off'
         position: 't6'
+    buffer: """
+    1955, November 5th
+        George McFly falls out of a tree and is hit by a car.
+        Lorraine Baines nurses George, and thinks he's cute.
+
+    1955, November 12th
+        Lightning strikes the clocktower at 10.04pm
+    """
   3:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -207,6 +226,15 @@ playback =
       5:
         state: 'off'
         position: 't6'
+    buffer: """
+    1955, November 5th
+        George McFly falls out of a tree and is hit by a car.
+        Lorraine Baines nurses George, and thinks he's cute.
+
+    1955, November 12th
+        George McFly takes Lorraine Baines to the dance, and they kiss.
+        Lighting strikes the clocktower at 10.04pm
+    """
   4:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -234,6 +262,14 @@ playback =
       5:
         state: 'off'
         position: 't6'
+    buffer: """
+    1955, November 5th
+        Marty McFly is hit by a car.
+        Lorraine Baines nurses Marty, and thinks he's cute.
+
+    1955, November 12th
+        Lighting strikes the clocktower at 10.04pm
+    """
   5:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -261,6 +297,17 @@ playback =
       5:
         state: 'on'
         position: 't6'
+    buffer: """
+    1955, November 5th
+        George McFly falls out of a tree and is saved by Marty McFly.
+        Lorraine Baines nurses Marty.
+
+    1955, November 12th
+        Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
+        Marty McFly invents Rock and Roll
+        George McFly and Loraine Baines kiss.
+        Lightning strikes the clocktower at 10.04pm
+    """
 
 story =
   index: 0
@@ -669,10 +716,10 @@ advance = () ->
   transitionStates()
 
 jQuery($ =>
-  raphael = Raphael("history-graph", totalWidth, totalHeight)
-  $("#history-graph").after("<button id='nextButton'>next</button>")
+  raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
+  $("#vim-history-graph").after("<button id='nextButton'>next</button>")
   $("#nextButton").click(advance)
-  $("#history-graph").after("<button id='prevButton'>prev</button>")
+  $("#vim-history-graph").after("<button id='prevButton'>prev</button>")
   $("#prevButton").click(reverse)
   drawState()
 )

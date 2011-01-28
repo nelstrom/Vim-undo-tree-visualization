@@ -155,7 +155,8 @@
           state: 'off',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
     },
     1: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
@@ -189,7 +190,8 @@
           state: 'off',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
     },
     2: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
@@ -223,7 +225,8 @@
           state: 'off',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
     },
     3: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
@@ -257,7 +260,8 @@
           state: 'off',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    George McFly takes Lorraine Baines to the dance, and they kiss.\n    Lighting strikes the clocktower at 10.04pm"
     },
     4: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
@@ -291,7 +295,8 @@
           state: 'off',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Lighting strikes the clocktower at 10.04pm"
     },
     5: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
@@ -325,7 +330,8 @@
           state: 'on',
           position: 't6'
         }
-      }
+      },
+      buffer: "1955, November 5th\n    George McFly falls out of a tree and is saved by Marty McFly.\n    Lorraine Baines nurses Marty.\n\n1955, November 12th\n    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.\n    Marty McFly invents Rock and Roll\n    George McFly and Loraine Baines kiss.\n    Lightning strikes the clocktower at 10.04pm"
     }
   };
   story = {
@@ -807,10 +813,10 @@
     return transitionStates();
   };
   jQuery($(__bind(function() {
-    raphael = Raphael("history-graph", totalWidth, totalHeight);
-    $("#history-graph").after("<button id='nextButton'>next</button>");
+    raphael = Raphael("vim-history-graph", totalWidth, totalHeight);
+    $("#vim-history-graph").after("<button id='nextButton'>next</button>");
     $("#nextButton").click(advance);
-    $("#history-graph").after("<button id='prevButton'>prev</button>");
+    $("#vim-history-graph").after("<button id='prevButton'>prev</button>");
     $("#prevButton").click(reverse);
     return drawState();
   }, this)));

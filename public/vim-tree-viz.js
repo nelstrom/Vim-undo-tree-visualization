@@ -144,11 +144,11 @@ var states = [
 
 
 $(document).ready(function() {
-  $("#history-graph").after("<button id='nextButton'>next</button>");
-  $("#history-graph").after("<button id='prevButton'>previous</button>");
+  $("#vim-history-graph").after("<button id='nextButton'>next</button>");
+  $("#vim-history-graph").after("<button id='prevButton'>previous</button>");
   $("#nextButton").click(advance);
   $("#prevButton").click(reverse);
-  paper = Raphael(document.getElementById("history-graph"), canvasWidth, canvasHeight);
+  paper = Raphael(document.getElementById("vim-history-graph"), canvasWidth, canvasHeight);
   draw();
 });
 
