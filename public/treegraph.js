@@ -1,8 +1,8 @@
 (function() {
-  var advance, animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, reverse, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines;
+  var advance, animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, forkAngle, generatePath, graphics, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, reverse, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
-  totalHeight = 480;
+  totalHeight = 300;
   margin = 90;
   availableHeight = totalHeight - (margin * 2);
   availableWidth = totalWidth - (margin * 2);
@@ -331,7 +331,7 @@
           position: 't6'
         }
       },
-      buffer: "1955, November 5th\n    George McFly falls out of a tree and is saved by Marty McFly.\n    Lorraine Baines nurses Marty.\n\n1955, November 12th\n    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.\n    Marty McFly invents Rock and Roll\n    George McFly and Loraine Baines kiss.\n    Lightning strikes the clocktower at 10.04pm"
+      buffer: "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.\n    Marty McFly invents Rock and Roll\n    George McFly and Loraine Baines kiss.\n    Lightning strikes the clocktower at 10.04pm"
     }
   };
   story = {
@@ -745,7 +745,8 @@
     drawTimelines(state);
     drawActiveTimeline(state);
     drawAllNodes(state);
-    return drawActiveNode(state);
+    drawActiveNode(state);
+    return updateBufferContents();
   };
   transitionTimelines = function(state, previous) {
     drawTimelines(previous);
@@ -802,7 +803,13 @@
     transitionTimelines(current, previous);
     transitionActiveTimeline(current, previous);
     transitionAllNodes(current, previous);
-    return transitionActiveNode(current, previous);
+    transitionActiveNode(current, previous);
+    return updateBufferContents();
+  };
+  updateBufferContents = function() {
+    var current;
+    current = states.active();
+    return $("#vim-history-buffer pre code").html(current.buffer);
   };
   reverse = function() {
     states.reverse();
@@ -814,6 +821,7 @@
   };
   jQuery($(__bind(function() {
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);
+    $("#vim-history-visualization").prepend("<div id='vim-history-buffer'><pre><code></code></pre></div>");
     $("#vim-history-graph").after("<button id='nextButton'>next</button>");
     $("#nextButton").click(advance);
     $("#vim-history-graph").after("<button id='prevButton'>prev</button>");

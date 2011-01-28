@@ -1,6 +1,6 @@
 #Canvas attributes
 totalWidth = 640
-totalHeight = 480
+totalHeight = 300
 margin = 90
 availableHeight = totalHeight - (margin * 2)
 availableWidth  = totalWidth  - (margin * 2)
@@ -299,8 +299,8 @@ playback =
         position: 't6'
     buffer: """
     1955, November 5th
-        George McFly falls out of a tree and is saved by Marty McFly.
-        Lorraine Baines nurses Marty.
+        Marty McFly is hit by a car.
+        Lorraine Baines nurses Marty, and thinks he's cute.
 
     1955, November 12th
         Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
@@ -652,6 +652,7 @@ drawState = () ->
   drawActiveTimeline(state)
   drawAllNodes(state)
   drawActiveNode(state)
+  updateBufferContents()
 
 transitionTimelines = (state, previous) ->
   drawTimelines(previous)
@@ -706,6 +707,11 @@ transitionStates = () ->
   transitionActiveTimeline(current, previous)
   transitionAllNodes(current, previous)
   transitionActiveNode(current, previous)
+  updateBufferContents()
+
+updateBufferContents = () ->
+  current = states.active()
+  $("#vim-history-buffer pre code").html(current.buffer)
 
 reverse = () ->
   states.reverse()
@@ -717,6 +723,7 @@ advance = () ->
 
 jQuery($ =>
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
+  $("#vim-history-visualization").prepend("<div id='vim-history-buffer'><pre><code></code></pre></div>")
   $("#vim-history-graph").after("<button id='nextButton'>next</button>")
   $("#nextButton").click(advance)
   $("#vim-history-graph").after("<button id='prevButton'>prev</button>")
