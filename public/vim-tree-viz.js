@@ -144,11 +144,11 @@ var states = [
 
 
 $(document).ready(function() {
-  $("#notepad").after("<button id='nextButton'>next</button>");
-  $("#notepad").after("<button id='prevButton'>previous</button>");
+  $("#history-graph").after("<button id='nextButton'>next</button>");
+  $("#history-graph").after("<button id='prevButton'>previous</button>");
   $("#nextButton").click(advance);
   $("#prevButton").click(reverse);
-  paper = Raphael(document.getElementById("notepad"), canvasWidth, canvasHeight);
+  paper = Raphael(document.getElementById("history-graph"), canvasWidth, canvasHeight);
   draw();
 });
 

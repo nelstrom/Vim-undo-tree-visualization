@@ -1,11 +1,11 @@
-[_] story
-	[_] switch to straight timeline
-	[_] switch to mixed timeline
 [_] faux-Vim buffer
 	[_] update text when state changes
-[_] add numbers below nodes
 [_] buttons
 	[_] disable when inapplicable
 	[_] create undo/redo
 		[_] traverse activeTimeline only
 	[_] rename prev/next to earlier/later
+[_] story
+	[_] switch to straight timeline
+	[_] switch to mixed timeline
+[_] add numbers below nodes

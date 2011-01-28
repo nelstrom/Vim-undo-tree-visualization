@@ -807,10 +807,10 @@
     return transitionStates();
   };
   jQuery($(__bind(function() {
-    raphael = Raphael("notepad", totalWidth, totalHeight);
-    $("#notepad").after("<button id='nextButton'>next</button>");
+    raphael = Raphael("history-graph", totalWidth, totalHeight);
+    $("#history-graph").after("<button id='nextButton'>next</button>");
     $("#nextButton").click(advance);
-    $("#notepad").after("<button id='prevButton'>prev</button>");
+    $("#history-graph").after("<button id='prevButton'>prev</button>");
     $("#prevButton").click(reverse);
     return drawState();
   }, this)));
