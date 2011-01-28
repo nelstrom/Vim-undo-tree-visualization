@@ -7,10 +7,28 @@
 <script src="treegraph.js" type="text/javascript" charset="utf-8"></script>
 <style type="text/css" media="screen">
   .state { display: none; }
-  #vim-history-graph { border: 1px solid black; width: 640px; height: 300px; }
+  #vim-history-visualization {
+    border: 1px solid black;
+    width: 640px;
+  }
   #vim-history-buffer {
-    border: 1px solid black; width: 640px; height: 180px;
+    width: 640px;
+    height: 180px;
     border-bottom: none;
+  }
+  #vim-history-graph {
+    width: 640px;
+    height: 300px;
+  }
+  #vim-history-buttons a {
+    float: left;
+    width: 24%;
+    text-align: center;
+    border: 1px solid black;
+  }
+  #vim-history-buttons a.later,
+  #vim-history-buttons a.earlier {
+    float: right;
   }
 </style>
 </head>
