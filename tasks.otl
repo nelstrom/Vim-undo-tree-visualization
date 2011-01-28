@@ -1,5 +1,5 @@
-[_] faux-Vim buffer
-	[_] update text when state changes
+[X] faux-Vim buffer
+	[X] update text when state changes
 [_] buttons
 	[_] disable when inapplicable
 	[_] create undo/redo
