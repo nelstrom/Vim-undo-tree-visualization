@@ -23,6 +23,23 @@ color =
 raphael = null
 coords = {}
 
+
+
+
+#   The following co-ordinates are predefined:
+#
+#                       t3 ---- t4 ---- t5 ---- t6
+#                      /
+#                     /
+#   s1 ---- s2 ---- s3 ---- s4 ---- s5 ---- s6
+#                     \
+#                      \
+#                       b3 ---- b4
+#
+#   's' for straight
+#   't' for top-fork
+#   'b' for bottom-fork
+#
 coords.s1 =
   x: margin
   y: totalHeight / 2
