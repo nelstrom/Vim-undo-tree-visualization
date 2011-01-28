@@ -711,7 +711,7 @@ transitionStates = () ->
 
 updateBufferContents = () ->
   current = states.active()
-  $("#vim-history-buffer pre code").html(current.buffer)
+  $("#vim-history-buffer code pre").html(current.buffer)
 
 earlier = () ->
   states.reverse()
@@ -725,9 +725,7 @@ later = () ->
 
 graphMarkup = """
 <div id="vim-history-buffer">
-  <pre>
-    <code></code
-  </pre>
+  <code><pre></pre></code>
 </div>
 <div id="vim-history-buttons">
   <a class="undo" href="#">undo</a>

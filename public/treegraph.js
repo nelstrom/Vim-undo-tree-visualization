@@ -809,7 +809,7 @@
   updateBufferContents = function() {
     var current;
     current = states.active();
-    return $("#vim-history-buffer pre code").html(current.buffer);
+    return $("#vim-history-buffer code pre").html(current.buffer);
   };
   earlier = function() {
     states.reverse();
@@ -821,7 +821,7 @@
     transitionStates();
     return false;
   };
-  graphMarkup = "<div id=\"vim-history-buffer\">\n  <pre>\n    <code></code\n  </pre>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n  <a class=\"later\" href=\"#\">later</a>\n</div>\n<div id=\"vim-history-graph\"/>";
+  graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n  <a class=\"later\" href=\"#\">later</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
     $("#vim-history-visualization").append(graphMarkup);
     $("#vim-history-buttons a.later").click(later);
