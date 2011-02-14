@@ -611,8 +611,8 @@ story =
         state: 'off'
         position: 't4'
 
-states = story
 states = playback
+states = story
 
 # Utility methods
 generatePath = (origin, coordinates...) ->

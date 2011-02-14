@@ -701,8 +701,8 @@
       }
     }
   };
-  states = story;
   states = playback;
+  states = story;
   generatePath = function() {
     var coordinates, origin, point, points, _i, _len;
     origin = arguments[0], coordinates = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
