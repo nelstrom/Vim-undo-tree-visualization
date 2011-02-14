@@ -29,7 +29,7 @@
     describe("Class", function() {
       return describe("active", function() {
         return it("returns the active state", function() {
-          return expect(DocumentState.active).toEqual(state);
+          return expect(DocumentState.active()).toEqual(state);
         });
       });
     });

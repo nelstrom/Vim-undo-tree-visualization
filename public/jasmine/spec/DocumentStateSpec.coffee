@@ -18,7 +18,8 @@ describe "DocumentState", ->
   describe "Class", ->
     describe "active", ->
       it "returns the active state", ->
-        expect(DocumentState.active).toEqual state
+        expect(DocumentState.active()).toEqual state
+
   describe "object", ->
     describe "timelineOriginal", ->
       it "returns a list", ->

@@ -16,4 +16,9 @@ class DocumentState
       @nodes.push(n)
       @activeNode = n if node.active
 
+    DocumentState.nodes.push(this)
+
+  @nodes: []
+  @active: -> @nodes[0]
+
 window.DocumentState = DocumentState

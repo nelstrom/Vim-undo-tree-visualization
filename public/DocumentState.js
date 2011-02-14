@@ -27,7 +27,12 @@
           this.activeNode = n;
         }
       }
+      DocumentState.nodes.push(this);
     }
+    DocumentState.nodes = [];
+    DocumentState.active = function() {
+      return this.nodes[0];
+    };
     return DocumentState;
   })();
   window.DocumentState = DocumentState;
