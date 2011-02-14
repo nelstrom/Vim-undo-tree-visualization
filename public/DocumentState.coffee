@@ -1,5 +1,5 @@
 class DocumentState
-  constructor: (foo="bar") ->
-    @foo = foo
+  constructor: (config) ->
+    @timelineOriginal = config.timelineOriginal.points.split(",")
 
 window.DocumentState = DocumentState

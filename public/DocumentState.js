@@ -1,11 +1,8 @@
 (function() {
   var DocumentState;
   DocumentState = (function() {
-    function DocumentState(foo) {
-      if (foo == null) {
-        foo = "bar";
-      }
-      this.foo = foo;
+    function DocumentState(config) {
+      this.timelineOriginal = config.timelineOriginal.points.split(",");
     }
     return DocumentState;
   })();
