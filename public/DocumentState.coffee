@@ -12,6 +12,7 @@ class DocumentState
     for node in (config.nodes || [{position: 's1'}])
       @nodes.push
         state: (if node.active then 'on' else 'off')
+        position: node.position
 
 
 window.DocumentState = DocumentState
