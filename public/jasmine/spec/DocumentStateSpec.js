@@ -55,6 +55,14 @@
       });
     });
     return describe("nodes", function() {
+      it("gets position from config object", function() {
+        expect(state.nodes[0].position).toEqual('s1');
+        expect(state.nodes[1].position).toEqual('s2');
+        expect(state.nodes[2].position).toEqual('s3');
+        expect(state.nodes[3].position).toEqual('s4');
+        expect(state.nodes[4].position).toEqual('s5');
+        return expect(state.nodes[5].position).toEqual('s6');
+      });
       it("has a default state of 'off'", function() {
         expect(state.nodes[0].state).toEqual('off');
         expect(state.nodes[1].state).toEqual('off');
