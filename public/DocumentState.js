@@ -2,7 +2,7 @@
   var DocumentState;
   DocumentState = (function() {
     function DocumentState(config) {
-      var node, _i, _len, _ref;
+      var n, node, _i, _len, _ref;
       this.timelineOriginal = config.timelineOriginal.points.split(",");
       this.timelineRevised = config.timelineRevised.points.split(",");
       if (config.timelineRevised.active) {
@@ -18,15 +18,13 @@
       ];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         node = _ref[_i];
-        this.nodes.push({
+        n = {
           state: (node.active ? 'on' : 'off'),
           position: node.position
-        });
+        };
+        this.nodes.push(n);
         if (node.active) {
-          this.activeNode = {
-            state: (node.active ? 'on' : 'off'),
-            position: node.position
-          };
+          this.activeNode = n;
         }
       }
     }

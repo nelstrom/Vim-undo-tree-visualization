@@ -10,13 +10,10 @@ class DocumentState
 
     @nodes = []
     for node in (config.nodes || [{position: 's1'}])
-      @nodes.push
+      n =
         state: (if node.active then 'on' else 'off')
         position: node.position
-      if node.active
-        @activeNode =
-          state: (if node.active then 'on' else 'off')
-          position: node.position
-
+      @nodes.push(n)
+      @activeNode = n if node.active
 
 window.DocumentState = DocumentState
