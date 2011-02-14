@@ -1,5 +1,6 @@
 describe "DocumentState", ->
 
-  it "has foo property", ->
+  describe "timelineOriginal", ->
+  it "returns a list", ->
     state = new DocumentState()
-    expect(state.foo).toEqual "bar"
+    expect(state.timelineOriginal).toEqual ['s1','s2','s3','s4']
