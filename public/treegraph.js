@@ -601,11 +601,11 @@
     return _results;
   };
   drawActiveNode = function(state) {
-    return graphics.activeNode = raphael.circle(coords[state.nodes.active().position].x, coords[state.nodes.active().position].y, radius).attr(graphics.onNodeAttributes);
+    return graphics.activeNode = raphael.circle(coords[state.activeNode.position].x, coords[state.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
   };
   drawState = function() {
     var state;
-    state = states.active();
+    state = DocumentState.active();
     drawTimelines(state);
     drawActiveTimeline(state);
     drawAllNodes(state);
@@ -655,15 +655,15 @@
   transitionActiveNode = function(state, previous) {
     drawActiveNode(previous);
     return graphics.activeNode.animate({
-      cx: coords[state.nodes.active().position].x,
-      cy: coords[state.nodes.active().position].y
+      cx: coords[state.activeNode.position].x,
+      cy: coords[state.activeNode.position].y
     }, animationPeriod, "<>");
   };
   transitionStates = function() {
     var current, previous;
     raphael.clear();
-    current = states.active();
-    previous = states.previous();
+    current = DocumentState.active();
+    previous = DocumentState.previous();
     transitionTimelines(current, previous);
     transitionActiveTimeline(current, previous);
     transitionAllNodes(current, previous);
@@ -672,7 +672,7 @@
   };
   updateBufferContents = function() {
     var current;
-    current = states.active();
+    current = DocumentState.active();
     return $("#vim-history-buffer code pre").html(current.buffer);
   };
   undo = function() {
@@ -682,12 +682,12 @@
     return later();
   };
   earlier = function() {
-    states.reverse();
+    DocumentState.reverse();
     transitionStates();
     return false;
   };
   later = function() {
-    states.advance();
+    DocumentState.advance();
     transitionStates();
     return false;
   };

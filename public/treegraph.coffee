@@ -513,14 +513,14 @@ drawAllNodes = (state) ->
 
 drawActiveNode = (state) ->
   graphics.activeNode = raphael.circle(
-    coords[state.nodes.active().position].x,
-    coords[state.nodes.active().position].y,
+    coords[state.activeNode.position].x,
+    coords[state.activeNode.position].y,
     radius
   ).attr(graphics.onNodeAttributes)
 
 
 drawState = () ->
-  state = states.active()
+  state = DocumentState.active()
   drawTimelines(state)
   drawActiveTimeline(state)
   drawAllNodes(state)
@@ -567,15 +567,15 @@ transitionAllNodes = (state, previous) ->
 transitionActiveNode = (state, previous) ->
   drawActiveNode(previous)
   graphics.activeNode.animate({
-    cx: coords[state.nodes.active().position].x
-    cy: coords[state.nodes.active().position].y
+    cx: coords[state.activeNode.position].x
+    cy: coords[state.activeNode.position].y
   }, animationPeriod, "<>")
 
 
 transitionStates = () ->
   raphael.clear()
-  current = states.active()
-  previous = states.previous()
+  current = DocumentState.active()
+  previous = DocumentState.previous()
   transitionTimelines(current, previous)
   transitionActiveTimeline(current, previous)
   transitionAllNodes(current, previous)
@@ -583,7 +583,7 @@ transitionStates = () ->
   updateBufferContents()
 
 updateBufferContents = () ->
-  current = states.active()
+  current = DocumentState.active()
   $("#vim-history-buffer code pre").html(current.buffer)
 
 undo = () ->
@@ -593,12 +593,12 @@ redo = () ->
   later()   # TODO: implement this!
 
 earlier = () ->
-  states.reverse()
+  DocumentState.reverse()
   transitionStates()
   return false
 
 later = () ->
-  states.advance()
+  DocumentState.advance()
   transitionStates()
   return false
 
