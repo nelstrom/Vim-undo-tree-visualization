@@ -58,12 +58,14 @@ describe "DocumentState", ->
       it "returns the active state", ->
         DocumentState.position = 1
         expect(DocumentState.active()).toEqual second
+
     describe "previous", ->
       it "returns 'undefined' when there is no previous state", ->
         expect(DocumentState.previous()).toEqual undefined
       it "returns previous node when there is one", ->
         DocumentState.position = 1
         expect(DocumentState.previous()).toEqual first
+
     describe "reverse", ->
       it "does nothing when already at start", ->
         DocumentState.position = 0
