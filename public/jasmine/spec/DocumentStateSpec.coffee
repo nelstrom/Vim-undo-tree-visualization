@@ -17,3 +17,11 @@ describe "DocumentState", ->
   describe "activeTrack", ->
     it "returns 'timelineRevised'", ->
       expect(state.activeTrack).toEqual 'timelineRevised'
+    it "returns 'timelineOriginal'", ->
+      state = new DocumentState
+        timelineOriginal:
+          points: 's1,s2,s3,s4'
+          active: true
+        timelineRevised:
+          points: 's1,s2,s5,s6'
+      expect(state.activeTrack).toEqual 'timelineOriginal'

@@ -21,8 +21,20 @@
       });
     });
     return describe("activeTrack", function() {
-      return it("returns 'timelineRevised'", function() {
+      it("returns 'timelineRevised'", function() {
         return expect(state.activeTrack).toEqual('timelineRevised');
+      });
+      return it("returns 'timelineOriginal'", function() {
+        state = new DocumentState({
+          timelineOriginal: {
+            points: 's1,s2,s3,s4',
+            active: true
+          },
+          timelineRevised: {
+            points: 's1,s2,s5,s6'
+          }
+        });
+        return expect(state.activeTrack).toEqual('timelineOriginal');
       });
     });
   });
