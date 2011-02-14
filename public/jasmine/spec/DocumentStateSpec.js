@@ -117,8 +117,13 @@
         });
       });
       return describe("advance", function() {
-        return it("increments position", function() {
+        it("increments position", function() {
           DocumentState.position = 0;
+          DocumentState.advance();
+          return expect(DocumentState.position).toEqual(1);
+        });
+        return it("does not increment beyond last node", function() {
+          DocumentState.position = 1;
           DocumentState.advance();
           return expect(DocumentState.position).toEqual(1);
         });

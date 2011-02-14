@@ -80,6 +80,10 @@ describe "DocumentState", ->
         DocumentState.position = 0
         DocumentState.advance()
         expect(DocumentState.position).toEqual 1
+      it "does not increment beyond last node", ->
+        DocumentState.position = 1
+        DocumentState.advance()
+        expect(DocumentState.position).toEqual 1
 
   describe "object", ->
     describe "timelineOriginal", ->
