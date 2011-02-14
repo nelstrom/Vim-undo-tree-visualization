@@ -7,7 +7,7 @@ class DocumentState
     else
       @activeTrack = 'timelineOriginal'
     @nodes = []
-    for node in (config.nodes)
+    for node in (config.nodes || [{position: 's1'}])
       @nodes.push({state: 'off'})
 
 

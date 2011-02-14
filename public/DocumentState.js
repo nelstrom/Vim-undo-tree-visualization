@@ -11,7 +11,11 @@
         this.activeTrack = 'timelineOriginal';
       }
       this.nodes = [];
-      _ref = config.nodes;
+      _ref = config.nodes || [
+        {
+          position: 's1'
+        }
+      ];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         node = _ref[_i];
         this.nodes.push({
