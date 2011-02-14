@@ -69,21 +69,27 @@ describe "DocumentState", ->
     describe "reverse", ->
       it "does nothing when already at start", ->
         DocumentState.position = 0
+        DocumentState.lastPosition = 0
         DocumentState.reverse()
         expect(DocumentState.position).toEqual 0
+        expect(DocumentState.lastPosition).toEqual 0
       it "decrements position", ->
         DocumentState.position = 1
         DocumentState.reverse()
         expect(DocumentState.position).toEqual 0
+        expect(DocumentState.lastPosition).toEqual 1
     describe "advance", ->
       it "increments position", ->
         DocumentState.position = 0
         DocumentState.advance()
         expect(DocumentState.position).toEqual 1
-      it "does not increment beyond last node", ->
+        expect(DocumentState.lastPosition).toEqual 0
+      it "does nothing when on last node", ->
         DocumentState.position = 1
+        DocumentState.lastPosition = 0
         DocumentState.advance()
         expect(DocumentState.position).toEqual 1
+        expect(DocumentState.lastPosition).toEqual 1
 
   describe "object", ->
     describe "timelineOriginal", ->

@@ -107,25 +107,31 @@
       describe("reverse", function() {
         it("does nothing when already at start", function() {
           DocumentState.position = 0;
+          DocumentState.lastPosition = 0;
           DocumentState.reverse();
-          return expect(DocumentState.position).toEqual(0);
+          expect(DocumentState.position).toEqual(0);
+          return expect(DocumentState.lastPosition).toEqual(0);
         });
         return it("decrements position", function() {
           DocumentState.position = 1;
           DocumentState.reverse();
-          return expect(DocumentState.position).toEqual(0);
+          expect(DocumentState.position).toEqual(0);
+          return expect(DocumentState.lastPosition).toEqual(1);
         });
       });
       return describe("advance", function() {
         it("increments position", function() {
           DocumentState.position = 0;
           DocumentState.advance();
-          return expect(DocumentState.position).toEqual(1);
+          expect(DocumentState.position).toEqual(1);
+          return expect(DocumentState.lastPosition).toEqual(0);
         });
-        return it("does not increment beyond last node", function() {
+        return it("does nothing when on last node", function() {
           DocumentState.position = 1;
+          DocumentState.lastPosition = 0;
           DocumentState.advance();
-          return expect(DocumentState.position).toEqual(1);
+          expect(DocumentState.position).toEqual(1);
+          return expect(DocumentState.lastPosition).toEqual(1);
         });
       });
     });
