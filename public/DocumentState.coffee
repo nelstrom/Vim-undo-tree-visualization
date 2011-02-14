@@ -21,6 +21,7 @@ class DocumentState
   @position: 0
   @nodes: []
   @active: -> @nodes[@position]
+  @previous: -> @nodes[@position-1]
 
   @reset: ->
     @position = 0

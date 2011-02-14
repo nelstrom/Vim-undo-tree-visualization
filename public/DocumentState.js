@@ -34,6 +34,9 @@
     DocumentState.active = function() {
       return this.nodes[this.position];
     };
+    DocumentState.previous = function() {
+      return this.nodes[this.position - 1];
+    };
     DocumentState.reset = function() {
       this.position = 0;
       return this.nodes = [];
