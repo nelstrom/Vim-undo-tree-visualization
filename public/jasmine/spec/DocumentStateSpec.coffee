@@ -5,6 +5,14 @@ describe "DocumentState", ->
     timelineRevised:
       points: 's1,s2,s5,s6'
       active: true
+    nodes: [
+      { position: 's1' },
+      { position: 's2' },
+      { position: 's3' },
+      { position: 's4' },
+      { position: 's5' },
+      { position: 's6', active: true }
+    ]
 
   describe "timelineOriginal", ->
     it "returns a list", ->
@@ -24,4 +32,17 @@ describe "DocumentState", ->
           active: true
         timelineRevised:
           points: 's1,s2,s5,s6'
+        nodes: [
+          { position: 's1' },
+          { position: 's2' },
+          { position: 's3' },
+          { position: 's4' },
+          { position: 's5' },
+          { position: 's6', active: true }
+        ]
       expect(state.activeTrack).toEqual 'timelineOriginal'
+
+  describe "nodes", ->
+    it "has a default state of 'off'", ->
+      expect(state.nodes[0].state).toEqual 'off'
+

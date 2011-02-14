@@ -8,7 +8,23 @@
       timelineRevised: {
         points: 's1,s2,s5,s6',
         active: true
-      }
+      },
+      nodes: [
+        {
+          position: 's1'
+        }, {
+          position: 's2'
+        }, {
+          position: 's3'
+        }, {
+          position: 's4'
+        }, {
+          position: 's5'
+        }, {
+          position: 's6',
+          active: true
+        }
+      ]
     });
     describe("timelineOriginal", function() {
       return it("returns a list", function() {
@@ -20,7 +36,7 @@
         return expect(state.timelineRevised).toEqual(['s1', 's2', 's5', 's6']);
       });
     });
-    return describe("activeTrack", function() {
+    describe("activeTrack", function() {
       it("returns 'timelineRevised'", function() {
         return expect(state.activeTrack).toEqual('timelineRevised');
       });
@@ -32,9 +48,30 @@
           },
           timelineRevised: {
             points: 's1,s2,s5,s6'
-          }
+          },
+          nodes: [
+            {
+              position: 's1'
+            }, {
+              position: 's2'
+            }, {
+              position: 's3'
+            }, {
+              position: 's4'
+            }, {
+              position: 's5'
+            }, {
+              position: 's6',
+              active: true
+            }
+          ]
         });
         return expect(state.activeTrack).toEqual('timelineOriginal');
+      });
+    });
+    return describe("nodes", function() {
+      return it("has a default state of 'off'", function() {
+        return expect(state.nodes[0].state).toEqual('off');
       });
     });
   });

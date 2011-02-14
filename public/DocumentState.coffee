@@ -6,5 +6,9 @@ class DocumentState
       @activeTrack = 'timelineRevised'
     else
       @activeTrack = 'timelineOriginal'
+    @nodes = []
+    for node in (config.nodes)
+      @nodes.push({state: 'off'})
+
 
 window.DocumentState = DocumentState
