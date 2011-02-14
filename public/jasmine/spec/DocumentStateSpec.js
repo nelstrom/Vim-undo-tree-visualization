@@ -105,8 +105,13 @@
         });
       });
       return describe("reverse", function() {
-        return it("does nothing when already at start", function() {
+        it("does nothing when already at start", function() {
           DocumentState.position = 0;
+          DocumentState.reverse();
+          return expect(DocumentState.position).toEqual(0);
+        });
+        return it("decrements position", function() {
+          DocumentState.position = 1;
           DocumentState.reverse();
           return expect(DocumentState.position).toEqual(0);
         });
