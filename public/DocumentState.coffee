@@ -26,6 +26,9 @@ class DocumentState
   @reverse: ->
     @position-- if @position > 0
 
+  @advance: ->
+    @position++
+
   @reset: ->
     @position = 0
     @nodes = []
