@@ -52,5 +52,5 @@ describe "DocumentState", ->
       expect(state.nodes[5].state).toEqual 'on'
   describe "activeNode", ->
     it "returns the object that was declared active", ->
-      expect(state.activeNode).toEqual { position: 's6', active: true }
+      expect(state.activeNode).toEqual { position: 's6', state: 'on' }
 

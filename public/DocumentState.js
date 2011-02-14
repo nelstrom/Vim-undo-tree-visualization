@@ -22,6 +22,12 @@
           state: (node.active ? 'on' : 'off'),
           position: node.position
         });
+        if (node.active) {
+          this.activeNode = {
+            state: (node.active ? 'on' : 'off'),
+            position: node.position
+          };
+        }
       }
     }
     return DocumentState;

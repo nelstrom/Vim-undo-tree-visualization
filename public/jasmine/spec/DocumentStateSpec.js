@@ -78,7 +78,7 @@
       return it("returns the object that was declared active", function() {
         return expect(state.activeNode).toEqual({
           position: 's6',
-          active: true
+          state: 'on'
         });
       });
     });

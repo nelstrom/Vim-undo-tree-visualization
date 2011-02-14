@@ -13,6 +13,10 @@ class DocumentState
       @nodes.push
         state: (if node.active then 'on' else 'off')
         position: node.position
+      if node.active
+        @activeNode =
+          state: (if node.active then 'on' else 'off')
+          position: node.position
 
 
 window.DocumentState = DocumentState
