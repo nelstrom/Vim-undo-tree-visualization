@@ -41,7 +41,8 @@
         return expect(state.activeTrack).toEqual('timelineRevised');
       });
       return it("returns 'timelineOriginal'", function() {
-        state = new DocumentState({
+        var state2;
+        state2 = new DocumentState({
           timelineOriginal: {
             points: 's1,s2,s3,s4',
             active: true
@@ -50,12 +51,19 @@
             points: 's1,s2,s5,s6'
           }
         });
-        return expect(state.activeTrack).toEqual('timelineOriginal');
+        return expect(state2.activeTrack).toEqual('timelineOriginal');
       });
     });
     return describe("nodes", function() {
-      return it("has a default state of 'off'", function() {
-        return expect(state.nodes[0].state).toEqual('off');
+      it("has a default state of 'off'", function() {
+        expect(state.nodes[0].state).toEqual('off');
+        expect(state.nodes[1].state).toEqual('off');
+        expect(state.nodes[2].state).toEqual('off');
+        expect(state.nodes[3].state).toEqual('off');
+        return expect(state.nodes[4].state).toEqual('off');
+      });
+      return it("has state 'on' where specified", function() {
+        return expect(state.nodes[5].state).toEqual('on');
       });
     });
   });
