@@ -95,13 +95,20 @@
           return expect(DocumentState.active()).toEqual(second);
         });
       });
-      return describe("previous", function() {
+      describe("previous", function() {
         it("returns 'undefined' when there is no previous state", function() {
           return expect(DocumentState.previous()).toEqual(void 0);
         });
         return it("returns previous node when there is one", function() {
           DocumentState.position = 1;
           return expect(DocumentState.previous()).toEqual(first);
+        });
+      });
+      return describe("reverse", function() {
+        return it("does nothing when already at start", function() {
+          DocumentState.position = 0;
+          DocumentState.reverse();
+          return expect(DocumentState.position).toEqual(0);
         });
       });
     });

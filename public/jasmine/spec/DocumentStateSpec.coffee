@@ -64,6 +64,11 @@ describe "DocumentState", ->
       it "returns previous node when there is one", ->
         DocumentState.position = 1
         expect(DocumentState.previous()).toEqual first
+    describe "reverse", ->
+      it "does nothing when already at start", ->
+        DocumentState.position = 0
+        DocumentState.reverse()
+        expect(DocumentState.position).toEqual 0
 
   describe "object", ->
     describe "timelineOriginal", ->
