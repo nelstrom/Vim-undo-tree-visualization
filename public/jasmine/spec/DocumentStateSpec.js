@@ -48,23 +48,7 @@
           },
           timelineRevised: {
             points: 's1,s2,s5,s6'
-          },
-          nodes: [
-            {
-              position: 's1'
-            }, {
-              position: 's2'
-            }, {
-              position: 's3'
-            }, {
-              position: 's4'
-            }, {
-              position: 's5'
-            }, {
-              position: 's6',
-              active: true
-            }
-          ]
+          }
         });
         return expect(state.activeTrack).toEqual('timelineOriginal');
       });
