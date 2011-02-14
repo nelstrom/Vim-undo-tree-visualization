@@ -1,8 +1,6 @@
 new DocumentState({
-	timelines: [
-		{ points: 's1,s2,s3,s4' },
-		{ points: 's1,s2,s5,s6', active: true }
-	],
+	timelineOriginal: { points: 's1,s2,s3,s4' },
+	timelineRevised:  { points: 's1,s2,s5,s6', active: true }
 	nodes: [
 		{ position: 's1' },
 		{ position: 's2' },
@@ -12,6 +10,11 @@ new DocumentState({
 		{ position: 's6', active: true }
 	]
 });
+
+DocumentState.active   // => return current state
+DocumentState.previous // => return previous state
+DocumentState.reverse  // => revert to previous state
+DocumentState.advance  // => advance to next state
 
 12:
 	timelineOriginal:
