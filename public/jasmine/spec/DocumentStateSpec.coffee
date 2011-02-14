@@ -1,19 +1,23 @@
 describe "DocumentState", ->
 
-  state = new DocumentState
-    timelineOriginal:
-      points: 's1,s2,s3,s4'
-    timelineRevised:
-      points: 's1,s2,s5,s6'
-      active: true
-    nodes: [
-      { position: 's1' }
-      { position: 's2' }
-      { position: 's3' }
-      { position: 's4' }
-      { position: 's5' }
-      { position: 's6', active: true }
-    ]
+  state = null
+
+  beforeEach ->
+    DocumentState.reset()
+    state = new DocumentState
+      timelineOriginal:
+        points: 's1,s2,s3,s4'
+      timelineRevised:
+        points: 's1,s2,s5,s6'
+        active: true
+      nodes: [
+        { position: 's1' }
+        { position: 's2' }
+        { position: 's3' }
+        { position: 's4' }
+        { position: 's5' }
+        { position: 's6', active: true }
+      ]
 
   describe "Class", ->
     first = second = null
@@ -47,12 +51,13 @@ describe "DocumentState", ->
           { position: 's3' }
           { position: 's3' }
         ]
+
     describe "active", ->
       it "returns the active state", ->
         expect(DocumentState.active()).toEqual first
-    #describe "previous", ->
-      #it "returns the previous state", ->
-        #expect(DocumentState.previous()).toEqual state
+    describe "previous", ->
+      it "returns 'undefined' when there is no previous state", ->
+        expect(DocumentState.previous()).toEqual undefined
 
   describe "object", ->
     describe "timelineOriginal", ->
