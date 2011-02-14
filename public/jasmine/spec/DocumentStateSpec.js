@@ -104,7 +104,7 @@
           return expect(DocumentState.previous()).toEqual(first);
         });
       });
-      return describe("reverse", function() {
+      describe("reverse", function() {
         it("does nothing when already at start", function() {
           DocumentState.position = 0;
           DocumentState.reverse();
@@ -114,6 +114,13 @@
           DocumentState.position = 1;
           DocumentState.reverse();
           return expect(DocumentState.position).toEqual(0);
+        });
+      });
+      return describe("advance", function() {
+        return it("increments position", function() {
+          DocumentState.position = 0;
+          DocumentState.advance();
+          return expect(DocumentState.position).toEqual(1);
         });
       });
     });

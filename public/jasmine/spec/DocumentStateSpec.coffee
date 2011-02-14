@@ -75,6 +75,11 @@ describe "DocumentState", ->
         DocumentState.position = 1
         DocumentState.reverse()
         expect(DocumentState.position).toEqual 0
+    describe "advance", ->
+      it "increments position", ->
+        DocumentState.position = 0
+        DocumentState.advance()
+        expect(DocumentState.position).toEqual 1
 
   describe "object", ->
     describe "timelineOriginal", ->
