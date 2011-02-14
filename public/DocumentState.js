@@ -19,7 +19,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         node = _ref[_i];
         this.nodes.push({
-          state: 'off'
+          state: (node.active ? 'on' : 'off')
         });
       }
     }
