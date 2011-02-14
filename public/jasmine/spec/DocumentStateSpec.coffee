@@ -1,5 +1,5 @@
 describe "DocumentState", ->
-  start  = new DocumentState()
 
   it "has foo property", ->
-    expect(start.foo).toEqual "bar"
+    state = new DocumentState()
+    expect(state.foo).toEqual "bar"

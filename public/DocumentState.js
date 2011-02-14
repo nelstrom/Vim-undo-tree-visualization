@@ -9,4 +9,5 @@
     }
     return DocumentState;
   })();
+  window.DocumentState = DocumentState;
 }).call(this);
