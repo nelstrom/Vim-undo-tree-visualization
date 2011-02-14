@@ -19,6 +19,9 @@ describe "DocumentState", ->
     describe "active", ->
       it "returns the active state", ->
         expect(DocumentState.active()).toEqual state
+    #describe "previous", ->
+      #it "returns the previous state", ->
+        #expect(DocumentState.previous()).toEqual state
 
   describe "object", ->
     describe "timelineOriginal", ->
