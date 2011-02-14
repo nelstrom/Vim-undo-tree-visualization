@@ -37,7 +37,11 @@
     DocumentState.previous = function() {
       return this.nodes[this.position - 1];
     };
-    DocumentState.reverse = function() {};
+    DocumentState.reverse = function() {
+      if (this.position > 0) {
+        return this.position--;
+      }
+    };
     DocumentState.reset = function() {
       this.position = 0;
       return this.nodes = [];
