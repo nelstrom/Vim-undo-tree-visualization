@@ -60,8 +60,8 @@ describe "DocumentState", ->
         expect(DocumentState.active()).toEqual second
 
     describe "previous", ->
-      it "returns 'undefined' when there is no previous state", ->
-        expect(DocumentState.previous()).toEqual undefined
+      it "returns the first state by default", ->
+        expect(DocumentState.previous()).toEqual first
       it "returns previous node when there is one", ->
         DocumentState.position = 1
         expect(DocumentState.previous()).toEqual first

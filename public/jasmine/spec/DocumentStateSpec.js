@@ -96,8 +96,8 @@
         });
       });
       describe("previous", function() {
-        it("returns 'undefined' when there is no previous state", function() {
-          return expect(DocumentState.previous()).toEqual(void 0);
+        it("returns the first state by default", function() {
+          return expect(DocumentState.previous()).toEqual(first);
         });
         return it("returns previous node when there is one", function() {
           DocumentState.position = 1;
