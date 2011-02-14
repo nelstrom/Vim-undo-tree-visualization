@@ -27,9 +27,64 @@
       ]
     });
     describe("Class", function() {
+      var first, second;
+      first = second = null;
+      beforeEach(function() {
+        DocumentState.reset();
+        first = new DocumentState({
+          timelineOriginal: {
+            points: 's1,s2',
+            active: true
+          },
+          timelineRevised: {
+            points: 's1,s2'
+          },
+          nodes: [
+            {
+              position: 's1'
+            }, {
+              position: 's2',
+              active: true
+            }, {
+              position: 's2'
+            }, {
+              position: 's2'
+            }, {
+              position: 's2'
+            }, {
+              position: 's2'
+            }
+          ]
+        });
+        return second = new DocumentState({
+          timelineOriginal: {
+            points: 's1,s2,s3',
+            active: true
+          },
+          timelineRevised: {
+            points: 's1,s2,s3'
+          },
+          nodes: [
+            {
+              position: 's1'
+            }, {
+              position: 's2'
+            }, {
+              position: 's3',
+              active: true
+            }, {
+              position: 's3'
+            }, {
+              position: 's3'
+            }, {
+              position: 's3'
+            }
+          ]
+        });
+      });
       return describe("active", function() {
         return it("returns the active state", function() {
-          return expect(DocumentState.active()).toEqual(state);
+          return expect(DocumentState.active()).toEqual(first);
         });
       });
     });

@@ -16,9 +16,40 @@ describe "DocumentState", ->
     ]
 
   describe "Class", ->
+    first = second = null
+    beforeEach ->
+      DocumentState.reset()
+      first = new DocumentState
+        timelineOriginal:
+          points: 's1,s2'
+          active: true
+        timelineRevised:
+          points: 's1,s2'
+        nodes: [
+          { position: 's1' }
+          { position: 's2', active: true }
+          { position: 's2' }
+          { position: 's2' }
+          { position: 's2' }
+          { position: 's2' }
+        ]
+      second = new DocumentState
+        timelineOriginal:
+          points: 's1,s2,s3'
+          active: true
+        timelineRevised:
+          points: 's1,s2,s3'
+        nodes: [
+          { position: 's1' }
+          { position: 's2' }
+          { position: 's3', active: true }
+          { position: 's3' }
+          { position: 's3' }
+          { position: 's3' }
+        ]
     describe "active", ->
       it "returns the active state", ->
-        expect(DocumentState.active()).toEqual state
+        expect(DocumentState.active()).toEqual first
     #describe "previous", ->
       #it "returns the previous state", ->
         #expect(DocumentState.previous()).toEqual state

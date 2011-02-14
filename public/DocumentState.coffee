@@ -18,7 +18,12 @@ class DocumentState
 
     DocumentState.nodes.push(this)
 
+  @position: 0
   @nodes: []
-  @active: -> @nodes[0]
+  @active: -> @nodes[@position]
+
+  @reset: ->
+    @position = 0
+    @nodes = []
 
 window.DocumentState = DocumentState

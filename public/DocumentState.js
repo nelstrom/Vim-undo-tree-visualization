@@ -29,9 +29,14 @@
       }
       DocumentState.nodes.push(this);
     }
+    DocumentState.position = 0;
     DocumentState.nodes = [];
     DocumentState.active = function() {
-      return this.nodes[0];
+      return this.nodes[this.position];
+    };
+    DocumentState.reset = function() {
+      this.position = 0;
+      return this.nodes = [];
     };
     return DocumentState;
   })();
