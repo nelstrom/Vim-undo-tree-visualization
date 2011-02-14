@@ -89,7 +89,7 @@ describe "DocumentState", ->
         DocumentState.lastPosition = 0
         DocumentState.advance()
         expect(DocumentState.position).toEqual 1
-        expect(DocumentState.lastPosition).toEqual 1
+        expect(DocumentState.lastPosition).toEqual 0
 
   describe "object", ->
     describe "timelineOriginal", ->

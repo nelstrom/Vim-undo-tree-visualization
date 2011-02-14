@@ -131,7 +131,7 @@
           DocumentState.lastPosition = 0;
           DocumentState.advance();
           expect(DocumentState.position).toEqual(1);
-          return expect(DocumentState.lastPosition).toEqual(1);
+          return expect(DocumentState.lastPosition).toEqual(0);
         });
       });
     });

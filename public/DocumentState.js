@@ -40,11 +40,13 @@
     };
     DocumentState.reverse = function() {
       if (this.position > 0) {
+        this.lastPosition = this.position;
         return this.position--;
       }
     };
     DocumentState.advance = function() {
       if (this.position < this.nodes.length - 1) {
+        this.lastPosition = this.position;
         return this.position++;
       }
     };

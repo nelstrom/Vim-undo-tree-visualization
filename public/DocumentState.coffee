@@ -25,10 +25,14 @@ class DocumentState
   @previous: -> @nodes[@lastPosition]
 
   @reverse: ->
-    @position-- if @position > 0
+    if @position > 0
+      @lastPosition = @position
+      @position--
 
   @advance: ->
-    @position++ if @position < @nodes.length-1
+    if @position < @nodes.length-1
+      @lastPosition = @position
+      @position++
 
   @reset: ->
     @position = 0
