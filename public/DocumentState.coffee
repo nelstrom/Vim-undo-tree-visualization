@@ -27,7 +27,7 @@ class DocumentState
     @position-- if @position > 0
 
   @advance: ->
-    @position++
+    @position++ if @position < @nodes.length-1
 
   @reset: ->
     @position = 0

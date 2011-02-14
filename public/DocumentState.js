@@ -43,7 +43,9 @@
       }
     };
     DocumentState.advance = function() {
-      return this.position++;
+      if (this.position < this.nodes.length - 1) {
+        return this.position++;
+      }
     };
     DocumentState.reset = function() {
       this.position = 0;
