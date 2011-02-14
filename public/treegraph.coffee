@@ -394,7 +394,7 @@ story =
     activeTrack:
       'timelineRevised'
     nodes:
-      active: () -> states[9].nodes[4]
+      active: () -> states[10].nodes[4]
       0:
         state: 'off'
         position: 's1'
@@ -413,6 +413,60 @@ story =
       5:
         state: 'off'
         position: 't4'
+  11:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t4']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[11].nodes[5]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't3'
+      5:
+        state: 'on'
+        position: 't4'
+  12:
+    timelineOriginal:
+      ['s1','s2','s3','s4']
+    timelineRevised:
+      ['s1','s2','s5','s6']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[12].nodes[5]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 's3'
+      3:
+        state: 'off'
+        position: 's4'
+      4:
+        state: 'off'
+        position: 's5'
+      5:
+        state: 'on'
+        position: 's6'
 
 states = story
 
