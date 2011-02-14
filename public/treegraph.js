@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, playback, radius, raphael, redo, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, redo, states, story, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -97,243 +97,6 @@
       "stroke": color.black
     }
   };
-  playback = {
-    index: 0,
-    previousIndex: 0,
-    reverse: function() {
-      if (!(states.index > 0)) {
-        return;
-      }
-      states.previousIndex = states.index;
-      return states.index -= 1;
-    },
-    advance: function() {
-      states.previousIndex = states.index;
-      return states.index += 1;
-    },
-    active: function() {
-      return states[states.index];
-    },
-    previous: function() {
-      return states[states.previousIndex];
-    },
-    activeNode: function() {
-      return states.active().nodes.active();
-    },
-    previousActiveNode: function() {
-      return states.previous().nodes.active();
-    },
-    0: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineOriginal',
-      nodes: {
-        active: function() {
-          return states[0].nodes[0];
-        },
-        0: {
-          state: 'on',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't5'
-        },
-        5: {
-          state: 'off',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
-    },
-    1: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineOriginal',
-      nodes: {
-        active: function() {
-          return states[1].nodes[1];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'on',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't5'
-        },
-        5: {
-          state: 'off',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
-    },
-    2: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineOriginal',
-      nodes: {
-        active: function() {
-          return states[2].nodes[2];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'on',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't5'
-        },
-        5: {
-          state: 'off',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm"
-    },
-    3: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineOriginal',
-      nodes: {
-        active: function() {
-          return states[3].nodes[3];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'on',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't5'
-        },
-        5: {
-          state: 'off',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    George McFly takes Lorraine Baines to the dance, and they kiss.\n    Lighting strikes the clocktower at 10.04pm"
-    },
-    4: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineRevised',
-      nodes: {
-        active: function() {
-          return states[4].nodes[4];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'on',
-          position: 't5'
-        },
-        5: {
-          state: 'off',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Lighting strikes the clocktower at 10.04pm"
-    },
-    5: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't5', 't6'],
-      activeTrack: 'timelineRevised',
-      nodes: {
-        active: function() {
-          return states[5].nodes[5];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't5'
-        },
-        5: {
-          state: 'on',
-          position: 't6'
-        }
-      },
-      buffer: "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.\n    Marty McFly invents Rock and Roll\n    George McFly and Loraine Baines kiss.\n    Lightning strikes the clocktower at 10.04pm"
-    }
-  };
   story = {
     index: 0,
     previousIndex: 0,
@@ -361,12 +124,46 @@
       return states.previous().nodes.active();
     },
     0: {
+      timelineOriginal: ['s1'],
+      timelineRevised: ['s1'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[0].nodes[0];
+        },
+        0: {
+          state: 'on',
+          position: 's1'
+        },
+        1: {
+          state: 'unborn',
+          position: 's1'
+        },
+        2: {
+          state: 'unborn',
+          position: 's1'
+        },
+        3: {
+          state: 'unborn',
+          position: 's1'
+        },
+        4: {
+          state: 'unborn',
+          position: 's1'
+        },
+        5: {
+          state: 'unborn',
+          position: 's1'
+        }
+      }
+    },
+    1: {
       timelineOriginal: ['s1', 's2'],
       timelineRevised: ['s1', 's2'],
       activeTrack: 'timelineOriginal',
       nodes: {
         active: function() {
-          return states[0].nodes[1];
+          return states[1].nodes[1];
         },
         0: {
           state: 'off',
@@ -394,13 +191,13 @@
         }
       }
     },
-    1: {
+    2: {
       timelineOriginal: ['s1', 's2', 's3'],
       timelineRevised: ['s1', 's2'],
       activeTrack: 'timelineOriginal',
       nodes: {
         active: function() {
-          return states[1].nodes[2];
+          return states[2].nodes[2];
         },
         0: {
           state: 'off',
@@ -425,40 +222,6 @@
         5: {
           state: 'unborn',
           position: 's3'
-        }
-      }
-    },
-    2: {
-      timelineOriginal: ['s1', 's2', 's3', 's4'],
-      timelineRevised: ['s1', 's2'],
-      activeTrack: 'timelineOriginal',
-      nodes: {
-        active: function() {
-          return states[2].nodes[3];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 's3'
-        },
-        3: {
-          state: 'on',
-          position: 's4'
-        },
-        4: {
-          state: 'unborn',
-          position: 's4'
-        },
-        5: {
-          state: 'unborn',
-          position: 's4'
         }
       }
     },
@@ -468,7 +231,7 @@
       activeTrack: 'timelineOriginal',
       nodes: {
         active: function() {
-          return states[3].nodes[2];
+          return states[3].nodes[3];
         },
         0: {
           state: 'off',
@@ -479,20 +242,20 @@
           position: 's2'
         },
         2: {
-          state: 'on',
+          state: 'off',
           position: 's3'
         },
         3: {
-          state: 'off',
+          state: 'on',
           position: 's4'
         },
         4: {
           state: 'unborn',
-          position: 's3'
+          position: 's4'
         },
         5: {
           state: 'unborn',
-          position: 's3'
+          position: 's4'
         }
       }
     },
@@ -502,7 +265,41 @@
       activeTrack: 'timelineOriginal',
       nodes: {
         active: function() {
-          return states[4].nodes[1];
+          return states[4].nodes[2];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'on',
+          position: 's3'
+        },
+        3: {
+          state: 'off',
+          position: 's4'
+        },
+        4: {
+          state: 'unborn',
+          position: 's3'
+        },
+        5: {
+          state: 'unborn',
+          position: 's3'
+        }
+      }
+    },
+    5: {
+      timelineOriginal: ['s1', 's2', 's3', 's4'],
+      timelineRevised: ['s1', 's2'],
+      activeTrack: 'timelineOriginal',
+      nodes: {
+        active: function() {
+          return states[5].nodes[1];
         },
         0: {
           state: 'off',
@@ -530,13 +327,13 @@
         }
       }
     },
-    5: {
+    6: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
       timelineRevised: ['s1', 's2', 't3'],
       activeTrack: 'timelineRevised',
       nodes: {
         active: function() {
-          return states[5].nodes[4];
+          return states[6].nodes[4];
         },
         0: {
           state: 'off',
@@ -564,47 +361,13 @@
         }
       }
     },
-    6: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't4'],
-      activeTrack: 'timelineRevised',
-      nodes: {
-        active: function() {
-          return states[6].nodes[5];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'off',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't3'
-        },
-        5: {
-          state: 'on',
-          position: 't4'
-        }
-      }
-    },
     7: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
       timelineRevised: ['s1', 's2', 't3', 't4'],
       activeTrack: 'timelineRevised',
       nodes: {
         active: function() {
-          return states[7].nodes[4];
+          return states[7].nodes[5];
         },
         0: {
           state: 'off',
@@ -623,50 +386,16 @@
           position: 'b4'
         },
         4: {
-          state: 'on',
+          state: 'off',
           position: 't3'
         },
         5: {
-          state: 'off',
+          state: 'on',
           position: 't4'
         }
       }
     },
     8: {
-      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
-      timelineRevised: ['s1', 's2', 't3', 't4'],
-      activeTrack: 'timelineRevised',
-      nodes: {
-        active: function() {
-          return states[8].nodes[1];
-        },
-        0: {
-          state: 'off',
-          position: 's1'
-        },
-        1: {
-          state: 'on',
-          position: 's2'
-        },
-        2: {
-          state: 'off',
-          position: 'b3'
-        },
-        3: {
-          state: 'off',
-          position: 'b4'
-        },
-        4: {
-          state: 'off',
-          position: 't3'
-        },
-        5: {
-          state: 'off',
-          position: 't4'
-        }
-      }
-    },
-    9: {
       timelineOriginal: ['s1', 's2', 'b3', 'b4'],
       timelineRevised: ['s1', 's2', 't3', 't4'],
       activeTrack: 'timelineRevised',
@@ -699,9 +428,76 @@
           position: 't4'
         }
       }
+    },
+    9: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[9].nodes[1];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'on',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'off',
+          position: 't3'
+        },
+        5: {
+          state: 'off',
+          position: 't4'
+        }
+      }
+    },
+    10: {
+      timelineOriginal: ['s1', 's2', 'b3', 'b4'],
+      timelineRevised: ['s1', 's2', 't3', 't4'],
+      activeTrack: 'timelineRevised',
+      nodes: {
+        active: function() {
+          return states[9].nodes[4];
+        },
+        0: {
+          state: 'off',
+          position: 's1'
+        },
+        1: {
+          state: 'off',
+          position: 's2'
+        },
+        2: {
+          state: 'off',
+          position: 'b3'
+        },
+        3: {
+          state: 'off',
+          position: 'b4'
+        },
+        4: {
+          state: 'on',
+          position: 't3'
+        },
+        5: {
+          state: 'off',
+          position: 't4'
+        }
+      }
     }
   };
-  states = playback;
   states = story;
   generatePath = function() {
     var coordinates, origin, point, points, _i, _len;

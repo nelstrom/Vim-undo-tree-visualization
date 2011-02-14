@@ -102,230 +102,6 @@ graphics =
     "fill": color.darkgrey
     "stroke": color.black
 
-playback =
-  index: 0
-  previousIndex: 0
-  reverse: () ->
-    return unless states.index > 0
-    states.previousIndex = states.index
-    states.index -= 1
-  advance: () ->
-    states.previousIndex = states.index
-    states.index += 1
-  active: () -> states[states.index]
-  previous: () -> states[states.previousIndex]
-  activeNode: () -> states.active().nodes.active()
-  previousActiveNode: () -> states.previous().nodes.active()
-  0:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineOriginal'
-    nodes:
-      active: () -> states[0].nodes[0]
-      0:
-        state: 'on'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't5'
-      5:
-        state: 'off'
-        position: 't6'
-    buffer: """
-    1955, November 12th
-        Lightning strikes the clocktower at 10.04pm
-    """
-  1:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineOriginal'
-    nodes:
-      active: () -> states[1].nodes[1]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'on'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't5'
-      5:
-        state: 'off'
-        position: 't6'
-    buffer: """
-    1955, November 5th
-        George McFly falls out of a tree and is hit by a car.
-
-    1955, November 12th
-        Lightning strikes the clocktower at 10.04pm
-    """
-  2:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineOriginal'
-    nodes:
-      active: () -> states[2].nodes[2]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'on'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't5'
-      5:
-        state: 'off'
-        position: 't6'
-    buffer: """
-    1955, November 5th
-        George McFly falls out of a tree and is hit by a car.
-        Lorraine Baines nurses George, and thinks he's cute.
-
-    1955, November 12th
-        Lightning strikes the clocktower at 10.04pm
-    """
-  3:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineOriginal'
-    nodes:
-      active: () -> states[3].nodes[3]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'on'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't5'
-      5:
-        state: 'off'
-        position: 't6'
-    buffer: """
-    1955, November 5th
-        George McFly falls out of a tree and is hit by a car.
-        Lorraine Baines nurses George, and thinks he's cute.
-
-    1955, November 12th
-        George McFly takes Lorraine Baines to the dance, and they kiss.
-        Lighting strikes the clocktower at 10.04pm
-    """
-  4:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineRevised'
-    nodes:
-      active: () -> states[4].nodes[4]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'on'
-        position: 't5'
-      5:
-        state: 'off'
-        position: 't6'
-    buffer: """
-    1955, November 5th
-        Marty McFly is hit by a car.
-        Lorraine Baines nurses Marty, and thinks he's cute.
-
-    1955, November 12th
-        Lighting strikes the clocktower at 10.04pm
-    """
-  5:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t5','t6']
-    activeTrack:
-      'timelineRevised'
-    nodes:
-      active: () -> states[5].nodes[5]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't5'
-      5:
-        state: 'on'
-        position: 't6'
-    buffer: """
-    1955, November 5th
-        Marty McFly is hit by a car.
-        Lorraine Baines nurses Marty, and thinks he's cute.
-
-    1955, November 12th
-        Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
-        Marty McFly invents Rock and Roll
-        George McFly and Loraine Baines kiss.
-        Lightning strikes the clocktower at 10.04pm
-    """
-
 story =
   index: 0
   previousIndex: 0
@@ -342,13 +118,40 @@ story =
   previousActiveNode: () -> states.previous().nodes.active()
   0:
     timelineOriginal:
+      ['s1']
+    timelineRevised:
+      ['s1']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[0].nodes[0]
+      0:
+        state: 'on'
+        position: 's1'
+      1:
+        state: 'unborn'
+        position: 's1'
+      2:
+        state: 'unborn'
+        position: 's1'
+      3:
+        state: 'unborn'
+        position: 's1'
+      4:
+        state: 'unborn'
+        position: 's1'
+      5:
+        state: 'unborn'
+        position: 's1'
+  1:
+    timelineOriginal:
       ['s1','s2']
     timelineRevised:
       ['s1','s2']
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[0].nodes[1]
+      active: () -> states[1].nodes[1]
       0:
         state: 'off'
         position: 's1'
@@ -367,7 +170,7 @@ story =
       5:
         state: 'unborn'
         position: 's2'
-  1:
+  2:
     timelineOriginal:
       ['s1','s2','s3']
     timelineRevised:
@@ -375,7 +178,7 @@ story =
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[1].nodes[2]
+      active: () -> states[2].nodes[2]
       0:
         state: 'off'
         position: 's1'
@@ -394,33 +197,6 @@ story =
       5:
         state: 'unborn'
         position: 's3'
-  2:
-    timelineOriginal:
-      ['s1','s2','s3','s4']
-    timelineRevised:
-      ['s1','s2']
-    activeTrack:
-      'timelineOriginal'
-    nodes:
-      active: () -> states[2].nodes[3]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 's3'
-      3:
-        state: 'on'
-        position: 's4'
-      4:
-        state: 'unborn'
-        position: 's4'
-      5:
-        state: 'unborn'
-        position: 's4'
   3:
     timelineOriginal:
       ['s1','s2','s3','s4']
@@ -429,7 +205,7 @@ story =
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[3].nodes[2]
+      active: () -> states[3].nodes[3]
       0:
         state: 'off'
         position: 's1'
@@ -437,17 +213,17 @@ story =
         state: 'off'
         position: 's2'
       2:
-        state: 'on'
+        state: 'off'
         position: 's3'
       3:
-        state: 'off'
+        state: 'on'
         position: 's4'
       4:
         state: 'unborn'
-        position: 's3'
+        position: 's4'
       5:
         state: 'unborn'
-        position: 's3'
+        position: 's4'
   4:
     timelineOriginal:
       ['s1','s2','s3','s4']
@@ -456,7 +232,34 @@ story =
     activeTrack:
       'timelineOriginal'
     nodes:
-      active: () -> states[4].nodes[1]
+      active: () -> states[4].nodes[2]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'on'
+        position: 's3'
+      3:
+        state: 'off'
+        position: 's4'
+      4:
+        state: 'unborn'
+        position: 's3'
+      5:
+        state: 'unborn'
+        position: 's3'
+  5:
+    timelineOriginal:
+      ['s1','s2','s3','s4']
+    timelineRevised:
+      ['s1','s2']
+    activeTrack:
+      'timelineOriginal'
+    nodes:
+      active: () -> states[5].nodes[1]
       0:
         state: 'off'
         position: 's1'
@@ -475,7 +278,7 @@ story =
       5:
         state: 'unborn'
         position: 's2'
-  5:
+  6:
     timelineOriginal:
       ['s1','s2','b3','b4']
     timelineRevised:
@@ -483,7 +286,7 @@ story =
     activeTrack:
       'timelineRevised'
     nodes:
-      active: () -> states[5].nodes[4]
+      active: () -> states[6].nodes[4]
       0:
         state: 'off'
         position: 's1'
@@ -502,33 +305,6 @@ story =
       5:
         state: 'unborn'
         position: 't3'
-  6:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t4']
-    activeTrack:
-      'timelineRevised'
-    nodes:
-      active: () -> states[6].nodes[5]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'off'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't3'
-      5:
-        state: 'on'
-        position: 't4'
   7:
     timelineOriginal:
       ['s1','s2','b3','b4']
@@ -537,7 +313,7 @@ story =
     activeTrack:
       'timelineRevised'
     nodes:
-      active: () -> states[7].nodes[4]
+      active: () -> states[7].nodes[5]
       0:
         state: 'off'
         position: 's1'
@@ -551,39 +327,12 @@ story =
         state: 'off'
         position: 'b4'
       4:
-        state: 'on'
+        state: 'off'
         position: 't3'
       5:
-        state: 'off'
+        state: 'on'
         position: 't4'
   8:
-    timelineOriginal:
-      ['s1','s2','b3','b4']
-    timelineRevised:
-      ['s1','s2','t3','t4']
-    activeTrack:
-      'timelineRevised'
-    nodes:
-      active: () -> states[8].nodes[1]
-      0:
-        state: 'off'
-        position: 's1'
-      1:
-        state: 'on'
-        position: 's2'
-      2:
-        state: 'off'
-        position: 'b3'
-      3:
-        state: 'off'
-        position: 'b4'
-      4:
-        state: 'off'
-        position: 't3'
-      5:
-        state: 'off'
-        position: 't4'
-  9:
     timelineOriginal:
       ['s1','s2','b3','b4']
     timelineRevised:
@@ -610,8 +359,61 @@ story =
       5:
         state: 'off'
         position: 't4'
+  9:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t4']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[9].nodes[1]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'on'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'off'
+        position: 't3'
+      5:
+        state: 'off'
+        position: 't4'
+  10:
+    timelineOriginal:
+      ['s1','s2','b3','b4']
+    timelineRevised:
+      ['s1','s2','t3','t4']
+    activeTrack:
+      'timelineRevised'
+    nodes:
+      active: () -> states[9].nodes[4]
+      0:
+        state: 'off'
+        position: 's1'
+      1:
+        state: 'off'
+        position: 's2'
+      2:
+        state: 'off'
+        position: 'b3'
+      3:
+        state: 'off'
+        position: 'b4'
+      4:
+        state: 'on'
+        position: 't3'
+      5:
+        state: 'off'
+        position: 't4'
 
-states = playback
 states = story
 
 # Utility methods
