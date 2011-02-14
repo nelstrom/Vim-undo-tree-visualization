@@ -4,6 +4,7 @@ describe "DocumentState", ->
       points: 's1,s2,s3,s4'
     timelineRevised:
       points: 's1,s2,s5,s6'
+      active: true
 
   describe "timelineOriginal", ->
     it "returns a list", ->
