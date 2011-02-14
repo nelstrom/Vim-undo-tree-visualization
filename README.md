@@ -11,6 +11,14 @@ If you want to look at treegraph.coffee and treegraph.js side by side in Vim, op
 
 This means you won't be pestered with a prompt each time the treegraph.js file is recompiled.
 
+When doing TDD with coffeescript for implementation and test file, watch and compile more than one file at a time like this:
+
+    coffee --watch  --compile DocumentState.coffee jasmine/spec/DocumentStateSpec.coffee
+
+Open the test file:
+
+    open file:///Users/drew/code/vim-tree-viz/public/jasmine/DocumentStateSpecRunner.html
+
 Useful links:
 
 * [CoffeeScript][]
