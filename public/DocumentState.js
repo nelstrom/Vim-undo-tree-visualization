@@ -29,13 +29,14 @@
       }
       DocumentState.nodes.push(this);
     }
-    DocumentState.position = 0;
     DocumentState.nodes = [];
+    DocumentState.position = 0;
+    DocumentState.lastPosition = 0;
     DocumentState.active = function() {
       return this.nodes[this.position];
     };
     DocumentState.previous = function() {
-      return this.nodes[this.position - 1];
+      return this.nodes[this.lastPosition];
     };
     DocumentState.reverse = function() {
       if (this.position > 0) {
@@ -49,6 +50,7 @@
     };
     DocumentState.reset = function() {
       this.position = 0;
+      this.lastPosition = 0;
       return this.nodes = [];
     };
     return DocumentState;

@@ -18,10 +18,11 @@ class DocumentState
 
     DocumentState.nodes.push(this)
 
-  @position: 0
   @nodes: []
+  @position: 0
+  @lastPosition: 0
   @active: -> @nodes[@position]
-  @previous: -> @nodes[@position-1]
+  @previous: -> @nodes[@lastPosition]
 
   @reverse: ->
     @position-- if @position > 0
@@ -31,6 +32,7 @@ class DocumentState
 
   @reset: ->
     @position = 0
+    @lastPosition = 0
     @nodes = []
 
 window.DocumentState = DocumentState
