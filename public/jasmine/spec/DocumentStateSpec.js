@@ -54,7 +54,7 @@
         return expect(state2.activeTrack).toEqual('timelineOriginal');
       });
     });
-    return describe("nodes", function() {
+    describe("nodes", function() {
       it("gets position from config object", function() {
         expect(state.nodes[0].position).toEqual('s1');
         expect(state.nodes[1].position).toEqual('s2');
@@ -72,6 +72,14 @@
       });
       return it("has state 'on' where specified", function() {
         return expect(state.nodes[5].state).toEqual('on');
+      });
+    });
+    return describe("activeNode", function() {
+      return it("returns the object that was declared active", function() {
+        return expect(state.activeNode).toEqual({
+          position: 's6',
+          active: true
+        });
       });
     });
   });
