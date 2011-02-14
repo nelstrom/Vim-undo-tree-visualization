@@ -1,11 +1,9 @@
-[X] faux-Vim buffer
-	[X] update text when state changes
+[X] discard unused stuff from treegraph.coffee
+[_] general
+	[_] add numbers below nodes
+	[_] port over the faux-buffer with text
+	[_] no buttons for story
 [_] buttons
 	[_] disable when inapplicable
 	[_] create undo/redo
 		[_] traverse activeTimeline only
-	[X] rename prev/next to earlier/later
-[_] story
-	[_] switch to straight timeline
-	[_] switch to mixed timeline
-[_] add numbers below nodes
