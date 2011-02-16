@@ -18,6 +18,9 @@ class DocumentState
 
     DocumentState.nodes.push(this)
 
+  activeNodeIndex: ->
+    this.nodes.indexOf(@activeNode)
+
   @nodes: []
   @position: 0
   @lastPosition: 0

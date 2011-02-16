@@ -134,3 +134,7 @@ describe "DocumentState", ->
       it "returns the object that was declared 'on'", ->
         expect(state.activeNode).toEqual { position: 's5', state: 'on' }
 
+    describe "activeNodeIndex", ->
+      it "returns the position of the activeNode in nodes list", ->
+        expect(state.activeNodeIndex()).toEqual 4
+

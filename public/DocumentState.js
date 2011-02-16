@@ -29,6 +29,9 @@
       }
       DocumentState.nodes.push(this);
     }
+    DocumentState.prototype.activeNodeIndex = function() {
+      return this.nodes.indexOf(this.activeNode);
+    };
     DocumentState.nodes = [];
     DocumentState.position = 0;
     DocumentState.lastPosition = 0;

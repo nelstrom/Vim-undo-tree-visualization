@@ -193,12 +193,17 @@
           return expect(state.nodes[5].state).toEqual(void 0);
         });
       });
-      return describe("activeNode", function() {
+      describe("activeNode", function() {
         return it("returns the object that was declared 'on'", function() {
           return expect(state.activeNode).toEqual({
             position: 's5',
             state: 'on'
           });
+        });
+      });
+      return describe("activeNodeIndex", function() {
+        return it("returns the position of the activeNode in nodes list", function() {
+          return expect(state.activeNodeIndex()).toEqual(4);
         });
       });
     });
