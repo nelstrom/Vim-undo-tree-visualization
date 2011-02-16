@@ -49,10 +49,11 @@
           },
           nodes: [
             {
-              position: 's1'
+              position: 's1',
+              state: 'off'
             }, {
               position: 's2',
-              active: true
+              state: 'on'
             }, {
               position: 's2'
             }, {
@@ -74,12 +75,14 @@
           },
           nodes: [
             {
-              position: 's1'
+              position: 's1',
+              state: 'off'
             }, {
-              position: 's2'
+              position: 's2',
+              state: 'off'
             }, {
               position: 's3',
-              active: true
+              state: 'on'
             }, {
               position: 's3'
             }, {

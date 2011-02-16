@@ -30,8 +30,8 @@ describe "DocumentState", ->
         timelineRevised:
           points: 's1,s2'
         nodes: [
-          { position: 's1' }
-          { position: 's2', active: true }
+          { position: 's1', state: 'off' }
+          { position: 's2', state: 'on' }
           { position: 's2' }
           { position: 's2' }
           { position: 's2' }
@@ -44,9 +44,9 @@ describe "DocumentState", ->
         timelineRevised:
           points: 's1,s2,s3'
         nodes: [
-          { position: 's1' }
-          { position: 's2' }
-          { position: 's3', active: true }
+          { position: 's1', state: 'off' }
+          { position: 's2', state: 'off' }
+          { position: 's3', state: 'on' }
           { position: 's3' }
           { position: 's3' }
           { position: 's3' }
