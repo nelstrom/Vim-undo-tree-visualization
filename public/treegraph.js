@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -13,6 +13,7 @@
   animationPeriod = 250;
   lineThinness = 7;
   lineThickness = 8;
+  numberVerticalOffset = 30;
   color = {
     black: "#444",
     darkgrey: "#888",
@@ -76,6 +77,7 @@
     activeTimeline: null,
     activeNode: null,
     nodes: [],
+    nodeNumbers: [],
     thickLineAttributes: {
       "stroke": color.darkgrey,
       "stroke-width": lineThickness,
@@ -122,6 +124,7 @@
   drawAllNodes = function(state) {
     var disc, node, num, _ref, _results;
     graphics.nodes = [];
+    graphics.nodeNumbers = [];
     _results = [];
     for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
       node = state.nodes[num];
@@ -130,10 +133,9 @@
     return _results;
   };
   drawNodeNumbers = function(node, num) {
-    if (num == null) {
-      num = 0;
-    }
-    return raphael.text(coords[node.position].x, coords[node.position].y + 30, num + 1);
+    var number;
+    number = raphael.text(coords[node.position].x, coords[node.position].y + numberVerticalOffset, num + 1);
+    return graphics.nodeNumbers.push(number);
   };
   drawActiveNode = function(state) {
     return graphics.activeNode = raphael.circle(coords[state.activeNode.position].x, coords[state.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
@@ -171,7 +173,7 @@
     }, animationPeriod, "<>");
   };
   transitionAllNodes = function(state, previous) {
-    var disc, node, num, _ref, _results;
+    var disc, node, num, number, _ref, _results;
     drawAllNodes(previous);
     _results = [];
     for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
@@ -180,9 +182,17 @@
       if (!(disc != null)) {
         break;
       }
-      _results.push(disc.animate({
+      disc.animate({
         cx: coords[node.position].x,
         cy: coords[node.position].y
+      }, animationPeriod, "<>");
+      number = graphics.nodeNumbers[num];
+      console.log(num);
+      console.log(coords[node.position].x);
+      console.log(coords[node.position].y);
+      _results.push(number.animate({
+        x: coords[node.position].x,
+        y: coords[node.position].y + numberVerticalOffset
       }, animationPeriod, "<>"));
     }
     return _results;
@@ -236,4 +246,5 @@
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);
     return drawState();
   }, this)));
+  window.graphics = graphics;
 }).call(this);

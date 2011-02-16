@@ -13,6 +13,7 @@ radius = 15
 animationPeriod = 250
 lineThinness = 7
 lineThickness = 8
+numberVerticalOffset = 30
 
 color =
   black: "#444"
@@ -85,6 +86,7 @@ graphics =
   activeTimeline: null
   activeNode: null
   nodes: []
+  nodeNumbers: []
   thickLineAttributes:
     "stroke": color.darkgrey
     "stroke-width": lineThickness
@@ -133,6 +135,7 @@ drawActiveTimeline = (state, activeTrack=state.activeTrack) ->
 
 drawAllNodes = (state) ->
   graphics.nodes = []
+  graphics.nodeNumbers = []
   for num in [0..(nodeCount-1)]
     node = state.nodes[num]
     if node.state?
@@ -144,8 +147,13 @@ drawAllNodes = (state) ->
       graphics.nodes.push(disc)
       drawNodeNumbers(node, num)
 
-drawNodeNumbers = (node, num=0) ->
-  raphael.text(coords[node.position].x, coords[node.position].y+30, num+1)
+drawNodeNumbers = (node, num) ->
+  number = raphael.text(
+    coords[node.position].x,
+    coords[node.position].y+numberVerticalOffset,
+    num+1
+  )
+  graphics.nodeNumbers.push(number)
 
 
 
@@ -200,6 +208,15 @@ transitionAllNodes = (state, previous) ->
     disc.animate({
       cx: coords[node.position].x
       cy: coords[node.position].y
+    }, animationPeriod, "<>")
+
+    number = graphics.nodeNumbers[num]
+    console.log(num)
+    console.log(coords[node.position].x)
+    console.log(coords[node.position].y)
+    number.animate({
+      x: coords[node.position].x
+      y: coords[node.position].y + numberVerticalOffset
     }, animationPeriod, "<>")
 
 transitionActiveNode = (state, previous) ->
@@ -263,3 +280,4 @@ jQuery($ =>
   drawState()
 )
 
+window.graphics = graphics
