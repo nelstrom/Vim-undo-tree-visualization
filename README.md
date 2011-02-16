@@ -13,7 +13,7 @@ This means you won't be pestered with a prompt each time the treegraph.js file i
 
 When doing TDD with coffeescript for implementation and test file, watch and compile more than one file at a time like this (execute this from public/ directory):
 
-    coffee --watch  --compile DocumentState.coffee treegraph.coffee jasmine/spec/DocumentStateSpec.coffee
+    coffee --watch  --compile DocumentState.coffee treegraph.coffee jasmine/spec/DocumentStateSpec.coffee story.coffee
 
 Open the test file:
 
