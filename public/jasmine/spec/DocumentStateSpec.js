@@ -14,15 +14,20 @@
         },
         nodes: [
           {
-            position: 's1'
+            position: 's1',
+            state: 'off'
           }, {
-            position: 's2'
+            position: 's2',
+            state: 'off'
           }, {
-            position: 's3'
+            position: 's3',
+            state: 'off'
           }, {
-            position: 's4'
+            position: 's4',
+            state: 'off'
           }, {
-            position: 's5'
+            position: 's5',
+            state: 'off'
           }, {
             position: 's6',
             state: 'on'

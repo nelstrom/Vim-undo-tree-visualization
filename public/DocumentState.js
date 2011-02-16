@@ -19,11 +19,11 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         node = _ref[_i];
         n = {
-          state: (node.active ? 'on' : 'off'),
+          state: node.state,
           position: node.position
         };
         this.nodes.push(n);
-        if (node.active) {
+        if (node.state === "on") {
           this.activeNode = n;
         }
       }
