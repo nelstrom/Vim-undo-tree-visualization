@@ -222,7 +222,7 @@ transitionActiveNode = (state, previous) ->
 
 drawActiveNodeNumber = () ->
   state = DocumentState.active()
-  drawNodeNumbers(state.activeNode, 100)
+  drawNodeNumbers(state.activeNode, state.activeNodeIndex())
 
 transitionStates = () ->
   raphael.clear()

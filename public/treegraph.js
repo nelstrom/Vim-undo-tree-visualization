@@ -204,7 +204,7 @@
   drawActiveNodeNumber = function() {
     var state;
     state = DocumentState.active();
-    return drawNodeNumbers(state.activeNode, 100);
+    return drawNodeNumbers(state.activeNode, state.activeNodeIndex());
   };
   transitionStates = function() {
     var current, previous;
