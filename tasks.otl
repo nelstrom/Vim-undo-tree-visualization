@@ -2,7 +2,7 @@
 [_] general
 	[_] add numbers below nodes
 		[X] do not show 'unborn' nodes
-		[_] animate positions
+		[X] animate positions
 		[_] draw node for active node too
 			: have to draw it after the animation has finished
 			: HOW?
