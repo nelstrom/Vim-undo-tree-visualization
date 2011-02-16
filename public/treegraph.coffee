@@ -141,6 +141,11 @@ drawAllNodes = (state) ->
       radius
     ).attr(graphics.offNodeAttributes)
     graphics.nodes.push(disc)
+    drawNodeNumbers(node, num)
+
+drawNodeNumbers = (node, num=0) ->
+  raphael.text(coords[node.position].x, coords[node.position].y+30, num+1)
+
 
 
 drawActiveNode = (state) ->

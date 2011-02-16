@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -126,9 +126,16 @@
     for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
       node = state.nodes[num];
       disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
-      _results.push(graphics.nodes.push(disc));
+      graphics.nodes.push(disc);
+      _results.push(drawNodeNumbers(node, num));
     }
     return _results;
+  };
+  drawNodeNumbers = function(node, num) {
+    if (num == null) {
+      num = 0;
+    }
+    return raphael.text(coords[node.position].x, coords[node.position].y + 30, num + 1);
   };
   drawActiveNode = function(state) {
     return graphics.activeNode = raphael.circle(coords[state.activeNode.position].x, coords[state.activeNode.position].y, radius).attr(graphics.onNodeAttributes);
