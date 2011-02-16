@@ -202,7 +202,9 @@
     }, animationPeriod, "<>", drawActiveNodeNumber);
   };
   drawActiveNodeNumber = function() {
-    return console.log("activeNode animation complete");
+    var state;
+    state = DocumentState.active();
+    return drawNodeNumbers(state.activeNode, 100);
   };
   transitionStates = function() {
     var current, previous;

@@ -155,15 +155,12 @@ drawNodeNumbers = (node, num) ->
   )
   graphics.nodeNumbers.push(number)
 
-
-
 drawActiveNode = (state) ->
   graphics.activeNode = raphael.circle(
     coords[state.activeNode.position].x,
     coords[state.activeNode.position].y,
     radius
   ).attr(graphics.onNodeAttributes)
-
 
 drawState = () ->
   state = DocumentState.active()
@@ -224,7 +221,8 @@ transitionActiveNode = (state, previous) ->
   }, animationPeriod, "<>", drawActiveNodeNumber)
 
 drawActiveNodeNumber = () ->
-  console.log("activeNode animation complete")
+  state = DocumentState.active()
+  drawNodeNumbers(state.activeNode, 100)
 
 transitionStates = () ->
   raphael.clear()
