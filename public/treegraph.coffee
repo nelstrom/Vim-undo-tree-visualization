@@ -221,8 +221,10 @@ transitionActiveNode = (state, previous) ->
   graphics.activeNode.animate({
     cx: coords[state.activeNode.position].x
     cy: coords[state.activeNode.position].y
-  }, animationPeriod, "<>")
+  }, animationPeriod, "<>", drawActiveNodeNumber)
 
+drawActiveNodeNumber = () ->
+  console.log("activeNode animation complete")
 
 transitionStates = () ->
   raphael.clear()

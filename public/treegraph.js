@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -199,7 +199,10 @@
     return graphics.activeNode.animate({
       cx: coords[state.activeNode.position].x,
       cy: coords[state.activeNode.position].y
-    }, animationPeriod, "<>");
+    }, animationPeriod, "<>", drawActiveNodeNumber);
+  };
+  drawActiveNodeNumber = function() {
+    return console.log("activeNode animation complete");
   };
   transitionStates = function() {
     var current, previous;
