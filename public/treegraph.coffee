@@ -211,9 +211,6 @@ transitionAllNodes = (state, previous) ->
     }, animationPeriod, "<>")
 
     number = graphics.nodeNumbers[num]
-    console.log(num)
-    console.log(coords[node.position].x)
-    console.log(coords[node.position].y)
     number.animate({
       x: coords[node.position].x
       y: coords[node.position].y + numberVerticalOffset

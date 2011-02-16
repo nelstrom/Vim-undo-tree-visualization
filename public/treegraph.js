@@ -187,9 +187,6 @@
         cy: coords[node.position].y
       }, animationPeriod, "<>");
       number = graphics.nodeNumbers[num];
-      console.log(num);
-      console.log(coords[node.position].x);
-      console.log(coords[node.position].y);
       _results.push(number.animate({
         x: coords[node.position].x,
         y: coords[node.position].y + numberVerticalOffset
