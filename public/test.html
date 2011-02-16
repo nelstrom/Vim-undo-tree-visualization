@@ -8,21 +8,16 @@
   #vim-history-graph { border: 1px solid black; width: 640px; height: 480px; }
 </style>
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
-  var r = Raphael(document.getElementById("vim-history-graph"), 640, 480);
-  var p = r.path("M100,100c0,50 100-50 100,0c0,50 -100-50 -100,0z").attr({stroke: "#ddd"}),
-      e = r.ellipse(104, 100, 4, 4).attr({stroke: "none", fill: "#f00"}),
-      b = r.rect(0, 0, 620, 400).attr({stroke: "none", fill: "#000", opacity: 0}).click(function () {
-          e.attr({rx: 5, ry: 3}).animateAlong(p, 4000, true, function () {
-              e.attr({rx: 4, ry: 4});
-          });
-      });
+        $(window).load(function () {
+            var R = Raphael("holder", 640, 480);
+            var test = R.text(200, 200, "Test string");
+            test.animate({x: 20, y: 20}, 2000);
+        });
 
-});
 
 </script>
 </head>
 <body>
-  <div id="vim-history-graph"></div>
+  <div id="holder"></div>
 </body>
 </html>
