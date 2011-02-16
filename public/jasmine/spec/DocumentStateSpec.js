@@ -25,7 +25,7 @@
             position: 's5'
           }, {
             position: 's6',
-            active: true
+            state: 'on'
           }
         ]
       });
@@ -185,7 +185,7 @@
         });
       });
       return describe("activeNode", function() {
-        return it("returns the object that was declared active", function() {
+        return it("returns the object that was declared 'on'", function() {
           return expect(state.activeNode).toEqual({
             position: 's6',
             state: 'on'

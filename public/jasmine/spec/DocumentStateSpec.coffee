@@ -16,7 +16,7 @@ describe "DocumentState", ->
         { position: 's3' }
         { position: 's4' }
         { position: 's5' }
-        { position: 's6', active: true }
+        { position: 's6', state: 'on' }
       ]
 
   describe "Class", ->
@@ -130,6 +130,6 @@ describe "DocumentState", ->
         expect(state.nodes[5].state).toEqual 'on'
 
     describe "activeNode", ->
-      it "returns the object that was declared active", ->
+      it "returns the object that was declared 'on'", ->
         expect(state.activeNode).toEqual { position: 's6', state: 'on' }
 
