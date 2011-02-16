@@ -4,8 +4,6 @@
 		[X] do not show 'unborn' nodes
 		[X] animate positions
 		[_] draw node for active node too
-			: have to draw it after the animation has finished
-			: HOW?
 	[_] port over the faux-buffer with text
 	[_] no buttons for story
 	[_] use keyboard keys for story
