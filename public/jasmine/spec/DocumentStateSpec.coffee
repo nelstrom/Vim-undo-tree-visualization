@@ -15,8 +15,8 @@ describe "DocumentState", ->
         { position: 's2', state: 'off' }
         { position: 's3', state: 'off' }
         { position: 's4', state: 'off' }
-        { position: 's5', state: 'off' }
-        { position: 's6', state: 'on' }
+        { position: 's5', state: 'on' }
+        { position: 's6' }
       ]
 
   describe "Class", ->
@@ -120,16 +120,17 @@ describe "DocumentState", ->
         expect(state.nodes[3].position).toEqual 's4'
         expect(state.nodes[4].position).toEqual 's5'
         expect(state.nodes[5].position).toEqual 's6'
-      it "has a default state of 'off'", ->
+      it "has state 'off' where specified", ->
         expect(state.nodes[0].state).toEqual 'off'
         expect(state.nodes[1].state).toEqual 'off'
         expect(state.nodes[2].state).toEqual 'off'
         expect(state.nodes[3].state).toEqual 'off'
-        expect(state.nodes[4].state).toEqual 'off'
       it "has state 'on' where specified", ->
-        expect(state.nodes[5].state).toEqual 'on'
+        expect(state.nodes[4].state).toEqual 'on'
+      it "has state 'undefined' by default", ->
+        expect(state.nodes[5].state).toEqual undefined
 
     describe "activeNode", ->
       it "returns the object that was declared 'on'", ->
-        expect(state.activeNode).toEqual { position: 's6', state: 'on' }
+        expect(state.activeNode).toEqual { position: 's5', state: 'on' }
 

@@ -27,10 +27,9 @@
             state: 'off'
           }, {
             position: 's5',
-            state: 'off'
-          }, {
-            position: 's6',
             state: 'on'
+          }, {
+            position: 's6'
           }
         ]
       });
@@ -178,21 +177,23 @@
           expect(state.nodes[4].position).toEqual('s5');
           return expect(state.nodes[5].position).toEqual('s6');
         });
-        it("has a default state of 'off'", function() {
+        it("has state 'off' where specified", function() {
           expect(state.nodes[0].state).toEqual('off');
           expect(state.nodes[1].state).toEqual('off');
           expect(state.nodes[2].state).toEqual('off');
-          expect(state.nodes[3].state).toEqual('off');
-          return expect(state.nodes[4].state).toEqual('off');
+          return expect(state.nodes[3].state).toEqual('off');
         });
-        return it("has state 'on' where specified", function() {
-          return expect(state.nodes[5].state).toEqual('on');
+        it("has state 'on' where specified", function() {
+          return expect(state.nodes[4].state).toEqual('on');
+        });
+        return it("has state 'undefined' by default", function() {
+          return expect(state.nodes[5].state).toEqual(void 0);
         });
       });
       return describe("activeNode", function() {
         return it("returns the object that was declared 'on'", function() {
           return expect(state.activeNode).toEqual({
-            position: 's6',
+            position: 's5',
             state: 'on'
           });
         });
