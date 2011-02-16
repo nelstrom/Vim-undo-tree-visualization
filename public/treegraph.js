@@ -125,9 +125,7 @@
     _results = [];
     for (num = 0, _ref = nodeCount - 1; (0 <= _ref ? num <= _ref : num >= _ref); (0 <= _ref ? num += 1 : num -= 1)) {
       node = state.nodes[num];
-      disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes);
-      graphics.nodes.push(disc);
-      _results.push(drawNodeNumbers(node, num));
+      _results.push(node.state != null ? (disc = raphael.circle(coords[node.position].x, coords[node.position].y, radius).attr(graphics.offNodeAttributes), graphics.nodes.push(disc), drawNodeNumbers(node, num)) : void 0);
     }
     return _results;
   };

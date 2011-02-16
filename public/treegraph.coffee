@@ -135,13 +135,14 @@ drawAllNodes = (state) ->
   graphics.nodes = []
   for num in [0..(nodeCount-1)]
     node = state.nodes[num]
-    disc = raphael.circle(
-      coords[node.position].x,
-      coords[node.position].y,
-      radius
-    ).attr(graphics.offNodeAttributes)
-    graphics.nodes.push(disc)
-    drawNodeNumbers(node, num)
+    if node.state?
+      disc = raphael.circle(
+        coords[node.position].x,
+        coords[node.position].y,
+        radius
+      ).attr(graphics.offNodeAttributes)
+      graphics.nodes.push(disc)
+      drawNodeNumbers(node, num)
 
 drawNodeNumbers = (node, num=0) ->
   raphael.text(coords[node.position].x, coords[node.position].y+30, num+1)
