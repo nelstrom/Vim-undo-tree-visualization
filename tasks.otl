@@ -1,6 +1,11 @@
 [X] discard unused stuff from treegraph.coffee
 [_] general
 	[_] add numbers below nodes
+		[X] do not show 'unborn' nodes
+		[_] animate positions
+		[_] draw node for active node too
+			: have to draw it after the animation has finished
+			: HOW?
 	[_] port over the faux-buffer with text
 	[_] no buttons for story
 	[_] use keyboard keys for story
