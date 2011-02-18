@@ -311,11 +311,9 @@ later = () ->
     return false
 
 keyboardHandler = (event) ->
-  cursorRight = 39
-  cursorLeft  = 37
-  cursorUp    = 38
-  cursorDown  = 40
-  space       = 32
+  [cursorRight, cursorDown, space] = [39, 40, 32]
+  [cursorLeft, cursorUp] = [37, 38]
+
   if [cursorRight, cursorDown, space].indexOf(event.keyCode) >= 0
     later()
   if [cursorLeft, cursorUp].indexOf(event.keyCode) >= 0

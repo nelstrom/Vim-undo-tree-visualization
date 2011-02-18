@@ -248,12 +248,9 @@
     }
   };
   keyboardHandler = function(event) {
-    var cursorDown, cursorLeft, cursorRight, cursorUp, space;
-    cursorRight = 39;
-    cursorLeft = 37;
-    cursorUp = 38;
-    cursorDown = 40;
-    space = 32;
+    var cursorDown, cursorLeft, cursorRight, cursorUp, space, _ref, _ref2;
+    _ref = [39, 40, 32], cursorRight = _ref[0], cursorDown = _ref[1], space = _ref[2];
+    _ref2 = [37, 38], cursorLeft = _ref2[0], cursorUp = _ref2[1];
     if ([cursorRight, cursorDown, space].indexOf(event.keyCode) >= 0) {
       later();
     }
