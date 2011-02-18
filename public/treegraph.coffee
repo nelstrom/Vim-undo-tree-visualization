@@ -310,6 +310,17 @@ later = () ->
     transitionStates()
     return false
 
+keyboardHandler = (event) ->
+  cursorRight = 39
+  cursorLeft  = 37
+  cursorUp    = 38
+  cursorDown  = 40
+  space       = 32
+  if [cursorRight, cursorDown, space].indexOf(event.keyCode) >= 0
+    later()
+  if [cursorLeft, cursorUp].indexOf(event.keyCode) >= 0
+    earlier()
+
 graphMarkup = """
 <div id="vim-history-buffer">
   <code><pre></pre></code>
@@ -329,6 +340,7 @@ jQuery($ =>
   $("#vim-history-buttons a.redo").click(redo)
   $("#vim-history-buttons a.later").click(later)
   $("#vim-history-buttons a.earlier").click(earlier)
+  $(window).keydown(keyboardHandler)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
   drawState()
 )
