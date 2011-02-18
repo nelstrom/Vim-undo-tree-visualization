@@ -297,14 +297,18 @@ redo = () ->
   later()   # TODO: implement this!
 
 earlier = () ->
-  DocumentState.reverse()
-  transitionStates()
-  return false
+  current = DocumentState.active()
+  if current.hasPredecessor()
+    DocumentState.reverse()
+    transitionStates()
+    return false
 
 later = () ->
-  DocumentState.advance()
-  transitionStates()
-  return false
+  current = DocumentState.active()
+  if current.hasSuccessor()
+    DocumentState.advance()
+    transitionStates()
+    return false
 
 graphMarkup = """
 <div id="vim-history-buffer">

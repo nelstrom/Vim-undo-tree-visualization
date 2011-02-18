@@ -230,14 +230,22 @@
     return later();
   };
   earlier = function() {
-    DocumentState.reverse();
-    transitionStates();
-    return false;
+    var current;
+    current = DocumentState.active();
+    if (current.hasPredecessor()) {
+      DocumentState.reverse();
+      transitionStates();
+      return false;
+    }
   };
   later = function() {
-    DocumentState.advance();
-    transitionStates();
-    return false;
+    var current;
+    current = DocumentState.active();
+    if (current.hasSuccessor()) {
+      DocumentState.advance();
+      transitionStates();
+      return false;
+    }
   };
   graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
