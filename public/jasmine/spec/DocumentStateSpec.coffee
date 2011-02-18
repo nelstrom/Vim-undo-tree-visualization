@@ -138,3 +138,12 @@ describe "DocumentState", ->
       it "returns the position of the activeNode in nodes list", ->
         expect(state.activeNodeIndex()).toEqual 4
 
+    describe "hasPredecessor()", ->
+      it "returns true when there is a predecessor", ->
+        expect(state.hasPredecessor()).toEqual false
+      it "returns false when there is no predecessor", ->
+
+    describe "hasSuccessor()", ->
+      it "returns true when there is a successor", ->
+        expect(state.hasSuccessor()).toEqual false
+      it "returns false when there is no successor", ->

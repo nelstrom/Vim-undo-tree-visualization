@@ -201,10 +201,22 @@
           });
         });
       });
-      return describe("activeNodeIndex", function() {
+      describe("activeNodeIndex", function() {
         return it("returns the position of the activeNode in nodes list", function() {
           return expect(state.activeNodeIndex()).toEqual(4);
         });
+      });
+      describe("hasPredecessor()", function() {
+        it("returns true when there is a predecessor", function() {
+          return expect(state.hasPredecessor()).toEqual(false);
+        });
+        return it("returns false when there is no predecessor", function() {});
+      });
+      return describe("hasSuccessor()", function() {
+        it("returns true when there is a successor", function() {
+          return expect(state.hasSuccessor()).toEqual(false);
+        });
+        return it("returns false when there is no successor", function() {});
       });
     });
   });
