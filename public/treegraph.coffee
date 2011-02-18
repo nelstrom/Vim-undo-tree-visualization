@@ -142,14 +142,7 @@ bufferContents = [
       Lorraine Baines nurses Marty, and thinks he's cute.
 
   1955, November 12th
-      Lighting strikes the clocktower at 10.04pm
-  """, """
-  1955, November 5th
-      Marty McFly is hit by a car.
-      Lorraine Baines nurses Marty, and thinks he's cute.
-
-  1955, November 12th
-      Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
+      Marty Mcfly takes Lorraine Baines to the dance, and they kiss (yuk).
       Marty McFly invents Rock and Roll
       George McFly and Loraine Baines kiss.
       Lightning strikes the clocktower at 10.04pm
@@ -322,12 +315,6 @@ keyboardHandler = (event) ->
 graphMarkup = """
 <div id="vim-history-buffer">
   <code><pre></pre></code>
-</div>
-<div id="vim-history-buttons">
-  <a class="undo" href="#">undo</a>
-  <a class="redo" href="#">redo</a>
-  <a class="later" href="#">later</a>
-  <a class="earlier" href="#">earlier</a>
 </div>
 <div id="vim-history-graph"/>
 """
