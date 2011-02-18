@@ -206,17 +206,81 @@
           return expect(state.activeNodeIndex()).toEqual(4);
         });
       });
-      describe("hasPredecessor()", function() {
-        it("returns true when there is a predecessor", function() {
-          return expect(state.hasPredecessor()).toEqual(false);
+      return describe("hasPredecessor()/hasSuccessor()", function() {
+        var first, second;
+        first = second = null;
+        beforeEach(function() {
+          DocumentState.reset();
+          first = new DocumentState({
+            timelineOriginal: {
+              points: 's1,s2',
+              active: true
+            },
+            timelineRevised: {
+              points: 's1,s2'
+            },
+            nodes: [
+              {
+                position: 's1',
+                state: 'off'
+              }, {
+                position: 's2',
+                state: 'on'
+              }, {
+                position: 's2'
+              }, {
+                position: 's2'
+              }, {
+                position: 's2'
+              }, {
+                position: 's2'
+              }
+            ]
+          });
+          return second = new DocumentState({
+            timelineOriginal: {
+              points: 's1,s2,s3',
+              active: true
+            },
+            timelineRevised: {
+              points: 's1,s2,s3'
+            },
+            nodes: [
+              {
+                position: 's1',
+                state: 'off'
+              }, {
+                position: 's2',
+                state: 'off'
+              }, {
+                position: 's3',
+                state: 'on'
+              }, {
+                position: 's3'
+              }, {
+                position: 's3'
+              }, {
+                position: 's3'
+              }
+            ]
+          });
         });
-        return it("returns false when there is no predecessor", function() {});
-      });
-      return describe("hasSuccessor()", function() {
-        it("returns true when there is a successor", function() {
-          return expect(state.hasSuccessor()).toEqual(false);
+        describe("hasPredecessor()", function() {
+          it("returns true when there is a predecessor", function() {
+            return expect(first.hasPredecessor()).toEqual(false);
+          });
+          return it("returns false when there is no predecessor", function() {
+            return expect(second.hasPredecessor()).toEqual(true);
+          });
         });
-        return it("returns false when there is no successor", function() {});
+        return describe("hasSuccessor()", function() {
+          it("returns true when there is a successor", function() {
+            return expect(second.hasSuccessor()).toEqual(false);
+          });
+          return it("returns false when there is no successor", function() {
+            return expect(first.hasSuccessor()).toEqual(true);
+          });
+        });
       });
     });
   });

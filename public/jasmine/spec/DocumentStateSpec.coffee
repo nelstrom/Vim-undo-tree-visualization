@@ -138,12 +138,46 @@ describe "DocumentState", ->
       it "returns the position of the activeNode in nodes list", ->
         expect(state.activeNodeIndex()).toEqual 4
 
-    describe "hasPredecessor()", ->
-      it "returns true when there is a predecessor", ->
-        expect(state.hasPredecessor()).toEqual false
-      it "returns false when there is no predecessor", ->
+    describe "hasPredecessor()/hasSuccessor()", ->
+      first = second = null
+      beforeEach ->
+        DocumentState.reset()
+        first = new DocumentState
+          timelineOriginal:
+            points: 's1,s2'
+            active: true
+          timelineRevised:
+            points: 's1,s2'
+          nodes: [
+            { position: 's1', state: 'off' }
+            { position: 's2', state: 'on' }
+            { position: 's2' }
+            { position: 's2' }
+            { position: 's2' }
+            { position: 's2' }
+          ]
+        second = new DocumentState
+          timelineOriginal:
+            points: 's1,s2,s3'
+            active: true
+          timelineRevised:
+            points: 's1,s2,s3'
+          nodes: [
+            { position: 's1', state: 'off' }
+            { position: 's2', state: 'off' }
+            { position: 's3', state: 'on' }
+            { position: 's3' }
+            { position: 's3' }
+            { position: 's3' }
+          ]
+      describe "hasPredecessor()", ->
+        it "returns true when there is a predecessor", ->
+          expect(first.hasPredecessor()).toEqual false
+        it "returns false when there is no predecessor", ->
+          expect(second.hasPredecessor()).toEqual true
 
-    describe "hasSuccessor()", ->
-      it "returns true when there is a successor", ->
-        expect(state.hasSuccessor()).toEqual false
-      it "returns false when there is no successor", ->
+      describe "hasSuccessor()", ->
+        it "returns true when there is a successor", ->
+          expect(second.hasSuccessor()).toEqual false
+        it "returns false when there is no successor", ->
+          expect(first.hasSuccessor()).toEqual true
