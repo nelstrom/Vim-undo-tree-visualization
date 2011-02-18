@@ -2,7 +2,7 @@
 	[X] add numbers below nodes
 	[X] port over the faux-buffer with text
 	[_] no buttons for story
-	[_] use keyboard keys for story
+	[X] use keyboard keys for story
 [_] buttons
 	[X] disable when inapplicable
 	[_] create undo/redo
