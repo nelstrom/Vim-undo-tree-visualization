@@ -22,7 +22,10 @@ class DocumentState
     this.nodes.indexOf(@activeNode)
 
   hasPredecessor: ->
+    DocumentState.states.indexOf(this) > 0
 
+  hasSuccessor: ->
+    DocumentState.states.indexOf(this) < DocumentState.states.length - 1
 
   @states: []
   @position: 0

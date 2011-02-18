@@ -32,7 +32,12 @@
     DocumentState.prototype.activeNodeIndex = function() {
       return this.nodes.indexOf(this.activeNode);
     };
-    DocumentState.prototype.hasPredecessor = function() {};
+    DocumentState.prototype.hasPredecessor = function() {
+      return DocumentState.states.indexOf(this) > 0;
+    };
+    DocumentState.prototype.hasSuccessor = function() {
+      return DocumentState.states.indexOf(this) < DocumentState.states.length - 1;
+    };
     DocumentState.states = [];
     DocumentState.position = 0;
     DocumentState.lastPosition = 0;
