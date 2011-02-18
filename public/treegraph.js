@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, color, coords, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -99,6 +99,7 @@
       "stroke": color.black
     }
   };
+  bufferContents = ["1955, November 12th\n    Lightning strikes the clocktower at 10.04pm", "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm", "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    Lightning strikes the clocktower at 10.04pm", "1955, November 5th\n    George McFly falls out of a tree and is hit by a car.\n    Lorraine Baines nurses George, and thinks he's cute.\n\n1955, November 12th\n    George McFly takes Lorraine Baines to the dance, and they kiss.\n    Lighting strikes the clocktower at 10.04pm", "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Lighting strikes the clocktower at 10.04pm", "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Lighting strikes the clocktower at 10.04pm", "1955, November 5th\n    Marty McFly is hit by a car.\n    Lorraine Baines nurses Marty, and thinks he's cute.\n\n1955, November 12th\n    Marty Mcfly takes Lorraine Baines to the dance, and they kiss.\n    Marty McFly invents Rock and Roll\n    George McFly and Loraine Baines kiss.\n    Lightning strikes the clocktower at 10.04pm"];
   generatePath = function() {
     var coordinates, origin, point, points, _i, _len;
     origin = arguments[0], coordinates = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
@@ -220,7 +221,7 @@
   updateBufferContents = function() {
     var current;
     current = DocumentState.active();
-    return $("#vim-history-buffer code pre").html(current.buffer);
+    return $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()]);
   };
   undo = function() {
     return earlier();

@@ -104,6 +104,58 @@ graphics =
     "fill": color.darkgrey
     "stroke": color.black
 
+bufferContents = [
+  """
+  1955, November 12th
+      Lightning strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      George McFly falls out of a tree and is hit by a car.
+
+  1955, November 12th
+      Lightning strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      George McFly falls out of a tree and is hit by a car.
+      Lorraine Baines nurses George, and thinks he's cute.
+
+  1955, November 12th
+      Lightning strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      George McFly falls out of a tree and is hit by a car.
+      Lorraine Baines nurses George, and thinks he's cute.
+
+  1955, November 12th
+      George McFly takes Lorraine Baines to the dance, and they kiss.
+      Lighting strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      Marty McFly is hit by a car.
+      Lorraine Baines nurses Marty, and thinks he's cute.
+
+  1955, November 12th
+      Lighting strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      Marty McFly is hit by a car.
+      Lorraine Baines nurses Marty, and thinks he's cute.
+
+  1955, November 12th
+      Lighting strikes the clocktower at 10.04pm
+  """, """
+  1955, November 5th
+      Marty McFly is hit by a car.
+      Lorraine Baines nurses Marty, and thinks he's cute.
+
+  1955, November 12th
+      Marty Mcfly takes Lorraine Baines to the dance, and they kiss.
+      Marty McFly invents Rock and Roll
+      George McFly and Loraine Baines kiss.
+      Lightning strikes the clocktower at 10.04pm
+  """
+]
+
 # Utility methods
 generatePath = (origin, coordinates...) ->
   points = ["M #{coords[origin].x} #{coords[origin].y}"]
@@ -236,7 +288,7 @@ transitionStates = () ->
 
 updateBufferContents = () ->
   current = DocumentState.active()
-  $("#vim-history-buffer code pre").html(current.buffer)
+  $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()])
 
 undo = () ->
   earlier() # TODO: implement this!
