@@ -1,4 +1,3 @@
-[X] discard unused stuff from treegraph.coffee
 [_] general
 	[X] add numbers below nodes
 	[_] port over the faux-buffer with text
