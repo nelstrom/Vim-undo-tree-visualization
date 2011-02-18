@@ -4,6 +4,6 @@
 	[_] no buttons for story
 	[_] use keyboard keys for story
 [_] buttons
-	[_] disable when inapplicable
+	[X] disable when inapplicable
 	[_] create undo/redo
 		[_] traverse activeTimeline only
