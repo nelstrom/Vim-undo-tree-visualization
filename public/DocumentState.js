@@ -27,19 +27,20 @@
           this.activeNode = n;
         }
       }
-      DocumentState.nodes.push(this);
+      DocumentState.states.push(this);
     }
     DocumentState.prototype.activeNodeIndex = function() {
       return this.nodes.indexOf(this.activeNode);
     };
-    DocumentState.nodes = [];
+    DocumentState.prototype.hasPredecessor = function() {};
+    DocumentState.states = [];
     DocumentState.position = 0;
     DocumentState.lastPosition = 0;
     DocumentState.active = function() {
-      return this.nodes[this.position];
+      return this.states[this.position];
     };
     DocumentState.previous = function() {
-      return this.nodes[this.lastPosition];
+      return this.states[this.lastPosition];
     };
     DocumentState.reverse = function() {
       if (this.position > 0) {
@@ -48,7 +49,7 @@
       }
     };
     DocumentState.advance = function() {
-      if (this.position < this.nodes.length - 1) {
+      if (this.position < this.states.length - 1) {
         this.lastPosition = this.position;
         return this.position++;
       }
@@ -56,7 +57,7 @@
     DocumentState.reset = function() {
       this.position = 0;
       this.lastPosition = 0;
-      return this.nodes = [];
+      return this.states = [];
     };
     return DocumentState;
   })();

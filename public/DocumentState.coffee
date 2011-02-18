@@ -16,16 +16,19 @@ class DocumentState
       @nodes.push(n)
       @activeNode = n if node.state == "on"
 
-    DocumentState.nodes.push(this)
+    DocumentState.states.push(this)
 
   activeNodeIndex: ->
     this.nodes.indexOf(@activeNode)
 
-  @nodes: []
+  hasPredecessor: ->
+
+
+  @states: []
   @position: 0
   @lastPosition: 0
-  @active: -> @nodes[@position]
-  @previous: -> @nodes[@lastPosition]
+  @active: -> @states[@position]
+  @previous: -> @states[@lastPosition]
 
   @reverse: ->
     if @position > 0
@@ -33,13 +36,13 @@ class DocumentState
       @position--
 
   @advance: ->
-    if @position < @nodes.length-1
+    if @position < @states.length-1
       @lastPosition = @position
       @position++
 
   @reset: ->
     @position = 0
     @lastPosition = 0
-    @nodes = []
+    @states = []
 
 window.DocumentState = DocumentState
