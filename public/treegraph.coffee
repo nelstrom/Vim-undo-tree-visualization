@@ -311,12 +311,12 @@ later = () ->
     return false
 
 keyboardHandler = (event) ->
-  [cursorRight, cursorDown, space] = [39, 40, 32]
-  [cursorLeft, cursorUp] = [37, 38]
+  advanceKeys = [cursorRight, cursorDown, space] = [39, 40, 32]
+  reverseKeys = [cursorLeft, cursorUp] = [37, 38]
 
-  if [cursorRight, cursorDown, space].indexOf(event.keyCode) >= 0
+  if advanceKeys.indexOf(event.keyCode) >= 0
     later()
-  if [cursorLeft, cursorUp].indexOf(event.keyCode) >= 0
+  if reverseKeys.indexOf(event.keyCode) >= 0
     earlier()
 
 graphMarkup = """

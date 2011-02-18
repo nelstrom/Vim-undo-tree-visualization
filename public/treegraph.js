@@ -248,13 +248,13 @@
     }
   };
   keyboardHandler = function(event) {
-    var cursorDown, cursorLeft, cursorRight, cursorUp, space, _ref, _ref2;
-    _ref = [39, 40, 32], cursorRight = _ref[0], cursorDown = _ref[1], space = _ref[2];
-    _ref2 = [37, 38], cursorLeft = _ref2[0], cursorUp = _ref2[1];
-    if ([cursorRight, cursorDown, space].indexOf(event.keyCode) >= 0) {
+    var advanceKeys, cursorDown, cursorLeft, cursorRight, cursorUp, reverseKeys, space, _ref, _ref2;
+    advanceKeys = (_ref = [39, 40, 32], cursorRight = _ref[0], cursorDown = _ref[1], space = _ref[2], _ref);
+    reverseKeys = (_ref2 = [37, 38], cursorLeft = _ref2[0], cursorUp = _ref2[1], _ref2);
+    if (advanceKeys.indexOf(event.keyCode) >= 0) {
       later();
     }
-    if ([cursorLeft, cursorUp].indexOf(event.keyCode) >= 0) {
+    if (reverseKeys.indexOf(event.keyCode) >= 0) {
       return earlier();
     }
   };
