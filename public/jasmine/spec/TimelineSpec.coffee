@@ -36,6 +36,8 @@ describe "Timeline", ->
         expect(Timeline.currentTrack()).toEqual trackOne
 
     describe "currentChronolog", ->
+      it "returns the currently active chronolog", ->
+        expect(Timeline.currentChronolog()).toEqual one
     describe "nextChronolog", ->
     describe "prevChronolog", ->
 

@@ -44,7 +44,11 @@
           return expect(Timeline.currentTrack()).toEqual(trackOne);
         });
       });
-      describe("currentChronolog", function() {});
+      describe("currentChronolog", function() {
+        return it("returns the currently active chronolog", function() {
+          return expect(Timeline.currentChronolog()).toEqual(one);
+        });
+      });
       describe("nextChronolog", function() {});
       return describe("prevChronolog", function() {});
     });
