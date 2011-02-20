@@ -30,6 +30,10 @@ describe "Timeline", ->
       it "maintains a record of all instances", ->
         expect(Timeline.instances).toEqual [trackOne, trackTwo]
 
+    describe "currentTrack", ->
+      it "returns the currently active timeline", ->
+        expect(Timeline.currentTrack()).toEqual trackOne
+
   describe "object", ->
     describe "coordinates", ->
       it "returns its coordinates as an array", ->

@@ -34,9 +34,14 @@
       });
     });
     describe("Class", function() {
-      return describe("instances", function() {
+      describe("instances", function() {
         return it("maintains a record of all instances", function() {
           return expect(Timeline.instances).toEqual([trackOne, trackTwo]);
+        });
+      });
+      return describe("currentTrack", function() {
+        return it("returns the currently active timeline", function() {
+          return expect(Timeline.currentTrack()).toEqual(trackOne);
         });
       });
     });

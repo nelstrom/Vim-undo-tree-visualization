@@ -12,6 +12,7 @@ class Timeline
     Timeline.instances[myIndex-1]
 
   @instances: []
+  @currentTrackIndex: 0
 
   @reset: ->
     @instances = []
