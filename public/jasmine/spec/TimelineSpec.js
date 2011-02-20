@@ -51,7 +51,13 @@
       });
       describe("advance()", function() {
         describe("chronologically", function() {
-          it("keeps to current track if it can (1a -> 2a)", function() {});
+          it("keeps to current track if it can (1a -> 2a)", function() {
+            Timeline.currentTrackIndex = 0;
+            Chronolog.activeChronologIndex = 0;
+            Timeline.advance('chronological');
+            expect(Timeline.currentTrackIndex).toEqual(0);
+            return expect(Chronolog.activeChronologIndex).toEqual(1);
+          });
           it("keeps to current track if it can (1b -> 2b)", function() {});
           it("switches track if it must (2b -> 3a)", function() {});
           return it("switches track if it must (4a -> 5b)", function() {});

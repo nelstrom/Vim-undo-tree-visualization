@@ -41,6 +41,11 @@ describe "Timeline", ->
     describe "advance()", ->
       describe "chronologically", ->
         it "keeps to current track if it can (1a -> 2a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          Chronolog.activeChronologIndex = 0 # one
+          Timeline.advance('chronological')
+          expect(Timeline.currentTrackIndex).toEqual(0)
+          expect(Chronolog.activeChronologIndex).toEqual(1)
         it "keeps to current track if it can (1b -> 2b)", ->
         it "switches track if it must (2b -> 3a)", ->
         it "switches track if it must (4a -> 5b)", ->
