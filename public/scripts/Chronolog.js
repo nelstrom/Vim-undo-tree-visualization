@@ -16,6 +16,10 @@
       return Chronolog.instances[myIndex - 1];
     };
     Chronolog.instances = [];
+    Chronolog.activeChronologIndex = 0;
+    Chronolog.active = function() {
+      return this.instances[this.activeChronologIndex];
+    };
     Chronolog.reset = function() {
       return this.instances = [];
     };

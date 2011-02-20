@@ -12,6 +12,10 @@ class Chronolog
     Chronolog.instances[myIndex-1]
 
   @instances: []
+  @activeChronologIndex: 0
+
+  @active: ->
+    @instances[@activeChronologIndex]
 
   @reset: ->
     @instances = []
