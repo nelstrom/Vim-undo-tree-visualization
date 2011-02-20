@@ -1,8 +1,8 @@
 (function() {
   describe("Timeline", function() {
-    var five, four, one, six, three, trackOne, trackTwo, two;
+    var five, four, one, six, three, trackA, trackB, two;
     one = two = three = four = five = six = null;
-    trackOne = trackTwo = null;
+    trackA = trackB = null;
     beforeEach(function() {
       Chronolog.reset();
       one = new Chronolog({
@@ -24,11 +24,11 @@
         coordinates: 't6'
       });
       Timeline.reset();
-      trackOne = new Timeline({
+      trackA = new Timeline({
         chronologs: [one, two, three, four],
         coordinates: 's1,s2,b3,b4'
       });
-      return trackTwo = new Timeline({
+      return trackB = new Timeline({
         chronologs: [one, two, five, six],
         coordinates: 's1,s2,t3,t5,t6'
       });
@@ -36,12 +36,12 @@
     describe("Class", function() {
       describe("instances", function() {
         return it("maintains a record of all instances", function() {
-          return expect(Timeline.instances).toEqual([trackOne, trackTwo]);
+          return expect(Timeline.instances).toEqual([trackA, trackB]);
         });
       });
       describe("currentTrack", function() {
         return it("returns the currently active timeline", function() {
-          return expect(Timeline.currentTrack()).toEqual(trackOne);
+          return expect(Timeline.currentTrack()).toEqual(trackA);
         });
       });
       describe("currentChronolog", function() {
@@ -49,19 +49,30 @@
           return expect(Timeline.currentChronolog()).toEqual(one);
         });
       });
-      describe("nextChronolog", function() {});
-      return describe("prevChronolog", function() {});
+      describe("advance()", function() {
+        describe("chronologically", function() {
+          it("keeps to current track if it can (1a -> 2a)", function() {});
+          it("keeps to current track if it can (1b -> 2b)", function() {});
+          it("switches track if it must (2b -> 3a)", function() {});
+          return it("switches track if it must (4a -> 5b)", function() {});
+        });
+        return describe("on track", function() {});
+      });
+      return describe("reverse", function() {
+        describe("chronologically", function() {});
+        return describe("on track", function() {});
+      });
     });
     return describe("object", function() {
       describe("coordinates", function() {
         return it("returns its coordinates as an array", function() {
-          expect(trackOne.coordinates).toEqual(['s1', 's2', 'b3', 'b4']);
-          return expect(trackTwo.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
+          expect(trackA.coordinates).toEqual(['s1', 's2', 'b3', 'b4']);
+          return expect(trackB.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
         });
       });
       return describe("chronologs", function() {
         return it("returns a list of chronologs", function() {
-          return expect(trackOne.chronologs).toEqual([one, two, three, four]);
+          return expect(trackA.chronologs).toEqual([one, two, three, four]);
         });
       });
     });
