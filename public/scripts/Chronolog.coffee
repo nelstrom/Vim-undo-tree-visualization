@@ -18,7 +18,8 @@ class Chronolog
     @instances[@activeChronologIndex]
 
   @advance: ->
-    @activeChronologIndex++
+    unless @activeChronologIndex == @instances.length-1
+      @activeChronologIndex++
 
   @reset: ->
     @instances = []

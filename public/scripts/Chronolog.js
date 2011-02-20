@@ -21,7 +21,9 @@
       return this.instances[this.activeChronologIndex];
     };
     Chronolog.advance = function() {
-      return this.activeChronologIndex++;
+      if (this.activeChronologIndex !== this.instances.length - 1) {
+        return this.activeChronologIndex++;
+      }
     };
     Chronolog.reset = function() {
       return this.instances = [];
