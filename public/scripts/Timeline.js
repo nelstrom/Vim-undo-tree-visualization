@@ -25,6 +25,17 @@
         return Chronolog.advance();
       }
     };
+    Timeline.reverse = function(method) {
+      var activeChronolog, activeTrack;
+      if (method === 'chronological') {
+        activeChronolog = Chronolog.active();
+        activeTrack = Timeline.currentTrack();
+        if (activeTrack.chronologs.indexOf(activeChronolog.prev()) < 0) {
+          Timeline.switchTracks();
+        }
+        return Chronolog.reverse();
+      }
+    };
     Timeline.switchTracks = function() {
       if (this.currentTrackIndex === 0) {
         return this.currentTrackIndex = 1;

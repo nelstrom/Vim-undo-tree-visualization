@@ -98,13 +98,6 @@
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(one);
           });
-          it("switches track if it must (3a -> 2b)", function() {
-            Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 2;
-            Timeline.reverse('chronological');
-            expect(Timeline.currentTrack()).toEqual(trackB);
-            return expect(Chronolog.active()).toEqual(two);
-          });
           return it("switches track if it must (5b -> 4a)", function() {
             Timeline.currentTrackIndex = 1;
             Chronolog.activeChronologIndex = 4;
