@@ -13,4 +13,3 @@ class Timeline
     @instances = []
 
 window.Timeline = Timeline
-

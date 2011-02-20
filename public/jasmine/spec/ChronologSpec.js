@@ -12,9 +12,14 @@
       });
     });
     describe("Class", function() {
-      return describe("instances", function() {
+      describe("instances", function() {
         return it("maintains a record of all instances", function() {
           return expect(Chronolog.instances).toEqual([logOne, logTwo]);
+        });
+      });
+      return describe("active", function() {
+        return it("returns the currently active chronolog", function() {
+          return expect(Chronolog.active()).toEqual(logOne);
         });
       });
     });

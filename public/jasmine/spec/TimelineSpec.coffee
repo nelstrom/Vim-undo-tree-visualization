@@ -34,6 +34,10 @@ describe "Timeline", ->
       it "returns the currently active timeline", ->
         expect(Timeline.currentTrack()).toEqual trackOne
 
+    describe "currentChronolog", ->
+    describe "nextChronolog", ->
+    describe "prevChronolog", ->
+
   describe "object", ->
     describe "coordinates", ->
       it "returns its coordinates as an array", ->

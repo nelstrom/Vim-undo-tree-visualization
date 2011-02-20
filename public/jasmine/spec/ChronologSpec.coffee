@@ -14,6 +14,10 @@ describe "Chronolog", ->
       it "maintains a record of all instances", ->
         expect(Chronolog.instances).toEqual [logOne, logTwo]
 
+    describe "active", ->
+      it "returns the currently active chronolog", ->
+        expect(Chronolog.active()).toEqual logOne
+
   describe "object", ->
     describe "coordinates", ->
       it "returns its coordinates", ->

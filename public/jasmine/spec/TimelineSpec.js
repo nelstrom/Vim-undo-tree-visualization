@@ -39,11 +39,14 @@
           return expect(Timeline.instances).toEqual([trackOne, trackTwo]);
         });
       });
-      return describe("currentTrack", function() {
+      describe("currentTrack", function() {
         return it("returns the currently active timeline", function() {
           return expect(Timeline.currentTrack()).toEqual(trackOne);
         });
       });
+      describe("currentChronolog", function() {});
+      describe("nextChronolog", function() {});
+      return describe("prevChronolog", function() {});
     });
     return describe("object", function() {
       return describe("coordinates", function() {
