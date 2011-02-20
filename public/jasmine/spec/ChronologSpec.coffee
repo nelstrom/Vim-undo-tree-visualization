@@ -18,6 +18,11 @@ describe "Chronolog", ->
       it "returns the currently active chronolog", ->
         expect(Chronolog.active()).toEqual logOne
 
+    describe "advance", ->
+      it "activates the successor", ->
+        Chronolog.advance()
+        expect(Chronolog.active()).toEqual logTwo
+
   describe "object", ->
     describe "coordinates", ->
       it "returns its coordinates", ->

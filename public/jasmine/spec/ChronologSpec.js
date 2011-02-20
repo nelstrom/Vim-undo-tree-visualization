@@ -17,9 +17,15 @@
           return expect(Chronolog.instances).toEqual([logOne, logTwo]);
         });
       });
-      return describe("active", function() {
+      describe("active", function() {
         return it("returns the currently active chronolog", function() {
           return expect(Chronolog.active()).toEqual(logOne);
+        });
+      });
+      return describe("advance", function() {
+        return it("activates the successor", function() {
+          Chronolog.advance();
+          return expect(Chronolog.active()).toEqual(logTwo);
         });
       });
     });
