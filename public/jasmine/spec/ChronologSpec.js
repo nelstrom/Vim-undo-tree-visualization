@@ -24,12 +24,20 @@
         });
       });
       describe("next()", function() {
-        it("returns following instance if there is one");
-        return it("returns 'undefined' if there is no follower");
+        it("returns following instance if there is one", function() {
+          return expect(logOne.next()).toEqual(logTwo);
+        });
+        return it("returns 'undefined' if there is no follower", function() {
+          return expect(logTwo.next()).toEqual(void 0);
+        });
       });
       return describe("prev()", function() {
-        it("returns previous instance if there is one");
-        return it("returns 'undefined' if there is no predecessor");
+        it("returns previous instance if there is one", function() {
+          return expect(logTwo.prev()).toEqual(logOne);
+        });
+        return it("returns 'undefined' if there is no predecessor", function() {
+          return expect(logOne.prev()).toEqual(void 0);
+        });
       });
     });
   });
