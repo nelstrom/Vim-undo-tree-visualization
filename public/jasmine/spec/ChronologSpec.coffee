@@ -22,6 +22,10 @@ describe "Chronolog", ->
       it "activates the successor", ->
         Chronolog.advance()
         expect(Chronolog.active()).toEqual logTwo
+      it "does nothing if active chronolog is the last one", ->
+        Chronolog.activeChronologIndex = 1
+        Chronolog.advance()
+        expect(Chronolog.active()).toEqual logTwo
 
   describe "object", ->
     describe "coordinates", ->
