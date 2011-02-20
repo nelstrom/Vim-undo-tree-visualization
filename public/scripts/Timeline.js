@@ -11,6 +11,9 @@
     Timeline.currentTrack = function() {
       return this.instances[this.currentTrackIndex];
     };
+    Timeline.currentChronolog = function() {
+      return Chronolog.active();
+    };
     Timeline.reset = function() {
       return this.instances = [];
     };

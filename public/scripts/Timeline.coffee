@@ -10,6 +10,9 @@ class Timeline
   @currentTrack: ->
     @instances[@currentTrackIndex]
 
+  @currentChronolog: ->
+    Chronolog.active()
+
   @reset: ->
     @instances = []
 
