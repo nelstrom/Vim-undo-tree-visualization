@@ -15,8 +15,21 @@
       return Chronolog.active();
     };
     Timeline.advance = function(method) {
+      var activeChronolog, activeTrack;
       if (method === 'chronological') {
+        activeChronolog = Chronolog.active();
+        activeTrack = Timeline.currentTrack();
+        if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
+          Timeline.switchTracks();
+        }
         return Chronolog.advance();
+      }
+    };
+    Timeline.switchTracks = function() {
+      if (this.currentTrackIndex === 0) {
+        return this.currentTrackIndex = 1;
+      } else {
+        return this.currentTrackIndex = 0;
       }
     };
     Timeline.reset = function() {

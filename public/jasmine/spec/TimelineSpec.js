@@ -73,7 +73,7 @@
             return expect(Chronolog.active()).toEqual(three);
           });
           return it("switches track if it must (4a -> 5b)", function() {
-            Timeline.currentTrackIndex = 2;
+            Timeline.currentTrackIndex = 0;
             Chronolog.activeChronologIndex = 3;
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackB);

@@ -63,7 +63,7 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(three)
 
         it "switches track if it must (4a -> 5b)", ->
-          Timeline.currentTrackIndex     = 2 # trackA
+          Timeline.currentTrackIndex     = 0 # trackA
           Chronolog.activeChronologIndex = 3 # four
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackB)

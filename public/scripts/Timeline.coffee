@@ -15,7 +15,17 @@ class Timeline
 
   @advance: (method) ->
     if method == 'chronological'
+      activeChronolog = Chronolog.active()
+      activeTrack = Timeline.currentTrack()
+      if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
+        Timeline.switchTracks()
       Chronolog.advance()
+
+  @switchTracks: ->
+    if @currentTrackIndex == 0
+      @currentTrackIndex = 1
+    else
+      @currentTrackIndex = 0
 
   @reset: ->
     @instances = []
