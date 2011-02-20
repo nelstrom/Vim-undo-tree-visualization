@@ -17,6 +17,9 @@ class Chronolog
   @active: ->
     @instances[@activeChronologIndex]
 
+  @advance: ->
+    @activeChronologIndex++
+
   @reset: ->
     @instances = []
 

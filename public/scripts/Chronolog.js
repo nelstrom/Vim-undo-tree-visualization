@@ -20,6 +20,9 @@
     Chronolog.active = function() {
       return this.instances[this.activeChronologIndex];
     };
+    Chronolog.advance = function() {
+      return this.activeChronologIndex++;
+    };
     Chronolog.reset = function() {
       return this.instances = [];
     };
