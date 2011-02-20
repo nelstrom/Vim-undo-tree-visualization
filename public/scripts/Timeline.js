@@ -2,7 +2,7 @@
   var Timeline;
   Timeline = (function() {
     function Timeline(config) {
-      this.coordinates = config.coordinates;
+      this.coordinates = config.coordinates.split(",");
       Timeline.instances.push(this);
     }
     Timeline.prototype.next = function() {

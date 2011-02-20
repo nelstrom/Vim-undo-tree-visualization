@@ -1,43 +1,44 @@
 (function() {
   describe("Timeline", function() {
-    var logOne, logTwo;
-    logOne = logTwo = null;
+    var trackOne, trackTwo;
+    trackOne = trackTwo = null;
     beforeEach(function() {
       Timeline.reset();
-      logOne = new Timeline({
-        coordinates: 's1'
+      trackOne = new Timeline({
+        coordinates: 's1,s2,b3,b4'
       });
-      return logTwo = new Timeline({
-        coordinates: 's2'
+      return trackTwo = new Timeline({
+        coordinates: 's1,s2,t3,t5,t6'
       });
     });
     describe("Class", function() {
       return describe("instances", function() {
         return it("maintains a record of all instances", function() {
-          return expect(Timeline.instances).toEqual([logOne, logTwo]);
+          return expect(Timeline.instances).toEqual([trackOne, trackTwo]);
         });
       });
     });
     return describe("object", function() {
       describe("coordinates", function() {
-        return it("returns its coordinates", function() {
-          return expect(logOne.coordinates).toEqual('s1');
+        return it("returns its coordinates as an array", function() {
+          expect(trackOne.coordinates).toEqual(['s1', 's2', 'b3', 'b4']);
+          return expect(trackTwo.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
         });
       });
       describe("next()", function() {
         it("returns following instance if there is one", function() {
-          return expect(logOne.next()).toEqual(logTwo);
+          return expect(trackOne.next()).toEqual(trackTwo);
         });
         return it("returns 'undefined' if there is no follower", function() {
-          return expect(logTwo.next()).toEqual(void 0);
+          return expect(trackTwo.next()).toEqual(void 0);
         });
       });
       return describe("prev()", function() {
         it("returns previous instance if there is one", function() {
-          return expect(logTwo.prev()).toEqual(logOne);
+          return expect(trackTwo.prev()).toEqual(trackOne);
         });
         return it("returns 'undefined' if there is no predecessor", function() {
-          return expect(logOne.prev()).toEqual(void 0);
+          return expect(trackOne.prev()).toEqual(void 0);
         });
       });
     });

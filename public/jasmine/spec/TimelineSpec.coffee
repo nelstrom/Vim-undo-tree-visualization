@@ -1,31 +1,32 @@
 describe "Timeline", ->
 
-  logOne = logTwo = null
+  trackOne = trackTwo = null
 
   beforeEach ->
     Timeline.reset()
-    logOne = new Timeline
-      coordinates: 's1'
-    logTwo = new Timeline
-      coordinates: 's2'
+    trackOne = new Timeline
+      coordinates: 's1,s2,b3,b4'
+    trackTwo = new Timeline
+      coordinates: 's1,s2,t3,t5,t6'
 
   describe "Class", ->
     describe "instances", ->
       it "maintains a record of all instances", ->
-        expect(Timeline.instances).toEqual [logOne, logTwo]
+        expect(Timeline.instances).toEqual [trackOne, trackTwo]
 
   describe "object", ->
     describe "coordinates", ->
-      it "returns its coordinates", ->
-        expect(logOne.coordinates).toEqual 's1'
+      it "returns its coordinates as an array", ->
+        expect(trackOne.coordinates).toEqual ['s1','s2','b3','b4']
+        expect(trackTwo.coordinates).toEqual ['s1','s2','t3','t5','t6']
     describe "next()", ->
       it "returns following instance if there is one", ->
-        expect(logOne.next()).toEqual logTwo
+        expect(trackOne.next()).toEqual trackTwo
       it "returns 'undefined' if there is no follower", ->
-        expect(logTwo.next()).toEqual undefined
+        expect(trackTwo.next()).toEqual undefined
     describe "prev()", ->
       it "returns previous instance if there is one", ->
-        expect(logTwo.prev()).toEqual logOne
+        expect(trackTwo.prev()).toEqual trackOne
       it "returns 'undefined' if there is no predecessor", ->
-        expect(logOne.prev()).toEqual undefined
+        expect(trackOne.prev()).toEqual undefined
 

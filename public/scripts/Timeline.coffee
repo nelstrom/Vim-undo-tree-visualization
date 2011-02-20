@@ -1,6 +1,6 @@
 class Timeline
   constructor: (config) ->
-    @coordinates = config.coordinates
+    @coordinates = config.coordinates.split(",")
     Timeline.instances.push(this)
 
   next: ->
