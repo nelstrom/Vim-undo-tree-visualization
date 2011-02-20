@@ -1,0 +1,38 @@
+.state { display: none; }
+#vim-history-visualization {
+  border: 1px solid black;
+  width: 640px;
+}
+#vim-history-buffer {
+  width: 600px;
+  margin: 0 20px;
+  height: 180px;
+  border-bottom: none;
+}
+#vim-history-graph {
+  width: 640px;
+  height: 300px;
+}
+#vim-history-buttons {
+  float: left;
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+#vim-history-buttons a {
+  float: left;
+  width: 24%;
+  text-align: center;
+  background-color: white;
+  font-family: monospace;
+  text-decoration: none;
+  color: black;
+}
+#vim-history-buttons a:hover {
+  color: white;
+  background-color: black;
+}
+#vim-history-buttons a.later,
+#vim-history-buttons a.earlier {
+  float: right;
+}
