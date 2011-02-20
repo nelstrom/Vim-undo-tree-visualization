@@ -18,10 +18,18 @@
       });
     });
     return describe("object", function() {
-      return describe("coordinates", function() {
+      describe("coordinates", function() {
         return it("returns its coordinates", function() {
           return expect(logOne.coordinates).toEqual('s1');
         });
+      });
+      describe("next()", function() {
+        it("returns following instance if there is one");
+        return it("returns 'undefined' if there is no follower");
+      });
+      return describe("prev()", function() {
+        it("returns previous instance if there is one");
+        return it("returns 'undefined' if there is no predecessor");
       });
     });
   });
