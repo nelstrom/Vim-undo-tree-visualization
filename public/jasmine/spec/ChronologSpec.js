@@ -3,6 +3,7 @@
     var logOne, logTwo;
     logOne = logTwo = null;
     beforeEach(function() {
+      Chronolog.reset();
       logOne = new Chronolog({
         coordinates: 's1'
       });

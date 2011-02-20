@@ -3,6 +3,7 @@ describe "Chronolog", ->
   logOne = logTwo = null
 
   beforeEach ->
+    Chronolog.reset()
     logOne = new Chronolog
       coordinates: 's1'
     logTwo = new Chronolog
