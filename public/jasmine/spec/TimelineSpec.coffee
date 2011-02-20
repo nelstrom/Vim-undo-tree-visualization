@@ -70,6 +70,12 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(five)
 
       describe "on track", ->
+        it "keeps to current track (1a -> 2a)", ->
+        it "keeps to current track (1b -> 2b)", ->
+        it "keeps to current track (2a -> 3a)", ->
+        it "keeps to current track (2b -> 5b)", ->
+        it "does nothing when at end of line (4b -> 4b)", ->
+        it "does nothing when at end of line (6t -> 6t)", ->
 
     describe "reverse", ->
       describe "chronologically", ->

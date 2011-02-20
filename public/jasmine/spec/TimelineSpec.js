@@ -80,7 +80,14 @@
             return expect(Chronolog.active()).toEqual(five);
           });
         });
-        return describe("on track", function() {});
+        return describe("on track", function() {
+          it("keeps to current track (1a -> 2a)", function() {});
+          it("keeps to current track (1b -> 2b)", function() {});
+          it("keeps to current track (2a -> 3a)", function() {});
+          it("keeps to current track (2b -> 5b)", function() {});
+          it("does nothing when at end of line (4b -> 4b)", function() {});
+          return it("does nothing when at end of line (6t -> 6t)", function() {});
+        });
       });
       return describe("reverse", function() {
         describe("chronologically", function() {
