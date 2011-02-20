@@ -56,7 +56,7 @@
             Chronolog.activeChronologIndex = 0;
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackA);
-            return expect(Chronolog.active()).toEqual(one);
+            return expect(Chronolog.active()).toEqual(two);
           });
           it("keeps to current track if it can (1b -> 2b)", function() {
             Timeline.currentTrackIndex = 1;

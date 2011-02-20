@@ -13,6 +13,10 @@ class Timeline
   @currentChronolog: ->
     Chronolog.active()
 
+  @advance: (method) ->
+    if method == 'chronological'
+      Chronolog.advance()
+
   @reset: ->
     @instances = []
 

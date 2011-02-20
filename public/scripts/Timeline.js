@@ -14,6 +14,11 @@
     Timeline.currentChronolog = function() {
       return Chronolog.active();
     };
+    Timeline.advance = function(method) {
+      if (method === 'chronological') {
+        return Chronolog.advance();
+      }
+    };
     Timeline.reset = function() {
       return this.instances = [];
     };

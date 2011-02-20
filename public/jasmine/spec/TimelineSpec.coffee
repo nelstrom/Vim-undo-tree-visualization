@@ -46,7 +46,7 @@ describe "Timeline", ->
           Chronolog.activeChronologIndex = 0 # one
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackA)
-          expect(Chronolog.active()).toEqual(one)
+          expect(Chronolog.active()).toEqual(two)
 
         it "keeps to current track if it can (1b -> 2b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
