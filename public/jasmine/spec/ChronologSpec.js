@@ -22,7 +22,7 @@
           return expect(Chronolog.active()).toEqual(logOne);
         });
       });
-      return describe("advance", function() {
+      describe("advance", function() {
         it("activates the successor", function() {
           Chronolog.advance();
           return expect(Chronolog.active()).toEqual(logTwo);
@@ -31,6 +31,18 @@
           Chronolog.activeChronologIndex = 1;
           Chronolog.advance();
           return expect(Chronolog.active()).toEqual(logTwo);
+        });
+      });
+      return describe("advance", function() {
+        it("activates the predecessor", function() {
+          Chronolog.activeChronologIndex = 1;
+          Chronolog.reverse();
+          return expect(Chronolog.active()).toEqual(logOne);
+        });
+        return it("does nothing if active chronolog is the first one", function() {
+          Chronolog.activeChronologIndex = 0;
+          Chronolog.reverse();
+          return expect(Chronolog.active()).toEqual(logOne);
         });
       });
     });

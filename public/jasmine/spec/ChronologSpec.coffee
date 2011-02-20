@@ -27,6 +27,16 @@ describe "Chronolog", ->
         Chronolog.advance()
         expect(Chronolog.active()).toEqual logTwo
 
+    describe "advance", ->
+      it "activates the predecessor", ->
+        Chronolog.activeChronologIndex = 1
+        Chronolog.reverse()
+        expect(Chronolog.active()).toEqual logOne
+      it "does nothing if active chronolog is the first one", ->
+        Chronolog.activeChronologIndex = 0
+        Chronolog.reverse()
+        expect(Chronolog.active()).toEqual logOne
+
   describe "object", ->
     describe "coordinates", ->
       it "returns its coordinates", ->
