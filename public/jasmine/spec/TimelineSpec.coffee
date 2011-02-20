@@ -40,14 +40,3 @@ describe "Timeline", ->
         expect(trackOne.coordinates).toEqual ['s1','s2','b3','b4']
         expect(trackTwo.coordinates).toEqual ['s1','s2','t3','t5','t6']
 
-    describe "next()", ->
-      it "returns following instance if there is one", ->
-        expect(trackOne.next()).toEqual trackTwo
-      it "returns 'undefined' if there is no follower", ->
-        expect(trackTwo.next()).toEqual undefined
-    describe "prev()", ->
-      it "returns previous instance if there is one", ->
-        expect(trackTwo.prev()).toEqual trackOne
-      it "returns 'undefined' if there is no predecessor", ->
-        expect(trackOne.prev()).toEqual undefined
-

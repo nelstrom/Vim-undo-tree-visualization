@@ -46,26 +46,10 @@
       });
     });
     return describe("object", function() {
-      describe("coordinates", function() {
+      return describe("coordinates", function() {
         return it("returns its coordinates as an array", function() {
           expect(trackOne.coordinates).toEqual(['s1', 's2', 'b3', 'b4']);
           return expect(trackTwo.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
-        });
-      });
-      describe("next()", function() {
-        it("returns following instance if there is one", function() {
-          return expect(trackOne.next()).toEqual(trackTwo);
-        });
-        return it("returns 'undefined' if there is no follower", function() {
-          return expect(trackTwo.next()).toEqual(void 0);
-        });
-      });
-      return describe("prev()", function() {
-        it("returns previous instance if there is one", function() {
-          return expect(trackTwo.prev()).toEqual(trackOne);
-        });
-        return it("returns 'undefined' if there is no predecessor", function() {
-          return expect(trackOne.prev()).toEqual(void 0);
         });
       });
     });
