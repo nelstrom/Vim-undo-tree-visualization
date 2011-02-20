@@ -20,6 +20,11 @@
     Chronolog.active = function() {
       return this.instances[this.activeChronologIndex];
     };
+    Chronolog.reverse = function() {
+      if (this.activeChronologIndex !== 0) {
+        return this.activeChronologIndex--;
+      }
+    };
     Chronolog.advance = function() {
       if (this.activeChronologIndex !== this.instances.length - 1) {
         return this.activeChronologIndex++;

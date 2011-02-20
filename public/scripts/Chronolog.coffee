@@ -17,6 +17,9 @@ class Chronolog
   @active: ->
     @instances[@activeChronologIndex]
 
+  @reverse: ->
+    unless @activeChronologIndex == 0
+      @activeChronologIndex--
   @advance: ->
     unless @activeChronologIndex == @instances.length-1
       @activeChronologIndex++
