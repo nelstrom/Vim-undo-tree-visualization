@@ -68,10 +68,39 @@ describe "Timeline", ->
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(five)
+
       describe "on track", ->
 
     describe "reverse", ->
       describe "chronologically", ->
+        it "keeps to current track if it can (2a -> 1a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          Chronolog.activeChronologIndex = 1 # two
+          Timeline.reverse('chronological')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(one)
+
+        it "keeps to current track if it can (2b -> 1b)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          Chronolog.activeChronologIndex = 1 # two
+          Timeline.reverse('chronological')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(one)
+
+        it "switches track if it must (3a -> 2b)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          Chronolog.activeChronologIndex = 2 # three
+          Timeline.reverse('chronological')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(two)
+
+        it "switches track if it must (5b -> 4a)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          Chronolog.activeChronologIndex = 4 # five
+          Timeline.reverse('chronological')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(four)
+
       describe "on track", ->
 
   describe "object", ->
