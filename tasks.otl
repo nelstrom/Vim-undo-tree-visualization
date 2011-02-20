@@ -1,7 +1,7 @@
-[_] general
+[X] general
 	[X] add numbers below nodes
 	[X] port over the faux-buffer with text
-	[_] no buttons for story
+	[X] no buttons for story
 	[X] use keyboard keys for story
 [_] buttons
 	[X] disable when inapplicable
