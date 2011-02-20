@@ -1,5 +1,6 @@
 describe "Timeline", ->
 
+  one = two = three = four = five = six = null
   trackOne = trackTwo = null
 
   beforeEach ->
@@ -43,4 +44,8 @@ describe "Timeline", ->
       it "returns its coordinates as an array", ->
         expect(trackOne.coordinates).toEqual ['s1','s2','b3','b4']
         expect(trackTwo.coordinates).toEqual ['s1','s2','t3','t5','t6']
+
+    describe "chronologs", ->
+      it "returns a list of chronologs", ->
+        expect(trackOne.chronologs).toEqual [one, two, three, four]
 

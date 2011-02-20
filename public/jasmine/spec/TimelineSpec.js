@@ -1,9 +1,9 @@
 (function() {
   describe("Timeline", function() {
-    var trackOne, trackTwo;
+    var five, four, one, six, three, trackOne, trackTwo, two;
+    one = two = three = four = five = six = null;
     trackOne = trackTwo = null;
     beforeEach(function() {
-      var five, four, one, six, three, two;
       Chronolog.reset();
       one = new Chronolog({
         coordinates: 's1'
@@ -49,10 +49,15 @@
       return describe("prevChronolog", function() {});
     });
     return describe("object", function() {
-      return describe("coordinates", function() {
+      describe("coordinates", function() {
         return it("returns its coordinates as an array", function() {
           expect(trackOne.coordinates).toEqual(['s1', 's2', 'b3', 'b4']);
           return expect(trackTwo.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
+        });
+      });
+      return describe("chronologs", function() {
+        return it("returns a list of chronologs", function() {
+          return expect(trackOne.chronologs).toEqual([one, two, three, four]);
         });
       });
     });
