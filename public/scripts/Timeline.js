@@ -17,6 +17,9 @@
     };
     Timeline.instances = [];
     Timeline.currentTrackIndex = 0;
+    Timeline.currentTrack = function() {
+      return this.instances[this.currentTrackIndex];
+    };
     Timeline.reset = function() {
       return this.instances = [];
     };

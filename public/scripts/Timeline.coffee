@@ -14,6 +14,9 @@ class Timeline
   @instances: []
   @currentTrackIndex: 0
 
+  @currentTrack: ->
+    @instances[@currentTrackIndex]
+
   @reset: ->
     @instances = []
 
