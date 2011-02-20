@@ -9,6 +9,9 @@ describe "Chronolog", ->
       coordinates: 's2'
 
   describe "Class", ->
+    describe "instances", ->
+      it "maintains a record of all instances", ->
+        expect(Chronolog.instances).toEqual [logOne, logTwo]
 
   describe "object", ->
     describe "coordinates", ->
