@@ -43,28 +43,28 @@ describe "Timeline", ->
 
         it "keeps to current track if it can (1a -> 2a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 0 # one
+          one.activate()
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(two)
 
         it "keeps to current track if it can (1b -> 2b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 0 # one
+          one.activate()
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(two)
 
         it "switches track if it must (2b -> 3a)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 1 # two
+          two.activate()
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(three)
 
         it "switches track if it must (4a -> 5b)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 3 # four
+          four.activate()
           Timeline.advance('chronological')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(five)
@@ -72,42 +72,42 @@ describe "Timeline", ->
       describe "on track", ->
         it "keeps to current track (1a -> 2a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 0 # one
+          one.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(two)
 
         it "keeps to current track (1b -> 2b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 0 # one
+          one.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(two)
 
         it "keeps to current track (2a -> 3a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 1 # two
+          two.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(three)
 
         it "keeps to current track (2b -> 5b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 1 # two
+          two.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(five)
 
         it "does nothing when at end of line (4a -> 4a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 3 # four
+          four.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(four)
 
         it "does nothing when at end of line (6b -> 6b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 5 # six
+          six.activate()
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(six)
@@ -117,21 +117,21 @@ describe "Timeline", ->
       describe "chronologically", ->
         it "keeps to current track if it can (2a -> 1a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
-          Chronolog.activeChronologIndex = 1 # two
+          two.activate()
           Timeline.reverse('chronological')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(one)
 
         it "keeps to current track if it can (2b -> 1b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 1 # two
+          two.activate()
           Timeline.reverse('chronological')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(one)
 
         it "switches track if it must (5b -> 4a)", ->
           Timeline.currentTrackIndex     = 1 # trackB
-          Chronolog.activeChronologIndex = 4 # five
+          five.activate()
           Timeline.reverse('chronological')
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(four)

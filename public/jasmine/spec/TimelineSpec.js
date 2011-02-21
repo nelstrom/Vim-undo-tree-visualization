@@ -53,28 +53,28 @@
         describe("chronologically", function() {
           it("keeps to current track if it can (1a -> 2a)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 0;
+            one.activate();
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(two);
           });
           it("keeps to current track if it can (1b -> 2b)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 0;
+            one.activate();
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(two);
           });
           it("switches track if it must (2b -> 3a)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 1;
+            two.activate();
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(three);
           });
           return it("switches track if it must (4a -> 5b)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 3;
+            four.activate();
             Timeline.advance('chronological');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(five);
@@ -83,42 +83,42 @@
         return describe("on track", function() {
           it("keeps to current track (1a -> 2a)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 0;
+            one.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(two);
           });
           it("keeps to current track (1b -> 2b)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 0;
+            one.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(two);
           });
           it("keeps to current track (2a -> 3a)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 1;
+            two.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(three);
           });
           it("keeps to current track (2b -> 5b)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 1;
+            two.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(five);
           });
           it("does nothing when at end of line (4a -> 4a)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 3;
+            four.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(four);
           });
           return it("does nothing when at end of line (6b -> 6b)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 5;
+            six.activate();
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(six);
@@ -129,21 +129,21 @@
         describe("chronologically", function() {
           it("keeps to current track if it can (2a -> 1a)", function() {
             Timeline.currentTrackIndex = 0;
-            Chronolog.activeChronologIndex = 1;
+            two.activate();
             Timeline.reverse('chronological');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(one);
           });
           it("keeps to current track if it can (2b -> 1b)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 1;
+            two.activate();
             Timeline.reverse('chronological');
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(one);
           });
           return it("switches track if it must (5b -> 4a)", function() {
             Timeline.currentTrackIndex = 1;
-            Chronolog.activeChronologIndex = 4;
+            five.activate();
             Timeline.reverse('chronological');
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(four);
