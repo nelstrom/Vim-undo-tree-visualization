@@ -182,23 +182,55 @@
       });
       describe("atStart()", function() {
         describe("track", function() {
-          return it("returns true at start of track", function() {
+          it("returns true at start of track", function() {
             trackA.activate();
             one.activate();
             return expect(Timeline.atStart('track')).toEqual(true);
           });
+          return it("returns false at end of track", function() {
+            trackA.activate();
+            two.activate();
+            return expect(Timeline.atStart('track')).toEqual(false);
+          });
         });
         return describe("chronological", function() {
-          return it("returns true at start of track", function() {
+          it("returns true at start of track", function() {
             trackA.activate();
             one.activate();
-            return expect(Timeline.atStart('chronoligical')).toEqual(true);
+            return expect(Timeline.atStart('chronological')).toEqual(true);
+          });
+          return it("returns false when not at start of track", function() {
+            trackA.activate();
+            two.activate();
+            return expect(Timeline.atStart('chronological')).toEqual(false);
           });
         });
       });
       describe("atFinish()", function() {
-        describe("track", function() {});
-        return describe("chronological", function() {});
+        describe("track", function() {
+          it("returns false at start of track", function() {
+            trackA.activate();
+            one.activate();
+            return expect(Timeline.atFinish('track')).toEqual(false);
+          });
+          return it("returns true at end of track", function() {
+            trackA.activate();
+            four.activate();
+            return expect(Timeline.atFinish('track')).toEqual(true);
+          });
+        });
+        return describe("chronological", function() {
+          it("returns false at start of track", function() {
+            trackA.activate();
+            one.activate();
+            return expect(Timeline.atFinish('chronological')).toEqual(false);
+          });
+          return it("returns true at end of track", function() {
+            trackA.activate();
+            six.activate();
+            return expect(Timeline.atFinish('chronological')).toEqual(true);
+          });
+        });
       });
       describe("asDocumentState()", function() {
         it("returns an object that can be used to construct a DocumentState object", function() {

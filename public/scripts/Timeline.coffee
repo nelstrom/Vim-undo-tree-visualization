@@ -67,6 +67,14 @@ class Timeline
     activeChronolog = Chronolog.active()
     Chronolog.instances[0] == activeChronolog
     
+  @atFinish: (method) ->
+    activeChronolog = Chronolog.active()
+    if method == 'track'
+      activeTrack = Timeline.currentTrack()
+      activeTrack.chronologs[activeTrack.chronologs.length-1] == activeChronolog
+    else if method == 'chronological'
+      Chronolog.instances[Chronolog.instances.length-1] == activeChronolog
+    
 
   @switchTracks: ->
     if @currentTrackIndex == 0

@@ -173,15 +173,39 @@ describe "Timeline", ->
           trackA.activate()
           one.activate()
           expect(Timeline.atStart('track')).toEqual true
+        it "returns false at end of track", ->
+          trackA.activate()
+          two.activate()
+          expect(Timeline.atStart('track')).toEqual false
       describe "chronological", ->
         it "returns true at start of track", ->
           trackA.activate()
           one.activate()
-          expect(Timeline.atStart('chronoligical')).toEqual true
+          expect(Timeline.atStart('chronological')).toEqual true
+        it "returns false when not at start of track", ->
+          trackA.activate()
+          two.activate()
+          expect(Timeline.atStart('chronological')).toEqual false
 
     describe "atFinish()", ->
       describe "track", ->
+        it "returns false at start of track", ->
+          trackA.activate()
+          one.activate()
+          expect(Timeline.atFinish('track')).toEqual false
+        it "returns true at end of track", ->
+          trackA.activate()
+          four.activate()
+          expect(Timeline.atFinish('track')).toEqual true
       describe "chronological", ->
+        it "returns false at start of track", ->
+          trackA.activate()
+          one.activate()
+          expect(Timeline.atFinish('chronological')).toEqual false
+        it "returns true at end of track", ->
+          trackA.activate()
+          six.activate()
+          expect(Timeline.atFinish('chronological')).toEqual true
 
     describe "asDocumentState()", ->
       it "returns an object that can be used to construct a DocumentState object", ->
