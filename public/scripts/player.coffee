@@ -283,34 +283,6 @@ updateBufferContents = () ->
   current = DocumentState.active()
   $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()])
 
-undo = () ->
-  Timeline.reverseAndUpdateState('track')
-  DocumentState.advance()
-  transitionStates()
-  disableButtons()
-  return false
-
-redo = () ->
-  Timeline.advanceAndUpdateState('track')
-  DocumentState.advance()
-  transitionStates()
-  disableButtons()
-  return false
-
-earlier = () ->
-  Timeline.reverseAndUpdateState('chronological')
-  DocumentState.advance()
-  transitionStates()
-  disableButtons()
-  return false
-
-later = () ->
-  Timeline.advanceAndUpdateState('chronological')
-  DocumentState.advance()
-  transitionStates()
-  disableButtons()
-  return false
-
 handleButton = () ->
   unless $(this).hasClass('disabled')
     switch $(this).attr('class')
@@ -336,15 +308,6 @@ disableButtons = () ->
     if Timeline.atFinish('chronological') and klass == 'later'
       $(this).addClass('disabled')
 
-keyboardHandler = (event) ->
-  advanceKeys = [cursorRight, cursorDown, space] = [39, 40, 32]
-  reverseKeys = [cursorLeft, cursorUp] = [37, 38]
-
-  if advanceKeys.indexOf(event.keyCode) >= 0
-    later()
-  if reverseKeys.indexOf(event.keyCode) >= 0
-    earlier()
-
 graphMarkup = """
 <div id="vim-history-buffer">
   <code><pre></pre></code>
@@ -362,7 +325,6 @@ jQuery($ =>
   $("#vim-history-visualization").append(graphMarkup)
   $("#vim-history-buttons a").click(handleButton)
   disableButtons()
-  $(window).keydown(keyboardHandler)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
   drawState()
 )

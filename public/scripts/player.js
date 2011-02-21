@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, disableButtons, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, handleButton, keyboardHandler, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, disableButtons, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, forkAngle, generatePath, graphMarkup, graphics, handleButton, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -223,34 +223,6 @@
     current = DocumentState.active();
     return $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()]);
   };
-  undo = function() {
-    Timeline.reverseAndUpdateState('track');
-    DocumentState.advance();
-    transitionStates();
-    disableButtons();
-    return false;
-  };
-  redo = function() {
-    Timeline.advanceAndUpdateState('track');
-    DocumentState.advance();
-    transitionStates();
-    disableButtons();
-    return false;
-  };
-  earlier = function() {
-    Timeline.reverseAndUpdateState('chronological');
-    DocumentState.advance();
-    transitionStates();
-    disableButtons();
-    return false;
-  };
-  later = function() {
-    Timeline.advanceAndUpdateState('chronological');
-    DocumentState.advance();
-    transitionStates();
-    disableButtons();
-    return false;
-  };
   handleButton = function() {
     if (!$(this).hasClass('disabled')) {
       switch ($(this).attr('class')) {
@@ -291,23 +263,11 @@
       }
     });
   };
-  keyboardHandler = function(event) {
-    var advanceKeys, cursorDown, cursorLeft, cursorRight, cursorUp, reverseKeys, space, _ref, _ref2;
-    advanceKeys = (_ref = [39, 40, 32], cursorRight = _ref[0], cursorDown = _ref[1], space = _ref[2], _ref);
-    reverseKeys = (_ref2 = [37, 38], cursorLeft = _ref2[0], cursorUp = _ref2[1], _ref2);
-    if (advanceKeys.indexOf(event.keyCode) >= 0) {
-      later();
-    }
-    if (reverseKeys.indexOf(event.keyCode) >= 0) {
-      return earlier();
-    }
-  };
   graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
     $("#vim-history-visualization").append(graphMarkup);
     $("#vim-history-buttons a").click(handleButton);
     disableButtons();
-    $(window).keydown(keyboardHandler);
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);
     return drawState();
   }, this)));
