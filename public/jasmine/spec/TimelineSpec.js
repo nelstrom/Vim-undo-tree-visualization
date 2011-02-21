@@ -125,7 +125,7 @@
           });
         });
       });
-      return describe("reverse()", function() {
+      describe("reverse()", function() {
         describe("chronologically", function() {
           it("keeps to current track if it can (2a -> 1a)", function() {
             trackA.activate();
@@ -178,6 +178,22 @@
             expect(Timeline.currentTrack()).toEqual(trackB);
             return expect(Chronolog.active()).toEqual(two);
           });
+        });
+      });
+      return describe("asDocumentState()", function() {
+        return it("returns an object that can be used to construct a DocumentState object", function() {
+          var expectedObject;
+          trackA.activate();
+          one.activate();
+          expectedObject = {
+            timelineOriginal: {
+              points: 's1,s2,b3,b4'
+            },
+            timelineRevised: {
+              points: 's1,s2,t3,t5,t6'
+            }
+          };
+          return expect(Timeline.asDocumentState()).toEqual(expectedObject);
         });
       });
     });

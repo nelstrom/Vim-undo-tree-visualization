@@ -27,6 +27,7 @@ describe "Timeline", ->
       coordinates: 's1,s2,t3,t5,t6'
 
   describe "Class", ->
+
     describe "instances", ->
       it "maintains a record of all instances", ->
         expect(Timeline.instances).toEqual [trackA, trackB]
@@ -38,6 +39,7 @@ describe "Timeline", ->
     describe "currentChronolog", ->
       it "returns the currently active chronolog", ->
         expect(Timeline.currentChronolog()).toEqual one
+
     describe "advance()", ->
       describe "chronologically", ->
 
@@ -164,6 +166,19 @@ describe "Timeline", ->
           Timeline.reverse('track')
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(two)
+
+    describe "asDocumentState()", ->
+      it "returns an object that can be used to construct a DocumentState object", ->
+        trackA.activate()
+        one.activate()
+        expectedObject =
+          timelineOriginal:
+            points: 's1,s2,b3,b4'
+          timelineRevised:
+            points: 's1,s2,t3,t5,t6'
+
+        expect(Timeline.asDocumentState()).toEqual expectedObject
+
 
   describe "object", ->
     describe "coordinates", ->
