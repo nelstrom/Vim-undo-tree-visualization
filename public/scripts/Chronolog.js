@@ -5,20 +5,17 @@
       this.coordinates = config.coordinates;
       Chronolog.instances.push(this);
     }
+    Chronolog.prototype.myIndex = function() {
+      return Chronolog.instances.indexOf(this);
+    };
     Chronolog.prototype.next = function() {
-      var myIndex;
-      myIndex = Chronolog.instances.indexOf(this);
-      return Chronolog.instances[myIndex + 1];
+      return Chronolog.instances[this.myIndex() + 1];
     };
     Chronolog.prototype.prev = function() {
-      var myIndex;
-      myIndex = Chronolog.instances.indexOf(this);
-      return Chronolog.instances[myIndex - 1];
+      return Chronolog.instances[this.myIndex() - 1];
     };
     Chronolog.prototype.activate = function() {
-      var myIndex;
-      myIndex = Chronolog.instances.indexOf(this);
-      return Chronolog.activeChronologIndex = myIndex;
+      return Chronolog.activeChronologIndex = this.myIndex();
     };
     Chronolog.instances = [];
     Chronolog.activeChronologIndex = 0;

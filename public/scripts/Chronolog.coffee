@@ -3,17 +3,17 @@ class Chronolog
     @coordinates = config.coordinates
     Chronolog.instances.push(this)
 
+  myIndex: ->
+    Chronolog.instances.indexOf(this)
+
   next: ->
-    myIndex = Chronolog.instances.indexOf(this)
-    Chronolog.instances[myIndex+1]
+    Chronolog.instances[@myIndex() + 1]
 
   prev: ->
-    myIndex = Chronolog.instances.indexOf(this)
-    Chronolog.instances[myIndex-1]
+    Chronolog.instances[@myIndex() - 1]
 
   activate: ->
-    myIndex = Chronolog.instances.indexOf(this)
-    Chronolog.activeChronologIndex = myIndex
+    Chronolog.activeChronologIndex = @myIndex()
 
   @instances: []
   @activeChronologIndex: 0
