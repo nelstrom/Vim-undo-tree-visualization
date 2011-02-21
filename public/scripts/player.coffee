@@ -323,7 +323,7 @@ graphMarkup = """
 <div id="vim-history-buttons">
   <a class="undo" href="#">undo</a>
   <a class="redo" href="#">redo</a>
-  <a class="later" href="#">later</a>
+  <a class="later disabled" href="#">later</a>
   <a class="earlier" href="#">earlier</a>
 </div>
 <div id="vim-history-graph"/>

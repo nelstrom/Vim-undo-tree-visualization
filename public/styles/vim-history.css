@@ -28,6 +28,12 @@
   text-decoration: none;
   color: black;
 }
+#vim-history-buttons a.disabled,
+#vim-history-buttons a.disabled:hover {
+  color: grey;
+  background-color: white;
+  cursor: default;
+}
 #vim-history-buttons a:hover {
   color: white;
   background-color: black;
