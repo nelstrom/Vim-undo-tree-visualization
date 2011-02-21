@@ -65,7 +65,10 @@ class Timeline
         points: @instances[1].coordinates.join(",")
       nodes: []
   
-    
+    for node in Chronolog.instances
+      configObject.nodes.push
+        position: node.coordinates
+        state: if node.isActive() then 'on' else 'off'
 
     if Timeline.currentTrackIndex == 0
       configObject.timelineOriginal['active'] = true

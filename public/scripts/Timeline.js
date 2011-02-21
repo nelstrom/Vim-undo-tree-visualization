@@ -68,7 +68,7 @@
       }
     };
     Timeline.asDocumentState = function() {
-      var configObject;
+      var configObject, node, _i, _len, _ref;
       configObject = {
         timelineOriginal: {
           points: this.instances[0].coordinates.join(",")
@@ -78,6 +78,14 @@
         },
         nodes: []
       };
+      _ref = Chronolog.instances;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        node = _ref[_i];
+        configObject.nodes.push({
+          position: node.coordinates,
+          state: node.isActive() ? 'on' : 'off'
+        });
+      }
       if (Timeline.currentTrackIndex === 0) {
         configObject.timelineOriginal['active'] = true;
       } else {

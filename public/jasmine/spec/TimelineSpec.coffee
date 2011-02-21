@@ -209,7 +209,6 @@ describe "Timeline", ->
             { position: 't6', state: 'off' }
           ]
 
-
         expect(Timeline.asDocumentState()).toEqual expectedObject
 
 
