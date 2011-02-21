@@ -24,11 +24,12 @@
       return Chronolog.active();
     };
     Timeline.advance = function(method) {
-      var activeChronolog, activeTrack;
+      var activeChronolog, activeTrack, nextChronolog;
       activeChronolog = Chronolog.active();
       activeTrack = Timeline.currentTrack();
       if (method === 'track') {
-        return activeTrack.advance();
+        nextChronolog = activeTrack.next();
+        return nextChronolog.activate();
       } else if (method === 'chronological') {
         if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
           Timeline.switchTracks();

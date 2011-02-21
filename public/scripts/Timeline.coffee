@@ -13,7 +13,6 @@ class Timeline
   prev: ->
     @chronologs[@activeChronologIndex()-1]
 
-
   @instances: []
   @currentTrackIndex: 0
 
@@ -27,7 +26,8 @@ class Timeline
     activeChronolog = Chronolog.active()
     activeTrack = Timeline.currentTrack()
     if method == 'track'
-      activeTrack.advance()
+      nextChronolog = activeTrack.next()
+      nextChronolog.activate()
     else if method == 'chronological'
       if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
         Timeline.switchTracks()
