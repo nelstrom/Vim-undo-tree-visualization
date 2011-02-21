@@ -224,28 +224,28 @@
     return $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()]);
   };
   undo = function() {
-    return earlier();
+    console.log('undo!');
+    Timeline.reverseAndUpdateState('track');
+    DocumentState.advance();
+    return false;
   };
   redo = function() {
-    return later();
+    console.log('redo!');
+    Timeline.advanceAndUpdateState('track');
+    DocumentState.advance();
+    return false;
   };
   earlier = function() {
-    var current;
-    current = DocumentState.active();
-    if (current.hasPredecessor()) {
-      DocumentState.reverse();
-      transitionStates();
-      return false;
-    }
+    Timeline.reverseAndUpdateState('chronological');
+    DocumentState.advance();
+    transitionStates();
+    return false;
   };
   later = function() {
-    var current;
-    current = DocumentState.active();
-    if (current.hasSuccessor()) {
-      DocumentState.advance();
-      transitionStates();
-      return false;
-    }
+    Timeline.advanceAndUpdateState('chronological');
+    DocumentState.advance();
+    transitionStates();
+    return false;
   };
   keyboardHandler = function(event) {
     var advanceKeys, cursorDown, cursorLeft, cursorRight, cursorUp, reverseKeys, space, _ref, _ref2;

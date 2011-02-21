@@ -284,24 +284,28 @@ updateBufferContents = () ->
   $("#vim-history-buffer code pre").html(bufferContents[current.activeNodeIndex()])
 
 undo = () ->
-  earlier() # TODO: implement this!
+  console.log('undo!')
+  Timeline.reverseAndUpdateState('track')
+  DocumentState.advance()
+  return false
 
 redo = () ->
-  later()   # TODO: implement this!
+  console.log('redo!')
+  Timeline.advanceAndUpdateState('track')
+  DocumentState.advance()
+  return false
 
 earlier = () ->
-  current = DocumentState.active()
-  if current.hasPredecessor()
-    DocumentState.reverse()
-    transitionStates()
-    return false
+  Timeline.reverseAndUpdateState('chronological')
+  DocumentState.advance()
+  transitionStates()
+  return false
 
 later = () ->
-  current = DocumentState.active()
-  if current.hasSuccessor()
-    DocumentState.advance()
-    transitionStates()
-    return false
+  Timeline.advanceAndUpdateState('chronological')
+  DocumentState.advance()
+  transitionStates()
+  return false
 
 keyboardHandler = (event) ->
   advanceKeys = [cursorRight, cursorDown, space] = [39, 40, 32]
