@@ -220,7 +220,7 @@
         return it("returns an object that can be used to construct a DocumentState object", function() {
           var expectedObject;
           trackB.activate();
-          one.activate();
+          five.activate();
           expectedObject = {
             timelineOriginal: {
               points: 's1,s2,b3,b4'
@@ -232,7 +232,7 @@
             nodes: [
               {
                 position: 's1',
-                state: 'on'
+                state: 'off'
               }, {
                 position: 's2',
                 state: 'off'
@@ -244,7 +244,7 @@
                 state: 'off'
               }, {
                 position: 't5',
-                state: 'off'
+                state: 'on'
               }, {
                 position: 't6',
                 state: 'off'

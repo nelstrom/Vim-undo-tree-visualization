@@ -192,7 +192,7 @@ describe "Timeline", ->
 
       it "returns an object that can be used to construct a DocumentState object", ->
         trackB.activate()
-        one.activate()
+        five.activate()
 
         expectedObject =
           timelineOriginal:
@@ -201,11 +201,11 @@ describe "Timeline", ->
             points: 's1,s2,t3,t5,t6'
             active: true
           nodes: [
-            { position: 's1', state: 'on' }
+            { position: 's1', state: 'off' }
             { position: 's2', state: 'off' }
             { position: 'b3', state: 'off' }
             { position: 'b4', state: 'off' }
-            { position: 't5', state: 'off' }
+            { position: 't5', state: 'on' }
             { position: 't6', state: 'off' }
           ]
 
