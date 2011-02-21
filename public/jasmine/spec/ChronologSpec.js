@@ -71,7 +71,9 @@
       return describe("activate()", function() {
         return it("turns the caller into the active Chronolog", function() {
           logTwo.activate();
-          return expect(Chronolog.activeChronologIndex).toEqual(1);
+          expect(Chronolog.activeChronologIndex).toEqual(1);
+          logOne.activate();
+          return expect(Chronolog.activeChronologIndex).toEqual(0);
         });
       });
     });

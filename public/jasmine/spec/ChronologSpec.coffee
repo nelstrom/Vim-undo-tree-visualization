@@ -55,3 +55,5 @@ describe "Chronolog", ->
       it "turns the caller into the active Chronolog", ->
         logTwo.activate()
         expect(Chronolog.activeChronologIndex).toEqual 1
+        logOne.activate()
+        expect(Chronolog.activeChronologIndex).toEqual 0
