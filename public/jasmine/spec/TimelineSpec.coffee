@@ -71,6 +71,12 @@ describe "Timeline", ->
 
       describe "on track", ->
         it "keeps to current track (1a -> 2a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          Chronolog.activeChronologIndex = 0 # one
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(two)
+
         it "keeps to current track (1b -> 2b)", ->
         it "keeps to current track (2a -> 3a)", ->
         it "keeps to current track (2b -> 5b)", ->

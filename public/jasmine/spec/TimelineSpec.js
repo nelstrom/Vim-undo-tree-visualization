@@ -81,7 +81,13 @@
           });
         });
         return describe("on track", function() {
-          it("keeps to current track (1a -> 2a)", function() {});
+          it("keeps to current track (1a -> 2a)", function() {
+            Timeline.currentTrackIndex = 0;
+            Chronolog.activeChronologIndex = 0;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackA);
+            return expect(Chronolog.active()).toEqual(two);
+          });
           it("keeps to current track (1b -> 2b)", function() {});
           it("keeps to current track (2a -> 3a)", function() {});
           it("keeps to current track (2b -> 5b)", function() {});
