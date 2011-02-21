@@ -307,6 +307,23 @@ later = () ->
   transitionStates()
   return false
 
+disableButtons = () ->
+  $("#vim-history-buttons a").each ->
+    $(this).removeClass('disabled')
+    klass = $(this).attr('class')
+    if Timeline.atStart('track') and klass == 'undo'
+      $(this).addClass('disabled')
+    if Timeline.atStart('chronological') and klass == 'earlier'
+      $(this).addClass('disabled')
+    if Timeline.atFinish('track') and klass == 'redo'
+      $(this).addClass('disabled')
+    if Timeline.atFinish('chronological') and klass == 'later'
+      $(this).addClass('disabled')
+      #when 'undo'    then $(this).addClass('disabled') if Timeline.atStart('track')
+      #when 'redo'    then $(this).addClass('disabled') if Timeline.atFinish('track')
+      #when 'earlier' then $(this).addClass('disabled') if Timeline.atStart('chronological')
+      #when 'later'   then $(this).addClass('disabled') if Timeline.atFinish('chronological')
+
 keyboardHandler = (event) ->
   advanceKeys = [cursorRight, cursorDown, space] = [39, 40, 32]
   reverseKeys = [cursorLeft, cursorUp] = [37, 38]
@@ -323,7 +340,7 @@ graphMarkup = """
 <div id="vim-history-buttons">
   <a class="undo" href="#">undo</a>
   <a class="redo" href="#">redo</a>
-  <a class="later disabled" href="#">later</a>
+  <a class="later" href="#">later</a>
   <a class="earlier" href="#">earlier</a>
 </div>
 <div id="vim-history-graph"/>
@@ -335,6 +352,7 @@ jQuery($ =>
   $("#vim-history-buttons a.redo").click(redo)
   $("#vim-history-buttons a.later").click(later)
   $("#vim-history-buttons a.earlier").click(earlier)
+  disableButtons()
   $(window).keydown(keyboardHandler)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
   drawState()

@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, keyboardHandler, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, disableButtons, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, keyboardHandler, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -247,6 +247,25 @@
     transitionStates();
     return false;
   };
+  disableButtons = function() {
+    return $("#vim-history-buttons a").each(function() {
+      var klass;
+      $(this).removeClass('disabled');
+      klass = $(this).attr('class');
+      if (Timeline.atStart('track') && klass === 'undo') {
+        $(this).addClass('disabled');
+      }
+      if (Timeline.atStart('chronological') && klass === 'earlier') {
+        $(this).addClass('disabled');
+      }
+      if (Timeline.atFinish('track') && klass === 'redo') {
+        $(this).addClass('disabled');
+      }
+      if (Timeline.atFinish('chronological') && klass === 'later') {
+        return $(this).addClass('disabled');
+      }
+    });
+  };
   keyboardHandler = function(event) {
     var advanceKeys, cursorDown, cursorLeft, cursorRight, cursorUp, reverseKeys, space, _ref, _ref2;
     advanceKeys = (_ref = [39, 40, 32], cursorRight = _ref[0], cursorDown = _ref[1], space = _ref[2], _ref);
@@ -258,13 +277,14 @@
       return earlier();
     }
   };
-  graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later disabled\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
+  graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
     $("#vim-history-visualization").append(graphMarkup);
     $("#vim-history-buttons a.undo").click(undo);
     $("#vim-history-buttons a.redo").click(redo);
     $("#vim-history-buttons a.later").click(later);
     $("#vim-history-buttons a.earlier").click(earlier);
+    disableButtons();
     $(window).keydown(keyboardHandler);
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);
     return drawState();
