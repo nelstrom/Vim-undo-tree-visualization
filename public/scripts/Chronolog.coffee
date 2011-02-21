@@ -11,6 +11,10 @@ class Chronolog
     myIndex = Chronolog.instances.indexOf(this)
     Chronolog.instances[myIndex-1]
 
+  activate: ->
+    myIndex = Chronolog.instances.indexOf(this)
+    Chronolog.activeChronologIndex = myIndex
+
   @instances: []
   @activeChronologIndex: 0
 

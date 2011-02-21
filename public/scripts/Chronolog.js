@@ -15,6 +15,11 @@
       myIndex = Chronolog.instances.indexOf(this);
       return Chronolog.instances[myIndex - 1];
     };
+    Chronolog.prototype.activate = function() {
+      var myIndex;
+      myIndex = Chronolog.instances.indexOf(this);
+      return Chronolog.activeChronologIndex = myIndex;
+    };
     Chronolog.instances = [];
     Chronolog.activeChronologIndex = 0;
     Chronolog.active = function() {
