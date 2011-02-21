@@ -9,6 +9,11 @@ class Timeline
     currentIndex = @chronologs.indexOf(activeChronolog)
     nextChronolog = @chronologs[currentIndex+1]
 
+  prev: ->
+    activeChronolog = Chronolog.active()
+    currentIndex = @chronologs.indexOf(activeChronolog)
+    prevChronolog = @chronologs[currentIndex-1]
+
 
   @instances: []
   @currentTrackIndex: 0

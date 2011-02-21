@@ -12,6 +12,12 @@
       currentIndex = this.chronologs.indexOf(activeChronolog);
       return nextChronolog = this.chronologs[currentIndex + 1];
     };
+    Timeline.prototype.prev = function() {
+      var activeChronolog, currentIndex, prevChronolog;
+      activeChronolog = Chronolog.active();
+      currentIndex = this.chronologs.indexOf(activeChronolog);
+      return prevChronolog = this.chronologs[currentIndex - 1];
+    };
     Timeline.instances = [];
     Timeline.currentTrackIndex = 0;
     Timeline.currentTrack = function() {
