@@ -227,24 +227,28 @@
     Timeline.reverseAndUpdateState('track');
     DocumentState.advance();
     transitionStates();
+    disableButtons();
     return false;
   };
   redo = function() {
     Timeline.advanceAndUpdateState('track');
     DocumentState.advance();
     transitionStates();
+    disableButtons();
     return false;
   };
   earlier = function() {
     Timeline.reverseAndUpdateState('chronological');
     DocumentState.advance();
     transitionStates();
+    disableButtons();
     return false;
   };
   later = function() {
     Timeline.advanceAndUpdateState('chronological');
     DocumentState.advance();
     transitionStates();
+    disableButtons();
     return false;
   };
   disableButtons = function() {

@@ -287,24 +287,28 @@ undo = () ->
   Timeline.reverseAndUpdateState('track')
   DocumentState.advance()
   transitionStates()
+  disableButtons()
   return false
 
 redo = () ->
   Timeline.advanceAndUpdateState('track')
   DocumentState.advance()
   transitionStates()
+  disableButtons()
   return false
 
 earlier = () ->
   Timeline.reverseAndUpdateState('chronological')
   DocumentState.advance()
   transitionStates()
+  disableButtons()
   return false
 
 later = () ->
   Timeline.advanceAndUpdateState('chronological')
   DocumentState.advance()
   transitionStates()
+  disableButtons()
   return false
 
 disableButtons = () ->
@@ -319,10 +323,6 @@ disableButtons = () ->
       $(this).addClass('disabled')
     if Timeline.atFinish('chronological') and klass == 'later'
       $(this).addClass('disabled')
-      #when 'undo'    then $(this).addClass('disabled') if Timeline.atStart('track')
-      #when 'redo'    then $(this).addClass('disabled') if Timeline.atFinish('track')
-      #when 'earlier' then $(this).addClass('disabled') if Timeline.atStart('chronological')
-      #when 'later'   then $(this).addClass('disabled') if Timeline.atFinish('chronological')
 
 keyboardHandler = (event) ->
   advanceKeys = [cursorRight, cursorDown, space] = [39, 40, 32]
