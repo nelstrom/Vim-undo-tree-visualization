@@ -180,7 +180,7 @@
           });
         });
       });
-      return describe("asDocumentState()", function() {
+      describe("asDocumentState()", function() {
         it("returns an object that can be used to construct a DocumentState object", function() {
           var expectedObject;
           trackA.activate();
@@ -252,6 +252,20 @@
             ]
           };
           return expect(Timeline.asDocumentState()).toEqual(expectedObject);
+        });
+      });
+      describe("advanceAndUpdateState()", function() {
+        return it("creates two DocumentStates()", function() {
+          trackA.activate();
+          Timeline.advanceAndUpdateState('track');
+          return expect(DocumentState.states.length).toEqual(2);
+        });
+      });
+      return describe("reverseAndUpdateState()", function() {
+        return it("creates two DocumentStates()", function() {
+          trackA.activate();
+          Timeline.reverseAndUpdateState('track');
+          return expect(DocumentState.states.length).toEqual(2);
         });
       });
     });

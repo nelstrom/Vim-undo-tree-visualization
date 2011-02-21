@@ -28,6 +28,18 @@
     Timeline.currentChronolog = function() {
       return Chronolog.active();
     };
+    Timeline.advanceAndUpdateState = function(method) {
+      DocumentState.reset();
+      new DocumentState(Timeline.asDocumentState());
+      this.advance(method);
+      return new DocumentState(Timeline.asDocumentState());
+    };
+    Timeline.reverseAndUpdateState = function(method) {
+      DocumentState.reset();
+      new DocumentState(Timeline.asDocumentState());
+      this.reverse(method);
+      return new DocumentState(Timeline.asDocumentState());
+    };
     Timeline.advance = function(method) {
       var activeChronolog, activeTrack, nextChronolog;
       activeTrack = Timeline.currentTrack();

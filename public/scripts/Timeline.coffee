@@ -27,6 +27,18 @@ class Timeline
   @currentChronolog: ->
     Chronolog.active()
 
+  @advanceAndUpdateState: (method) ->
+    DocumentState.reset()
+    new DocumentState(Timeline.asDocumentState())
+    @advance(method)
+    new DocumentState(Timeline.asDocumentState())
+
+  @reverseAndUpdateState: (method) ->
+    DocumentState.reset()
+    new DocumentState(Timeline.asDocumentState())
+    @reverse(method)
+    new DocumentState(Timeline.asDocumentState())
+
   @advance: (method) ->
     activeTrack = Timeline.currentTrack()
     if method == 'track'

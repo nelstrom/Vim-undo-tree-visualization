@@ -187,7 +187,6 @@ describe "Timeline", ->
             { position: 't6', state: 'off' }
           ]
 
-
         expect(Timeline.asDocumentState()).toEqual expectedObject
 
       it "returns an object that can be used to construct a DocumentState object", ->
@@ -211,6 +210,17 @@ describe "Timeline", ->
 
         expect(Timeline.asDocumentState()).toEqual expectedObject
 
+    describe "advanceAndUpdateState()", ->
+      it "creates two DocumentStates()", ->
+        trackA.activate()
+        Timeline.advanceAndUpdateState('track')
+        expect(DocumentState.states.length).toEqual 2
+
+    describe "reverseAndUpdateState()", ->
+      it "creates two DocumentStates()", ->
+        trackA.activate()
+        Timeline.reverseAndUpdateState('track')
+        expect(DocumentState.states.length).toEqual 2
 
   describe "object", ->
     describe "coordinates", ->
