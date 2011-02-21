@@ -17,6 +17,9 @@
     Chronolog.prototype.activate = function() {
       return Chronolog.activeChronologIndex = this.myIndex();
     };
+    Chronolog.prototype.isActive = function() {
+      return Chronolog.activeChronologIndex === this.myIndex();
+    };
     Chronolog.instances = [];
     Chronolog.activeChronologIndex = 0;
     Chronolog.active = function() {

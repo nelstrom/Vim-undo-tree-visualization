@@ -15,6 +15,9 @@ class Chronolog
   activate: ->
     Chronolog.activeChronologIndex = @myIndex()
 
+  isActive: ->
+    Chronolog.activeChronologIndex == @myIndex()
+
   @instances: []
   @activeChronologIndex: 0
 

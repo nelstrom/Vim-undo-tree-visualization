@@ -57,3 +57,8 @@ describe "Chronolog", ->
         expect(Chronolog.activeChronologIndex).toEqual 1
         logOne.activate()
         expect(Chronolog.activeChronologIndex).toEqual 0
+
+    describe "isActive()", ->
+      it "returns true for active item", ->
+        logOne.activate()
+        expect(logOne.isActive()).toEqual true

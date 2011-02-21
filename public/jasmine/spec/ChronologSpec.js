@@ -68,12 +68,18 @@
           return expect(logOne.prev()).toEqual(void 0);
         });
       });
-      return describe("activate()", function() {
+      describe("activate()", function() {
         return it("turns the caller into the active Chronolog", function() {
           logTwo.activate();
           expect(Chronolog.activeChronologIndex).toEqual(1);
           logOne.activate();
           return expect(Chronolog.activeChronologIndex).toEqual(0);
+        });
+      });
+      return describe("isActive()", function() {
+        return it("returns true for active item", function() {
+          logOne.activate();
+          return expect(logOne.isActive()).toEqual(true);
         });
       });
     });
