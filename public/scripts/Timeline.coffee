@@ -63,11 +63,15 @@ class Timeline
         points: @instances[0].coordinates.join(",")
       timelineRevised:
         points: @instances[1].coordinates.join(",")
+      nodes: []
+  
+    
 
     if Timeline.currentTrackIndex == 0
       configObject.timelineOriginal['active'] = true
     else
       configObject.timelineRevised['active'] = true
+
     configObject
 
   @reset: ->

@@ -75,7 +75,8 @@
         },
         timelineRevised: {
           points: this.instances[1].coordinates.join(",")
-        }
+        },
+        nodes: []
       };
       if (Timeline.currentTrackIndex === 0) {
         configObject.timelineOriginal['active'] = true;

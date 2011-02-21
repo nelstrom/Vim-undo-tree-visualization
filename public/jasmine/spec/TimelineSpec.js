@@ -192,7 +192,28 @@
             },
             timelineRevised: {
               points: 's1,s2,t3,t5,t6'
-            }
+            },
+            nodes: [
+              {
+                position: 's1',
+                state: 'on'
+              }, {
+                position: 's2',
+                state: 'off'
+              }, {
+                position: 'b3',
+                state: 'off'
+              }, {
+                position: 'b4',
+                state: 'off'
+              }, {
+                position: 't5',
+                state: 'off'
+              }, {
+                position: 't6',
+                state: 'off'
+              }
+            ]
           };
           return expect(Timeline.asDocumentState()).toEqual(expectedObject);
         });
@@ -207,7 +228,28 @@
             timelineRevised: {
               points: 's1,s2,t3,t5,t6',
               active: true
-            }
+            },
+            nodes: [
+              {
+                position: 's1',
+                state: 'on'
+              }, {
+                position: 's2',
+                state: 'off'
+              }, {
+                position: 'b3',
+                state: 'off'
+              }, {
+                position: 'b4',
+                state: 'off'
+              }, {
+                position: 't5',
+                state: 'off'
+              }, {
+                position: 't6',
+                state: 'off'
+              }
+            ]
           };
           return expect(Timeline.asDocumentState()).toEqual(expectedObject);
         });
