@@ -30,7 +30,7 @@
 }
 #vim-history-buttons a.disabled,
 #vim-history-buttons a.disabled:hover {
-  color: grey;
+  color: #bbb;
   background-color: white;
   cursor: default;
 }

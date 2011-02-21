@@ -1,5 +1,5 @@
 (function() {
-  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, disableButtons, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, keyboardHandler, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
+  var animationPeriod, availableHeight, availableWidth, bufferContents, color, coords, disableButtons, drawActiveNode, drawActiveNodeNumber, drawActiveTimeline, drawAllNodes, drawNodeNumbers, drawState, drawTimelines, earlier, forkAngle, generatePath, graphMarkup, graphics, handleButton, keyboardHandler, later, lineLength, lineThickness, lineThinness, margin, nodeCount, numberVerticalOffset, radius, raphael, redo, totalHeight, totalWidth, transitionActiveNode, transitionActiveTimeline, transitionAllNodes, transitionStates, transitionTimelines, undo, updateBufferContents;
   var __slice = Array.prototype.slice, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   totalWidth = 640;
   totalHeight = 300;
@@ -251,6 +251,27 @@
     disableButtons();
     return false;
   };
+  handleButton = function() {
+    if (!$(this).hasClass('disabled')) {
+      switch ($(this).attr('class')) {
+        case "undo":
+          Timeline.reverseAndUpdateState('track');
+          break;
+        case "redo":
+          Timeline.advanceAndUpdateState('track');
+          break;
+        case "earlier":
+          Timeline.reverseAndUpdateState('chronological');
+          break;
+        case "later":
+          Timeline.advanceAndUpdateState('chronological');
+      }
+      DocumentState.advance();
+      transitionStates();
+      disableButtons();
+    }
+    return false;
+  };
   disableButtons = function() {
     return $("#vim-history-buttons a").each(function() {
       var klass;
@@ -284,10 +305,7 @@
   graphMarkup = "<div id=\"vim-history-buffer\">\n  <code><pre></pre></code>\n</div>\n<div id=\"vim-history-buttons\">\n  <a class=\"undo\" href=\"#\">undo</a>\n  <a class=\"redo\" href=\"#\">redo</a>\n  <a class=\"later\" href=\"#\">later</a>\n  <a class=\"earlier\" href=\"#\">earlier</a>\n</div>\n<div id=\"vim-history-graph\"/>";
   jQuery($(__bind(function() {
     $("#vim-history-visualization").append(graphMarkup);
-    $("#vim-history-buttons a.undo").click(undo);
-    $("#vim-history-buttons a.redo").click(redo);
-    $("#vim-history-buttons a.later").click(later);
-    $("#vim-history-buttons a.earlier").click(earlier);
+    $("#vim-history-buttons a").click(handleButton);
     disableButtons();
     $(window).keydown(keyboardHandler);
     raphael = Raphael("vim-history-graph", totalWidth, totalHeight);

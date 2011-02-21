@@ -311,6 +311,18 @@ later = () ->
   disableButtons()
   return false
 
+handleButton = () ->
+  unless $(this).hasClass('disabled')
+    switch $(this).attr('class')
+      when "undo" then Timeline.reverseAndUpdateState('track')
+      when "redo" then Timeline.advanceAndUpdateState('track')
+      when "earlier" then Timeline.reverseAndUpdateState('chronological')
+      when "later" then Timeline.advanceAndUpdateState('chronological')
+    DocumentState.advance()
+    transitionStates()
+    disableButtons()
+  return false
+
 disableButtons = () ->
   $("#vim-history-buttons a").each ->
     $(this).removeClass('disabled')
@@ -348,10 +360,7 @@ graphMarkup = """
 
 jQuery($ =>
   $("#vim-history-visualization").append(graphMarkup)
-  $("#vim-history-buttons a.undo").click(undo)
-  $("#vim-history-buttons a.redo").click(redo)
-  $("#vim-history-buttons a.later").click(later)
-  $("#vim-history-buttons a.earlier").click(earlier)
+  $("#vim-history-buttons a").click(handleButton)
   disableButtons()
   $(window).keydown(keyboardHandler)
   raphael = Raphael("vim-history-graph", totalWidth, totalHeight)
