@@ -4,6 +4,14 @@ class Timeline
     @coordinates = config.coordinates.split(",")
     Timeline.instances.push(this)
 
+  next: ->
+    activeChronolog = Chronolog.active()
+    currentIndex = @chronologs.indexOf(activeChronolog)
+    nextChronolog = @chronologs[currentIndex+1]
+    nextChronolog.activate()
+    Chronolog.active()
+
+
   @instances: []
   @currentTrackIndex: 0
 
@@ -16,9 +24,12 @@ class Timeline
   @advance: (method) ->
     activeChronolog = Chronolog.active()
     activeTrack = Timeline.currentTrack()
-    if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
-      Timeline.switchTracks()
-    Chronolog.advance()
+    if method == 'track'
+      activeTrack.advance()
+    else if method == 'chronological'
+      if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
+        Timeline.switchTracks()
+      Chronolog.advance()
 
   @reverse: (method) ->
     if method == 'chronological'

@@ -6,6 +6,14 @@
       this.coordinates = config.coordinates.split(",");
       Timeline.instances.push(this);
     }
+    Timeline.prototype.next = function() {
+      var activeChronolog, currentIndex, nextChronolog;
+      activeChronolog = Chronolog.active();
+      currentIndex = this.chronologs.indexOf(activeChronolog);
+      nextChronolog = this.chronologs[currentIndex + 1];
+      nextChronolog.activate();
+      return Chronolog.active();
+    };
     Timeline.instances = [];
     Timeline.currentTrackIndex = 0;
     Timeline.currentTrack = function() {
@@ -18,10 +26,14 @@
       var activeChronolog, activeTrack;
       activeChronolog = Chronolog.active();
       activeTrack = Timeline.currentTrack();
-      if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
-        Timeline.switchTracks();
+      if (method === 'track') {
+        return activeTrack.advance();
+      } else if (method === 'chronological') {
+        if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
+          Timeline.switchTracks();
+        }
+        return Chronolog.advance();
       }
-      return Chronolog.advance();
     };
     Timeline.reverse = function(method) {
       var activeChronolog, activeTrack;
