@@ -227,12 +227,14 @@
     console.log('undo!');
     Timeline.reverseAndUpdateState('track');
     DocumentState.advance();
+    transitionStates();
     return false;
   };
   redo = function() {
     console.log('redo!');
     Timeline.advanceAndUpdateState('track');
     DocumentState.advance();
+    transitionStates();
     return false;
   };
   earlier = function() {
