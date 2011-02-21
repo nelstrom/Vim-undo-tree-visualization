@@ -105,7 +105,7 @@ describe "Timeline", ->
           expect(Timeline.currentTrack()).toEqual(trackA)
           expect(Chronolog.active()).toEqual(four)
 
-        it "does nothing when at end of line (6t -> 6t)", ->
+        it "does nothing when at end of line (6b -> 6b)", ->
           Timeline.currentTrackIndex     = 1 # trackB
           Chronolog.activeChronologIndex = 5 # six
           Timeline.advance('track')
@@ -113,7 +113,7 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(six)
 
 
-    describe "reverse", ->
+    describe "reverse()", ->
       describe "chronologically", ->
         it "keeps to current track if it can (2a -> 1a)", ->
           Timeline.currentTrackIndex     = 0 # trackA
@@ -137,6 +137,33 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(four)
 
       describe "on track", ->
+        it "does nothing when at start of line (1a -> 1a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          one.activate()
+          Timeline.reverse('track')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(one)
+
+        it "does nothing when at start of line (1b -> 1b)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          one.activate()
+          Timeline.reverse('track')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(one)
+
+        it "keeps to current track (3a -> 2a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          three.activate()
+          Timeline.reverse('track')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(two)
+
+        it "keeps to current track (5b -> 2b)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          five.activate()
+          Timeline.reverse('track')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(two)
 
   describe "object", ->
     describe "coordinates", ->

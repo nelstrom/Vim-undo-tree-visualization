@@ -25,7 +25,6 @@
     };
     Timeline.advance = function(method) {
       var activeChronolog, activeTrack, nextChronolog;
-      activeChronolog = Chronolog.active();
       activeTrack = Timeline.currentTrack();
       if (method === 'track') {
         nextChronolog = activeTrack.next();
@@ -33,6 +32,7 @@
           return nextChronolog.activate();
         }
       } else if (method === 'chronological') {
+        activeChronolog = Chronolog.active();
         if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
           Timeline.switchTracks();
         }
@@ -40,10 +40,15 @@
       }
     };
     Timeline.reverse = function(method) {
-      var activeChronolog, activeTrack;
-      if (method === 'chronological') {
+      var activeChronolog, activeTrack, prevChronolog;
+      activeTrack = Timeline.currentTrack();
+      if (method === 'track') {
+        prevChronolog = activeTrack.prev();
+        if (prevChronolog != null) {
+          return prevChronolog.activate();
+        }
+      } else if (method === 'chronological') {
         activeChronolog = Chronolog.active();
-        activeTrack = Timeline.currentTrack();
         if (activeTrack.chronologs.indexOf(activeChronolog.prev()) < 0) {
           Timeline.switchTracks();
         }

@@ -23,21 +23,25 @@ class Timeline
     Chronolog.active()
 
   @advance: (method) ->
-    activeChronolog = Chronolog.active()
     activeTrack = Timeline.currentTrack()
     if method == 'track'
       nextChronolog = activeTrack.next()
       if nextChronolog?
         nextChronolog.activate()
     else if method == 'chronological'
+      activeChronolog = Chronolog.active()
       if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
         Timeline.switchTracks()
       Chronolog.advance()
 
   @reverse: (method) ->
-    if method == 'chronological'
+    activeTrack = Timeline.currentTrack()
+    if method == 'track'
+      prevChronolog = activeTrack.prev()
+      if prevChronolog?
+        prevChronolog.activate()
+    else if method == 'chronological'
       activeChronolog = Chronolog.active()
-      activeTrack = Timeline.currentTrack()
       if activeTrack.chronologs.indexOf(activeChronolog.prev()) < 0
         Timeline.switchTracks()
       Chronolog.reverse()
