@@ -60,12 +60,18 @@
           return expect(logTwo.next()).toEqual(void 0);
         });
       });
-      return describe("prev()", function() {
+      describe("prev()", function() {
         it("returns previous instance if there is one", function() {
           return expect(logTwo.prev()).toEqual(logOne);
         });
         return it("returns 'undefined' if there is no predecessor", function() {
           return expect(logOne.prev()).toEqual(void 0);
+        });
+      });
+      return describe("activate()", function() {
+        return it("turns the caller into the active Chronolog", function() {
+          logTwo.activate();
+          return expect(Chronolog.activeChronologIndex).toEqual(1);
         });
       });
     });

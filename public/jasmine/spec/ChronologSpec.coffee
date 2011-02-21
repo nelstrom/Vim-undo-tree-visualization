@@ -51,3 +51,7 @@ describe "Chronolog", ->
         expect(logTwo.prev()).toEqual logOne
       it "returns 'undefined' if there is no predecessor", ->
         expect(logOne.prev()).toEqual undefined
+    describe "activate()", ->
+      it "turns the caller into the active Chronolog", ->
+        logTwo.activate()
+        expect(Chronolog.activeChronologIndex).toEqual 1
