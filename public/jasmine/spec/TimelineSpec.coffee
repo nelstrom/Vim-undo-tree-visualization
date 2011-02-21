@@ -167,6 +167,22 @@ describe "Timeline", ->
           expect(Timeline.currentTrack()).toEqual(trackB)
           expect(Chronolog.active()).toEqual(two)
 
+    describe "atStart()", ->
+      describe "track", ->
+        it "returns true at start of track", ->
+          trackA.activate()
+          one.activate()
+          expect(Timeline.atStart('track')).toEqual true
+      describe "chronological", ->
+        it "returns true at start of track", ->
+          trackA.activate()
+          one.activate()
+          expect(Timeline.atStart('chronoligical')).toEqual true
+
+    describe "atFinish()", ->
+      describe "track", ->
+      describe "chronological", ->
+
     describe "asDocumentState()", ->
       it "returns an object that can be used to construct a DocumentState object", ->
         trackA.activate()

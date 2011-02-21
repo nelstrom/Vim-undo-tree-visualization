@@ -63,6 +63,11 @@ class Timeline
         Timeline.switchTracks()
       Chronolog.reverse()
 
+  @atStart: (method) ->
+    activeChronolog = Chronolog.active()
+    Chronolog.instances[0] == activeChronolog
+    
+
   @switchTracks: ->
     if @currentTrackIndex == 0
       @currentTrackIndex = 1

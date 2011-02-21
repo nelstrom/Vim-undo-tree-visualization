@@ -72,6 +72,11 @@
         return Chronolog.reverse();
       }
     };
+    Timeline.atStart = function(method) {
+      var activeChronolog;
+      activeChronolog = Chronolog.active();
+      return Chronolog.instances[0] === activeChronolog;
+    };
     Timeline.switchTracks = function() {
       if (this.currentTrackIndex === 0) {
         return this.currentTrackIndex = 1;

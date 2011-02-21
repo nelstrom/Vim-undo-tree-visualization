@@ -180,6 +180,26 @@
           });
         });
       });
+      describe("atStart()", function() {
+        describe("track", function() {
+          return it("returns true at start of track", function() {
+            trackA.activate();
+            one.activate();
+            return expect(Timeline.atStart('track')).toEqual(true);
+          });
+        });
+        return describe("chronological", function() {
+          return it("returns true at start of track", function() {
+            trackA.activate();
+            one.activate();
+            return expect(Timeline.atStart('chronoligical')).toEqual(true);
+          });
+        });
+      });
+      describe("atFinish()", function() {
+        describe("track", function() {});
+        return describe("chronological", function() {});
+      });
       describe("asDocumentState()", function() {
         it("returns an object that can be used to construct a DocumentState object", function() {
           var expectedObject;
