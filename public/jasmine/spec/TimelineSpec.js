@@ -88,11 +88,41 @@
             expect(Timeline.currentTrack()).toEqual(trackA);
             return expect(Chronolog.active()).toEqual(two);
           });
-          it("keeps to current track (1b -> 2b)", function() {});
-          it("keeps to current track (2a -> 3a)", function() {});
-          it("keeps to current track (2b -> 5b)", function() {});
-          it("does nothing when at end of line (4b -> 4b)", function() {});
-          return it("does nothing when at end of line (6t -> 6t)", function() {});
+          it("keeps to current track (1b -> 2b)", function() {
+            Timeline.currentTrackIndex = 1;
+            Chronolog.activeChronologIndex = 0;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackB);
+            return expect(Chronolog.active()).toEqual(two);
+          });
+          it("keeps to current track (2a -> 3a)", function() {
+            Timeline.currentTrackIndex = 0;
+            Chronolog.activeChronologIndex = 1;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackA);
+            return expect(Chronolog.active()).toEqual(three);
+          });
+          it("keeps to current track (2b -> 5b)", function() {
+            Timeline.currentTrackIndex = 1;
+            Chronolog.activeChronologIndex = 1;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackB);
+            return expect(Chronolog.active()).toEqual(five);
+          });
+          it("does nothing when at end of line (4a -> 4a)", function() {
+            Timeline.currentTrackIndex = 1;
+            Chronolog.activeChronologIndex = 3;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackA);
+            return expect(Chronolog.active()).toEqual(four);
+          });
+          return it("does nothing when at end of line (6t -> 6t)", function() {
+            Timeline.currentTrackIndex = 1;
+            Chronolog.activeChronologIndex = 5;
+            Timeline.advance('track');
+            expect(Timeline.currentTrack()).toEqual(trackB);
+            return expect(Chronolog.active()).toEqual(six);
+          });
         });
       });
       return describe("reverse", function() {

@@ -78,10 +78,40 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(two)
 
         it "keeps to current track (1b -> 2b)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          Chronolog.activeChronologIndex = 0 # one
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(two)
+
         it "keeps to current track (2a -> 3a)", ->
+          Timeline.currentTrackIndex     = 0 # trackA
+          Chronolog.activeChronologIndex = 1 # two
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(three)
+
         it "keeps to current track (2b -> 5b)", ->
-        it "does nothing when at end of line (4b -> 4b)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          Chronolog.activeChronologIndex = 1 # two
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(five)
+
+        it "does nothing when at end of line (4a -> 4a)", ->
+          Timeline.currentTrackIndex     = 1 # trackA
+          Chronolog.activeChronologIndex = 3 # four
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackA)
+          expect(Chronolog.active()).toEqual(four)
+
         it "does nothing when at end of line (6t -> 6t)", ->
+          Timeline.currentTrackIndex     = 1 # trackB
+          Chronolog.activeChronologIndex = 5 # six
+          Timeline.advance('track')
+          expect(Timeline.currentTrack()).toEqual(trackB)
+          expect(Chronolog.active()).toEqual(six)
+
 
     describe "reverse", ->
       describe "chronologically", ->
