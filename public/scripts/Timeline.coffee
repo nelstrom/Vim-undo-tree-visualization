@@ -7,6 +7,11 @@ class Timeline
   activeChronologIndex: ->
     @chronologs.indexOf(Chronolog.active())
 
+  activate: ->
+    myIndex = Timeline.instances.indexOf(this)
+    Timeline.currentTrackIndex = myIndex
+
+
   next: ->
     @chronologs[@activeChronologIndex()+1]
 

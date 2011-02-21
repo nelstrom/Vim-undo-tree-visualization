@@ -9,6 +9,11 @@
     Timeline.prototype.activeChronologIndex = function() {
       return this.chronologs.indexOf(Chronolog.active());
     };
+    Timeline.prototype.activate = function() {
+      var myIndex;
+      myIndex = Timeline.instances.indexOf(this);
+      return Timeline.currentTrackIndex = myIndex;
+    };
     Timeline.prototype.next = function() {
       return this.chronologs[this.activeChronologIndex() + 1];
     };
