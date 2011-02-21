@@ -181,16 +181,32 @@
         });
       });
       return describe("asDocumentState()", function() {
-        return it("returns an object that can be used to construct a DocumentState object", function() {
+        it("returns an object that can be used to construct a DocumentState object", function() {
           var expectedObject;
           trackA.activate();
+          one.activate();
+          expectedObject = {
+            timelineOriginal: {
+              points: 's1,s2,b3,b4',
+              active: true
+            },
+            timelineRevised: {
+              points: 's1,s2,t3,t5,t6'
+            }
+          };
+          return expect(Timeline.asDocumentState()).toEqual(expectedObject);
+        });
+        return it("returns an object that can be used to construct a DocumentState object", function() {
+          var expectedObject;
+          trackB.activate();
           one.activate();
           expectedObject = {
             timelineOriginal: {
               points: 's1,s2,b3,b4'
             },
             timelineRevised: {
-              points: 's1,s2,t3,t5,t6'
+              points: 's1,s2,t3,t5,t6',
+              active: true
             }
           };
           return expect(Timeline.asDocumentState()).toEqual(expectedObject);

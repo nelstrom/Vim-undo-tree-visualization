@@ -67,6 +67,23 @@
         return this.currentTrackIndex = 0;
       }
     };
+    Timeline.asDocumentState = function() {
+      var configObject;
+      configObject = {
+        timelineOriginal: {
+          points: this.instances[0].coordinates.join(",")
+        },
+        timelineRevised: {
+          points: this.instances[1].coordinates.join(",")
+        }
+      };
+      if (Timeline.currentTrackIndex === 0) {
+        configObject.timelineOriginal['active'] = true;
+      } else {
+        configObject.timelineRevised['active'] = true;
+      }
+      return configObject;
+    };
     Timeline.reset = function() {
       return this.instances = [];
     };

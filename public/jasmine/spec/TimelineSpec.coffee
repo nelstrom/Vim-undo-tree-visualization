@@ -171,11 +171,26 @@ describe "Timeline", ->
       it "returns an object that can be used to construct a DocumentState object", ->
         trackA.activate()
         one.activate()
+
+        expectedObject =
+          timelineOriginal:
+            points: 's1,s2,b3,b4'
+            active: true
+          timelineRevised:
+            points: 's1,s2,t3,t5,t6'
+
+        expect(Timeline.asDocumentState()).toEqual expectedObject
+
+      it "returns an object that can be used to construct a DocumentState object", ->
+        trackB.activate()
+        one.activate()
+
         expectedObject =
           timelineOriginal:
             points: 's1,s2,b3,b4'
           timelineRevised:
             points: 's1,s2,t3,t5,t6'
+            active: true
 
         expect(Timeline.asDocumentState()).toEqual expectedObject
 

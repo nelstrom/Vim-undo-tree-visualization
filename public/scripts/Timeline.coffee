@@ -57,6 +57,19 @@ class Timeline
     else
       @currentTrackIndex = 0
 
+  @asDocumentState: ->
+    configObject =
+      timelineOriginal:
+        points: @instances[0].coordinates.join(",")
+      timelineRevised:
+        points: @instances[1].coordinates.join(",")
+
+    if Timeline.currentTrackIndex == 0
+      configObject.timelineOriginal['active'] = true
+    else
+      configObject.timelineRevised['active'] = true
+    configObject
+
   @reset: ->
     @instances = []
 
