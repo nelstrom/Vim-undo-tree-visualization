@@ -27,7 +27,8 @@ class Timeline
     activeTrack = Timeline.currentTrack()
     if method == 'track'
       nextChronolog = activeTrack.next()
-      nextChronolog.activate()
+      if nextChronolog?
+        nextChronolog.activate()
     else if method == 'chronological'
       if activeTrack.chronologs.indexOf(activeChronolog.next()) < 0
         Timeline.switchTracks()

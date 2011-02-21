@@ -99,7 +99,7 @@ describe "Timeline", ->
           expect(Chronolog.active()).toEqual(five)
 
         it "does nothing when at end of line (4a -> 4a)", ->
-          Timeline.currentTrackIndex     = 1 # trackA
+          Timeline.currentTrackIndex     = 0 # trackA
           Chronolog.activeChronologIndex = 3 # four
           Timeline.advance('track')
           expect(Timeline.currentTrack()).toEqual(trackA)

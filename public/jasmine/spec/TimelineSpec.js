@@ -110,7 +110,7 @@
             return expect(Chronolog.active()).toEqual(five);
           });
           it("does nothing when at end of line (4a -> 4a)", function() {
-            Timeline.currentTrackIndex = 1;
+            Timeline.currentTrackIndex = 0;
             Chronolog.activeChronologIndex = 3;
             Timeline.advance('track');
             expect(Timeline.currentTrack()).toEqual(trackA);

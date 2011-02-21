@@ -29,7 +29,9 @@
       activeTrack = Timeline.currentTrack();
       if (method === 'track') {
         nextChronolog = activeTrack.next();
-        return nextChronolog.activate();
+        if (nextChronolog != null) {
+          return nextChronolog.activate();
+        }
       } else if (method === 'chronological') {
         if (activeTrack.chronologs.indexOf(activeChronolog.next()) < 0) {
           Timeline.switchTracks();
