@@ -10,9 +10,7 @@
       var activeChronolog, currentIndex, nextChronolog;
       activeChronolog = Chronolog.active();
       currentIndex = this.chronologs.indexOf(activeChronolog);
-      nextChronolog = this.chronologs[currentIndex + 1];
-      nextChronolog.activate();
-      return Chronolog.active();
+      return nextChronolog = this.chronologs[currentIndex + 1];
     };
     Timeline.instances = [];
     Timeline.currentTrackIndex = 0;

@@ -8,8 +8,6 @@ class Timeline
     activeChronolog = Chronolog.active()
     currentIndex = @chronologs.indexOf(activeChronolog)
     nextChronolog = @chronologs[currentIndex+1]
-    nextChronolog.activate()
-    Chronolog.active()
 
 
   @instances: []
