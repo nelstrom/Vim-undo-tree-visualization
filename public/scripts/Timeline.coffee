@@ -4,15 +4,14 @@ class Timeline
     @coordinates = config.coordinates.split(",")
     Timeline.instances.push(this)
 
+  activeChronologIndex: ->
+    @chronologs.indexOf(Chronolog.active())
+
   next: ->
-    activeChronolog = Chronolog.active()
-    currentIndex = @chronologs.indexOf(activeChronolog)
-    nextChronolog = @chronologs[currentIndex+1]
+    @chronologs[@activeChronologIndex()+1]
 
   prev: ->
-    activeChronolog = Chronolog.active()
-    currentIndex = @chronologs.indexOf(activeChronolog)
-    prevChronolog = @chronologs[currentIndex-1]
+    @chronologs[@activeChronologIndex()-1]
 
 
   @instances: []

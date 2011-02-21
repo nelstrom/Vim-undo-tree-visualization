@@ -6,17 +6,14 @@
       this.coordinates = config.coordinates.split(",");
       Timeline.instances.push(this);
     }
+    Timeline.prototype.activeChronologIndex = function() {
+      return this.chronologs.indexOf(Chronolog.active());
+    };
     Timeline.prototype.next = function() {
-      var activeChronolog, currentIndex, nextChronolog;
-      activeChronolog = Chronolog.active();
-      currentIndex = this.chronologs.indexOf(activeChronolog);
-      return nextChronolog = this.chronologs[currentIndex + 1];
+      return this.chronologs[this.activeChronologIndex() + 1];
     };
     Timeline.prototype.prev = function() {
-      var activeChronolog, currentIndex, prevChronolog;
-      activeChronolog = Chronolog.active();
-      currentIndex = this.chronologs.indexOf(activeChronolog);
-      return prevChronolog = this.chronologs[currentIndex - 1];
+      return this.chronologs[this.activeChronologIndex() - 1];
     };
     Timeline.instances = [];
     Timeline.currentTrackIndex = 0;
