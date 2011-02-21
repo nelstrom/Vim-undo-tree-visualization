@@ -62,3 +62,6 @@ describe "Chronolog", ->
       it "returns true for active item", ->
         logOne.activate()
         expect(logOne.isActive()).toEqual true
+      it "returns false for inactive item", ->
+        logTwo.activate()
+        expect(logOne.isActive()).toEqual false

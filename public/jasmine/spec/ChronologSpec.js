@@ -77,9 +77,13 @@
         });
       });
       return describe("isActive()", function() {
-        return it("returns true for active item", function() {
+        it("returns true for active item", function() {
           logOne.activate();
           return expect(logOne.isActive()).toEqual(true);
+        });
+        return it("returns false for inactive item", function() {
+          logTwo.activate();
+          return expect(logOne.isActive()).toEqual(false);
         });
       });
     });
