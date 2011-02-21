@@ -159,9 +159,35 @@
           return expect(trackB.coordinates).toEqual(['s1', 's2', 't3', 't5', 't6']);
         });
       });
-      return describe("chronologs", function() {
+      describe("chronologs", function() {
         return it("returns a list of chronologs", function() {
           return expect(trackA.chronologs).toEqual([one, two, three, four]);
+        });
+      });
+      return describe("next()", function() {
+        it("returns the next chronolog (1a -> 2a)", function() {
+          one.activate();
+          return expect(trackA.next()).toEqual(two);
+        });
+        it("returns the next chronolog (2a -> 3a)", function() {
+          two.activate();
+          return expect(trackA.next()).toEqual(three);
+        });
+        it("returns the next chronolog (3a -> 4a)", function() {
+          three.activate();
+          return expect(trackA.next()).toEqual(four);
+        });
+        it("returns the next chronolog (1b -> 2b)", function() {
+          one.activate();
+          return expect(trackB.next()).toEqual(two);
+        });
+        it("returns the next chronolog (2b -> 5b)", function() {
+          two.activate();
+          return expect(trackB.next()).toEqual(five);
+        });
+        return it("returns the next chronolog (5b -> 6b)", function() {
+          five.activate();
+          return expect(trackB.next()).toEqual(six);
         });
       });
     });

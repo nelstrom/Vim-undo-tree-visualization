@@ -148,3 +148,23 @@ describe "Timeline", ->
       it "returns a list of chronologs", ->
         expect(trackA.chronologs).toEqual [one, two, three, four]
 
+    describe "next()", ->
+      it "returns the next chronolog (1a -> 2a)", ->
+        one.activate()
+        expect(trackA.next()).toEqual two
+      it "returns the next chronolog (2a -> 3a)", ->
+        two.activate()
+        expect(trackA.next()).toEqual three
+      it "returns the next chronolog (3a -> 4a)", ->
+        three.activate()
+        expect(trackA.next()).toEqual four
+
+      it "returns the next chronolog (1b -> 2b)", ->
+        one.activate()
+        expect(trackB.next()).toEqual two
+      it "returns the next chronolog (2b -> 5b)", ->
+        two.activate()
+        expect(trackB.next()).toEqual five
+      it "returns the next chronolog (5b -> 6b)", ->
+        five.activate()
+        expect(trackB.next()).toEqual six
