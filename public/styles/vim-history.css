@@ -1,5 +1,6 @@
 .state { display: none; }
 #vim-history-visualization {
+  margin: 100px auto;
   border: 1px solid black;
   width: 640px;
 }
