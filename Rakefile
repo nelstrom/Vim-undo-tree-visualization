@@ -1,4 +1,4 @@
-task :default => :compile
+task :default => :concatenate
 
 packages = {
   "player" => [
@@ -16,7 +16,7 @@ packages = {
 }
 
 desc "Compile the coffescript files"
-task :compile do
+task :concatenate do
   packages.each do |package, files|
     paths = files.map{ |f| "public/scripts/#{f}" }
     `coffee -o public/javascripts/ --join --compile #{paths.join(" ")}`
@@ -24,3 +24,9 @@ task :compile do
   end
 end
 
+desc "Merge with raphael.js and minify"
+task :minify => :concatenate do
+  packages.each do |package, files|
+    `cat public/javascripts/raphael.min.js public/javascripts/#{package}.js > public/javascripts/#{package}.min.js`
+  end
+end
