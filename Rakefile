@@ -27,13 +27,13 @@ end
 desc "Minify js packages with Google closure"
 task :minify => :concatenate do
   packages.each do |package, files|
-    `java -jar closure-compiler/compiler.jar --js public/javascripts/#{package}.js --js_output_file public/javascripts/#{package}-minified.js`
+    `java -jar closure-compiler/compiler.jar --js public/javascripts/#{package}-concatenated.js --js_output_file public/javascripts/#{package}-minified.js`
   end
 end
 
 desc "Merge with raphael.js"
 task :merge => :minify do
   packages.each do |package, files|
-    `cat public/javascripts/raphael.min.js public/javascripts/#{package}.minified.js > public/javascripts/raphael-#{package}.min.js`
+    `cat public/javascripts/raphael.min.js public/javascripts/#{package}-minified.js > public/javascripts/raphael-#{package}.min.js`
   end
 end
