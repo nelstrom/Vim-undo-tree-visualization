@@ -1,3 +1,8 @@
+This repository contains the source code for an interactive visualization that illustrates how Vim's undo tree works. I used this as an opportunity to learn [Raphael.js][] and [CoffeeScript][], both of which were unfamiliar to me. The code is a bit of a mess, but it's fit for purpose, so I thought I may as well release it. If it's no use to anyone else, at least I can look back on it in 6 months and know that I've improved.
+
+Notes to self
+-------------
+
 To compile the coffee script, run this:
 
     cd public
